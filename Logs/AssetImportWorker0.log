@@ -24,7 +24,7 @@ AssetImportWorker0
 -logFile
 Logs/AssetImportWorker0.log
 -srvPort
-40779
+38907
 Successfully changed project path to: /home/will/repos/Let_Him_Cook
 /home/will/repos/Let_Him_Cook
 [UnityMemory] Configuration Parameters - Can be set up in boot.config
@@ -58,14 +58,14 @@ Successfully changed project path to: /home/will/repos/Let_Him_Cook
     "memorysetup-temp-allocator-size-cloud-worker=32768"
     "memorysetup-temp-allocator-size-gi-baking-worker=262144"
     "memorysetup-temp-allocator-size-gfx=262144"
-Player connection [132781168755648]  Target information:
+Player connection [132349642195904]  Target information:
 
-Player connection [132781168755648]  * "[IP] 10.32.23.208 [Port] 0 [Flags] 2 [Guid] 3685826421 [EditorId] 3685826421 [Version] 1048832 [Id] LinuxEditor(16,10.32.23.208) [Debug] 1 [PackageName] LinuxEditor [ProjectName] Editor" 
+Player connection [132349642195904]  * "[IP] 10.32.23.208 [Port] 0 [Flags] 2 [Guid] 2387306434 [EditorId] 2387306434 [Version] 1048832 [Id] LinuxEditor(16,10.32.23.208) [Debug] 1 [PackageName] LinuxEditor [ProjectName] Editor" 
 
-Player connection [132781168755648] Host joined multi-casting on [225.0.0.222:54997]...
-Player connection [132781168755648] Host joined alternative multi-casting on [225.0.0.222:34997]...
+Player connection [132349642195904] Host joined multi-casting on [225.0.0.222:54997]...
+Player connection [132349642195904] Host joined alternative multi-casting on [225.0.0.222:34997]...
 [PhysX] Initialized MultithreadedTaskDispatcher with 4 workers.
-Refreshing native plugins compatible for Editor in 15.31 ms, found 0 plugins.
+Refreshing native plugins compatible for Editor in 10.63 ms, found 0 plugins.
 Preloading 0 native plugins for Editor in 0.00 ms.
 Initialize engine version: 2022.3.47f1 (88c277b85d21)
 [Subsystems] Discovering subsystems at path /home/will/Unity/Hub/Editor/2022.3.47f1/Editor/Data/Resources/UnitySubsystems
@@ -81,57 +81,57 @@ int_sprite GL_ARB_polygon_offset_clamp GL_ARB_post_depth_coverage GL_ARB_program
 L_ARB_texture_buffer_object GL_ARB_texture_buffer_object_rgb32 GL_ARB_texture_buffer_range GL_ARB_texture_compression_bptc GL_ARB_texture_compression_rgtc GL_ARB_texture_cube_map_array GL_ARB_texture_filter_anisotropic GL_ARB_texture_float GL_ARB_texture_gather GL_ARB_texture_mirror_clamp_to_edge GL_ARB_texture_multisample GL_ARB_texture_non_power_of_two GL_ARB_texture_query_levels GL_ARB_texture_query_lod GL_ARB_texture_rectangle GL_ARB_texture_rg GL_ARB_texture_rgb10_a2ui GL_ARB_texture_stencil8 GL_ARB_texture_storage GL_ARB_texture_storage_multisample GL_ARB_texture_swizzle GL_ARB_texture_view GL_ARB_timer_query GL_ARB_transform_feedback2 GL_ARB_transform_feedback3 GL_ARB_transform_feedback_instanced GL_ARB_transform_feedback_overflow_query GL_ARB_uniform_buffer_object GL_ARB_vertex_array_bgra GL_ARB_vertex_array_object GL_ARB_vertex_attrib_64bit GL_ARB_vertex_attrib_binding GL_ARB_vertex_buffer_object GL_ARB_vertex_shader GL_ARB_vertex_type_10f_11f_11f_rev GL_ARB_vertex_type_2_10_10_10_rev GL_ARB_viewpor
 t_array GL_ATI_blend_equation_separate GL_ATI_texture_float GL_EXT_EGL_image_storage GL_EXT_EGL_sync GL_EXT_abgr GL_EXT_blend_equation_separate GL_EXT_debug_label GL_EXT_demote_to_helper_invocation GL_EXT_draw_buffers2 GL_EXT_draw_instanced GL_EXT_framebuffer_blit GL_EXT_framebuffer_multisample GL_EXT_framebuffer_multisample_blit_scaled GL_EXT_framebuffer_object GL_EXT_framebuffer_sRGB GL_EXT_memory_object GL_EXT_memory_object_fd GL_EXT_packed_depth_stencil GL_EXT_packed_float GL_EXT_pixel_buffer_object GL_EXT_polygon_offset_clamp GL_EXT_provoking_vertex GL_EXT_semaphore GL_EXT_semaphore_fd GL_EXT_shader_framebuffer_fetch GL_EXT_shader_framebuffer_fetch_non_coherent GL_EXT_shader_integer_mix GL_EXT_shader_samples_identical GL_EXT_texture_array GL_EXT_texture_compression_dxt1 GL_EXT_texture_compression_rgtc GL_EXT_texture_compression_s3tc GL_EXT_texture_filter_anisotropic GL_EXT_texture_integer GL_EXT_texture_sRGB GL_EXT_texture_sRGB_R8 GL_EXT_texture_sRGB_decode GL_EXT_texture_shadow_lod GL_EXT_texture_share
 d_exponent GL_EXT_texture_snorm GL_EXT_texture_swizzle GL_EXT_timer_query GL_EXT_transform_feedback GL_EXT_vertex_array_bgra GL_EXT_vertex_attrib_64bit GL_IBM_multimode_draw_arrays GL_INTEL_blackhole_render GL_INTEL_conservative_rasterization GL_INTEL_performance_query GL_INTEL_shader_atomic_float_minmax GL_INTEL_shader_integer_functions2 GL_KHR_blend_equation_advanced GL_KHR_blend_equation_advanced_coherent GL_KHR_context_flush_control GL_KHR_debug GL_KHR_no_error GL_KHR_parallel_shader_compile GL_KHR_robust_buffer_access_behavior GL_KHR_robustness GL_KHR_texture_compression_astc_ldr GL_KHR_texture_compression_astc_sliced_3d GL_MESA_framebuffer_flip_y GL_MESA_pack_invert GL_MESA_shader_integer_functions GL_MESA_texture_signed_rgba GL_NV_alpha_to_coverage_dither_control GL_NV_compute_shader_derivatives GL_NV_conditional_render GL_NV_copy_image GL_NV_depth_clamp GL_NV_fragment_shader_interlock GL_NV_packed_depth_stencil GL_NV_texture_barrier GL_OES_EGL_image GL_S3_s3tc
-OPENGL LOG: Creating OpenGL 4.6 graphics device ; Context level  <OpenGL 4.5> ; Context handle 65039360
+OPENGL LOG: Creating OpenGL 4.6 graphics device ; Context level  <OpenGL 4.5> ; Context handle 1776747968
 Shader Hidden/ProbeVolume/VoxelizeScene is not supported: GPU does not support conservative rasterization
 Initialize mono
 Mono path[0] = '/home/will/Unity/Hub/Editor/2022.3.47f1/Editor/Data/Managed'
 Mono path[1] = '/home/will/Unity/Hub/Editor/2022.3.47f1/Editor/Data/MonoBleedingEdge/lib/mono/unityjit-linux'
 Mono config path = '/home/will/Unity/Hub/Editor/2022.3.47f1/Editor/Data/MonoBleedingEdge/etc'
-Using monoOptions --debugger-agent=transport=dt_socket,embedding=1,server=y,suspend=n,address=127.0.0.1:56756
+Using monoOptions --debugger-agent=transport=dt_socket,embedding=1,server=y,suspend=n,address=127.0.0.1:56662
 Begin MonoManager ReloadAssembly
 Registering precompiled unity dll's ...
 Register platform support module: /home/will/Unity/Hub/Editor/2022.3.47f1/Editor/Data/PlaybackEngines/AndroidPlayer/UnityEditor.Android.Extensions.dll
 Register platform support module: /home/will/Unity/Hub/Editor/2022.3.47f1/Editor/Data/PlaybackEngines/iOSSupport/UnityEditor.iOS.Extensions.dll
 Register platform support module: /home/will/Unity/Hub/Editor/2022.3.47f1/Editor/Data/PlaybackEngines/LinuxStandaloneSupport/UnityEditor.LinuxStandalone.Extensions.dll
-Registered in 0.021825 seconds.
-- Loaded All Assemblies, in  0.721 seconds
+Registered in 0.014812 seconds.
+- Loaded All Assemblies, in  0.487 seconds
 Native extension for LinuxStandalone target not found
 [usbmuxd] Start listen thread
 [usbmuxd] Listen thread started
 Native extension for iOS target not found
 Native extension for Android target not found
-Android Extension - Scanning For ADB Devices 681 ms
+Android Extension - Scanning For ADB Devices 475 ms
 Mono: successfully reloaded assembly
-- Finished resetting the current domain, in  1.392 seconds
-Domain Reload Profiling: 2113ms
-	BeginReloadAssembly (131ms)
+- Finished resetting the current domain, in  0.945 seconds
+Domain Reload Profiling: 1432ms
+	BeginReloadAssembly (126ms)
 		ExecutionOrderSort (0ms)
 		DisableScriptedObjects (0ms)
 		BackupInstance (0ms)
 		ReleaseScriptingObjects (0ms)
 		CreateAndSetChildDomain (1ms)
-	RebuildCommonClasses (95ms)
-	RebuildNativeTypeToScriptingClass (22ms)
-	initialDomainReloadingComplete (134ms)
-	LoadAllAssembliesAndSetupDomain (339ms)
-		LoadAssemblies (130ms)
+	RebuildCommonClasses (54ms)
+	RebuildNativeTypeToScriptingClass (12ms)
+	initialDomainReloadingComplete (89ms)
+	LoadAllAssembliesAndSetupDomain (204ms)
+		LoadAssemblies (126ms)
 		RebuildTransferFunctionScriptingTraits (0ms)
-		AnalyzeDomain (335ms)
-			TypeCache.Refresh (333ms)
-				TypeCache.ScanAssembly (304ms)
+		AnalyzeDomain (201ms)
+			TypeCache.Refresh (199ms)
+				TypeCache.ScanAssembly (178ms)
 			ScanForSourceGeneratedMonoScriptInfo (1ms)
 			ResolveRequiredComponents (1ms)
-	FinalizeReload (1393ms)
+	FinalizeReload (946ms)
 		ReleaseScriptCaches (0ms)
 		RebuildScriptCaches (0ms)
-		SetupLoadedEditorAssemblies (1276ms)
+		SetupLoadedEditorAssemblies (878ms)
 			LogAssemblyErrors (0ms)
-			InitializePlatformSupportModulesInManaged (907ms)
-			SetLoadedEditorAssemblies (10ms)
+			InitializePlatformSupportModulesInManaged (636ms)
+			SetLoadedEditorAssemblies (6ms)
 			RefreshPlugins (0ms)
-			BeforeProcessingInitializeOnLoad (4ms)
-			ProcessInitializeOnLoadAttributes (252ms)
-			ProcessInitializeOnLoadMethodAttributes (103ms)
+			BeforeProcessingInitializeOnLoad (3ms)
+			ProcessInitializeOnLoadAttributes (165ms)
+			ProcessInitializeOnLoadMethodAttributes (67ms)
 			AfterProcessingInitializeOnLoad (0ms)
 			EditorAssembliesLoaded (0ms)
 		ExecutionOrderSort2 (0ms)
@@ -140,7 +140,7 @@ Domain Reload Profiling: 2113ms
 Worker process is ready to serve import requests
 Caller must complete domain reload
 Begin MonoManager ReloadAssembly
-- Loaded All Assemblies, in  1.479 seconds
+- Loaded All Assemblies, in  1.156 seconds
 Native extension for LinuxStandalone target not found
 Native extension for iOS target not found
 Native extension for Android target not found
@@ -158,48 +158,48 @@ Mono: successfully reloaded assembly
 [Package Manager] Server::EnsureServerProcessIsRunning -- launch failed, reason: Unity was launched with the -noUpm command-line argument
 [Package Manager] UpmClient::Send -- Unable to send message (not connected to UPM process).
 [Package Manager] Cannot connect to Unity Package Manager local server
-- Finished resetting the current domain, in  1.673 seconds
-Domain Reload Profiling: 3147ms
-	BeginReloadAssembly (267ms)
+- Finished resetting the current domain, in  1.473 seconds
+Domain Reload Profiling: 2627ms
+	BeginReloadAssembly (165ms)
 		ExecutionOrderSort (0ms)
-		DisableScriptedObjects (11ms)
+		DisableScriptedObjects (8ms)
 		BackupInstance (0ms)
 		ReleaseScriptingObjects (0ms)
-		CreateAndSetChildDomain (56ms)
-	RebuildCommonClasses (72ms)
-	RebuildNativeTypeToScriptingClass (23ms)
-	initialDomainReloadingComplete (92ms)
-	LoadAllAssembliesAndSetupDomain (1020ms)
-		LoadAssemblies (541ms)
+		CreateAndSetChildDomain (32ms)
+	RebuildCommonClasses (44ms)
+	RebuildNativeTypeToScriptingClass (11ms)
+	initialDomainReloadingComplete (69ms)
+	LoadAllAssembliesAndSetupDomain (863ms)
+		LoadAssemblies (478ms)
 		RebuildTransferFunctionScriptingTraits (0ms)
-		AnalyzeDomain (601ms)
-			TypeCache.Refresh (532ms)
-				TypeCache.ScanAssembly (505ms)
-			ScanForSourceGeneratedMonoScriptInfo (46ms)
-			ResolveRequiredComponents (21ms)
-	FinalizeReload (1674ms)
+		AnalyzeDomain (465ms)
+			TypeCache.Refresh (398ms)
+				TypeCache.ScanAssembly (368ms)
+			ScanForSourceGeneratedMonoScriptInfo (47ms)
+			ResolveRequiredComponents (19ms)
+	FinalizeReload (1474ms)
 		ReleaseScriptCaches (0ms)
 		RebuildScriptCaches (0ms)
-		SetupLoadedEditorAssemblies (1299ms)
+		SetupLoadedEditorAssemblies (1183ms)
 			LogAssemblyErrors (0ms)
-			InitializePlatformSupportModulesInManaged (82ms)
-			SetLoadedEditorAssemblies (8ms)
+			InitializePlatformSupportModulesInManaged (67ms)
+			SetLoadedEditorAssemblies (7ms)
 			RefreshPlugins (0ms)
-			BeforeProcessingInitializeOnLoad (131ms)
-			ProcessInitializeOnLoadAttributes (907ms)
-			ProcessInitializeOnLoadMethodAttributes (163ms)
-			AfterProcessingInitializeOnLoad (8ms)
+			BeforeProcessingInitializeOnLoad (136ms)
+			ProcessInitializeOnLoadAttributes (813ms)
+			ProcessInitializeOnLoadMethodAttributes (152ms)
+			AfterProcessingInitializeOnLoad (7ms)
 			EditorAssembliesLoaded (0ms)
 		ExecutionOrderSort2 (0ms)
-		AwakeInstancesAfterBackupRestoration (5ms)
+		AwakeInstancesAfterBackupRestoration (4ms)
 Shader Hidden/ProbeVolume/VoxelizeScene is not supported: GPU does not support conservative rasterization
-Launched and connected shader compiler UnityShaderCompiler after 0.03 seconds
-Refreshing native plugins compatible for Editor in 12.13 ms, found 0 plugins.
+Launched and connected shader compiler UnityShaderCompiler after 0.02 seconds
+Refreshing native plugins compatible for Editor in 9.57 ms, found 0 plugins.
 Preloading 0 native plugins for Editor in 0.00 ms.
-Unloading 6558 Unused Serialized files (Serialized files now loaded: 0)
-Unloading 98 unused Assets / (421.1 KB). Loaded Objects now: 7021.
-Memory consumption went from 229.4 MB to 229.0 MB.
-Total: 10.467904 ms (FindLiveObjects: 0.727977 ms CreateObjectMapping: 0.983421 ms MarkObjects: 7.737035 ms  DeleteObjects: 1.017282 ms)
+Unloading 6559 Unused Serialized files (Serialized files now loaded: 0)
+Unloading 98 unused Assets / (421.6 KB). Loaded Objects now: 7025.
+Memory consumption went from 230.4 MB to 230.0 MB.
+Total: 8.698013 ms (FindLiveObjects: 0.755343 ms CreateObjectMapping: 0.794103 ms MarkObjects: 6.091746 ms  DeleteObjects: 1.055045 ms)
 
 AssetImportParameters requested are different than current active one (requested -> active):
   custom:container-demuxer-ogg: 62fdf1f143b41e24485cea50d1cbac27 -> 
@@ -217,7 +217,7 @@ AssetImportParameters requested are different than current active one (requested
 Received Prepare
 Caller must complete domain reload
 Begin MonoManager ReloadAssembly
-- Loaded All Assemblies, in  1.039 seconds
+- Loaded All Assemblies, in  0.895 seconds
 Native extension for LinuxStandalone target not found
 Native extension for iOS target not found
 Native extension for Android target not found
@@ -241,47 +241,47 @@ Mono: successfully reloaded assembly
 [Package Manager] Server::EnsureServerProcessIsRunning -- launch failed, reason: Unity was launched with the -noUpm command-line argument
 [Package Manager] UpmClient::Send -- Unable to send message (not connected to UPM process).
 [Package Manager] Cannot connect to Unity Package Manager local server
-- Finished resetting the current domain, in  2.330 seconds
-Domain Reload Profiling: 3364ms
-	BeginReloadAssembly (293ms)
+- Finished resetting the current domain, in  3.030 seconds
+Domain Reload Profiling: 3920ms
+	BeginReloadAssembly (191ms)
 		ExecutionOrderSort (0ms)
-		DisableScriptedObjects (9ms)
+		DisableScriptedObjects (5ms)
 		BackupInstance (0ms)
 		ReleaseScriptingObjects (0ms)
-		CreateAndSetChildDomain (106ms)
-	RebuildCommonClasses (92ms)
-	RebuildNativeTypeToScriptingClass (18ms)
-	initialDomainReloadingComplete (52ms)
-	LoadAllAssembliesAndSetupDomain (578ms)
-		LoadAssemblies (531ms)
+		CreateAndSetChildDomain (70ms)
+	RebuildCommonClasses (57ms)
+	RebuildNativeTypeToScriptingClass (17ms)
+	initialDomainReloadingComplete (51ms)
+	LoadAllAssembliesAndSetupDomain (573ms)
+		LoadAssemblies (566ms)
 		RebuildTransferFunctionScriptingTraits (0ms)
-		AnalyzeDomain (152ms)
-			TypeCache.Refresh (21ms)
-				TypeCache.ScanAssembly (2ms)
-			ScanForSourceGeneratedMonoScriptInfo (90ms)
-			ResolveRequiredComponents (37ms)
-	FinalizeReload (2331ms)
+		AnalyzeDomain (75ms)
+			TypeCache.Refresh (19ms)
+				TypeCache.ScanAssembly (0ms)
+			ScanForSourceGeneratedMonoScriptInfo (1ms)
+			ResolveRequiredComponents (51ms)
+	FinalizeReload (3031ms)
 		ReleaseScriptCaches (0ms)
 		RebuildScriptCaches (0ms)
-		SetupLoadedEditorAssemblies (1388ms)
+		SetupLoadedEditorAssemblies (1831ms)
 			LogAssemblyErrors (0ms)
-			InitializePlatformSupportModulesInManaged (73ms)
-			SetLoadedEditorAssemblies (7ms)
+			InitializePlatformSupportModulesInManaged (117ms)
+			SetLoadedEditorAssemblies (10ms)
 			RefreshPlugins (0ms)
-			BeforeProcessingInitializeOnLoad (126ms)
-			ProcessInitializeOnLoadAttributes (1048ms)
-			ProcessInitializeOnLoadMethodAttributes (125ms)
-			AfterProcessingInitializeOnLoad (9ms)
-			EditorAssembliesLoaded (0ms)
+			BeforeProcessingInitializeOnLoad (182ms)
+			ProcessInitializeOnLoadAttributes (1345ms)
+			ProcessInitializeOnLoadMethodAttributes (167ms)
+			AfterProcessingInitializeOnLoad (8ms)
+			EditorAssembliesLoaded (1ms)
 		ExecutionOrderSort2 (0ms)
 		AwakeInstancesAfterBackupRestoration (13ms)
 Shader Hidden/ProbeVolume/VoxelizeScene is not supported: GPU does not support conservative rasterization
-Refreshing native plugins compatible for Editor in 6.64 ms, found 0 plugins.
+Refreshing native plugins compatible for Editor in 7.03 ms, found 0 plugins.
 Preloading 0 native plugins for Editor in 0.00 ms.
-Unloading 6430 Unused Serialized files (Serialized files now loaded: 0)
-Unloading 88 unused Assets / (0.6 MB). Loaded Objects now: 7026.
-Memory consumption went from 203.3 MB to 202.7 MB.
-Total: 12.575122 ms (FindLiveObjects: 0.788535 ms CreateObjectMapping: 1.026163 ms MarkObjects: 10.240239 ms  DeleteObjects: 0.518141 ms)
+Unloading 6429 Unused Serialized files (Serialized files now loaded: 0)
+Unloading 87 unused Assets / (395.4 KB). Loaded Objects now: 7030.
+Memory consumption went from 203.3 MB to 202.9 MB.
+Total: 16.876895 ms (FindLiveObjects: 0.780179 ms CreateObjectMapping: 0.833779 ms MarkObjects: 14.476691 ms  DeleteObjects: 0.784385 ms)
 
 Prepare: number of updated asset objects reloaded= 0
 AssetImportParameters requested are different than current active one (requested -> active):
@@ -298,72 +298,190 @@ AssetImportParameters requested are different than current active one (requested
   custom:video-encoder-webm-vp8: eb34c28f22e8b96e1ab97ce403110664 -> 
 ========================================================================
 Received Import Request.
-  Time since last request: 223848.275273 seconds.
-  path: Assets/Prefabs/Entities/CuttingBoard.prefab
-  artifactKey: Guid(1edecd36696dd459696a2af82fcf6c02) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Prefabs/Entities/CuttingBoard.prefab using Guid(1edecd36696dd459696a2af82fcf6c02) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 4 workers.
- -> (artifact id: 'ac7e41ed8f90604adf3a2137bd0d63b0') in 0.002860 seconds
+  Time since last request: 246826.756628 seconds.
+  path: Assets/Prefabs/XR Origin (XR Rig).prefab
+  artifactKey: Guid(a5d913796e62848a0859bf132a08ba7c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Prefabs/XR Origin (XR Rig).prefab using Guid(a5d913796e62848a0859bf132a08ba7c) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 4 workers.
+ -> (artifact id: 'bb9c05adf6ec6cda322fe74035d6174b') in 0.003416 seconds
 Number of updated asset objects reloaded before import = 0
 Number of asset objects unloaded after import = 0
 ========================================================================
 Received Import Request.
-  Time since last request: 2.611915 seconds.
-  path: Assets/VRTemplateAssets/Models/Primitives/Cylinder.fbx
-  artifactKey: Guid(bf65382e5e6d14e7f8140e4204ce07e2) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/VRTemplateAssets/Models/Primitives/Cylinder.fbx using Guid(bf65382e5e6d14e7f8140e4204ce07e2) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 4 workers.
-[PhysX] Initialized MultithreadedTaskDispatcher with 4 workers.
-[PhysX] Initialized MultithreadedTaskDispatcher with 4 workers.
- -> (artifact id: '3ab9b249d54452d857503cb224732f0c') in 0.831747 seconds
-Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 27
-========================================================================
-Received Import Request.
-  Time since last request: 4.166601 seconds.
-  path: Assets/Prefabs/Entities/CuttingBoard.prefab
-  artifactKey: Guid(1edecd36696dd459696a2af82fcf6c02) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Prefabs/Entities/CuttingBoard.prefab using Guid(1edecd36696dd459696a2af82fcf6c02) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 4 workers.
- -> (artifact id: '593ffc3138057f5da75a50738c07269a') in 0.002857 seconds
+  Time since last request: 50.267692 seconds.
+  path: Assets/Prefabs/Ingredients/PickleSlices.prefab
+  artifactKey: Guid(c7d069fb93c246fbda196f0e5c4f6cb4) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Prefabs/Ingredients/PickleSlices.prefab using Guid(c7d069fb93c246fbda196f0e5c4f6cb4) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 4 workers.
+ -> (artifact id: '6ccaa93ee984fd944d2ee4a573bd3c26') in 0.000906 seconds
 Number of updated asset objects reloaded before import = 0
 Number of asset objects unloaded after import = 0
 ========================================================================
 Received Import Request.
-  Time since last request: 0.585085 seconds.
-  path: Assets/Prefabs/Entities/CuttingBoard.prefab
-  artifactKey: Guid(1edecd36696dd459696a2af82fcf6c02) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Prefabs/Entities/CuttingBoard.prefab using Guid(1edecd36696dd459696a2af82fcf6c02) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 4 workers.
- -> (artifact id: 'd0d896dea6190c689a9c178a47cc31da') in 0.001426 seconds
+  Time since last request: 13.700496 seconds.
+  path: Assets/Prefabs/Ingredients/PickleSlices.prefab
+  artifactKey: Guid(c7d069fb93c246fbda196f0e5c4f6cb4) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Prefabs/Ingredients/PickleSlices.prefab using Guid(c7d069fb93c246fbda196f0e5c4f6cb4) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 4 workers.
+ -> (artifact id: '594a32e5cfb152501db1049498a80c3e') in 0.000930 seconds
 Number of updated asset objects reloaded before import = 0
 Number of asset objects unloaded after import = 0
 ========================================================================
 Received Import Request.
-  Time since last request: 1.108132 seconds.
-  path: Assets/VRTemplateAssets/Prefabs/Affordance/Affordance Callout.prefab
-  artifactKey: Guid(048249d9a15aa3c459399751e860bde7) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/VRTemplateAssets/Prefabs/Affordance/Affordance Callout.prefab using Guid(048249d9a15aa3c459399751e860bde7) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 4 workers.
- -> (artifact id: '2ad537b0dadae2e1d5fc409940dc1c1f') in 0.001046 seconds
+  Time since last request: 11.337202 seconds.
+  path: Assets/Prefabs/Ingredients/PickleSlices.prefab
+  artifactKey: Guid(c7d069fb93c246fbda196f0e5c4f6cb4) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Prefabs/Ingredients/PickleSlices.prefab using Guid(c7d069fb93c246fbda196f0e5c4f6cb4) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 4 workers.
+ -> (artifact id: '825b5d6c28883e0f7d438f0ced0a15b9') in 0.000997 seconds
 Number of updated asset objects reloaded before import = 0
 Number of asset objects unloaded after import = 0
 ========================================================================
 Received Import Request.
-  Time since last request: 0.002467 seconds.
-  path: Assets/VRTemplateAssets/Prefabs/Setup/Affordance Callouts Right.prefab
-  artifactKey: Guid(4d28f6590e91f644e9731292f51c4f2c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/VRTemplateAssets/Prefabs/Setup/Affordance Callouts Right.prefab using Guid(4d28f6590e91f644e9731292f51c4f2c) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 4 workers.
- -> (artifact id: 'bfc25d8ac82edcf9cebec22a063a7a25') in 0.001073 seconds
+  Time since last request: 87.208142 seconds.
+  path: Assets/Prefabs/Ingredients/PickleSlices.prefab
+  artifactKey: Guid(c7d069fb93c246fbda196f0e5c4f6cb4) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Prefabs/Ingredients/PickleSlices.prefab using Guid(c7d069fb93c246fbda196f0e5c4f6cb4) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 4 workers.
+ -> (artifact id: 'eb8d1d271998c9a6b03eaca2e5cd5dd7') in 0.001617 seconds
 Number of updated asset objects reloaded before import = 0
 Number of asset objects unloaded after import = 0
 ========================================================================
 Received Import Request.
-  Time since last request: 3.322412 seconds.
-  path: Assets/Food Pack-Demo/Mesh Collider/Bundt Cake cut_collider 1.fbx
-  artifactKey: Guid(4f433a88524b7164293fdb3a7dc3415c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Food Pack-Demo/Mesh Collider/Bundt Cake cut_collider 1.fbx using Guid(4f433a88524b7164293fdb3a7dc3415c) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 4 workers.
-[PhysX] Initialized MultithreadedTaskDispatcher with 4 workers.
-[PhysX] Initialized MultithreadedTaskDispatcher with 4 workers.
- -> (artifact id: '000e895c993763af347717fed32de93d') in 0.024916 seconds
+  Time since last request: 5.028521 seconds.
+  path: Assets/Prefabs/Ingredients/Onion.prefab
+  artifactKey: Guid(7f3703737cad3e3cc8b226dfc0b745ef) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Prefabs/Ingredients/Onion.prefab using Guid(7f3703737cad3e3cc8b226dfc0b745ef) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 4 workers.
+ -> (artifact id: '9366fdec070a03d34b786c2536f21ef9') in 0.000862 seconds
 Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 8
-Editor requested this worker to shutdown with reason: Scaling down because of idle timeout
-TcpMessagingSession - receive error: operation aborted. errorcode: 125, details: Operation aborted.
-AssetImportWorker is now disconnected from the server
-Process exiting
+Number of asset objects unloaded after import = 0
+========================================================================
+Received Import Request.
+  Time since last request: 0.000799 seconds.
+  path: Assets/Prefabs/Ingredients/PickleSlices.prefab
+  artifactKey: Guid(c7d069fb93c246fbda196f0e5c4f6cb4) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Prefabs/Ingredients/PickleSlices.prefab using Guid(c7d069fb93c246fbda196f0e5c4f6cb4) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 4 workers.
+ -> (artifact id: 'eb8d1d271998c9a6b03eaca2e5cd5dd7') in 0.000590 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 0
+========================================================================
+Received Import Request.
+  Time since last request: 0.000082 seconds.
+  path: Assets/Prefabs/Ingredients/Pickle.prefab
+  artifactKey: Guid(77a04a22995dd1075a10aac4bb2df48c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Prefabs/Ingredients/Pickle.prefab using Guid(77a04a22995dd1075a10aac4bb2df48c) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 4 workers.
+ -> (artifact id: 'c86b7f953be89cca3dfb89bfc63d1f53') in 0.000741 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 0
+========================================================================
+Received Import Request.
+  Time since last request: 1.335149 seconds.
+  path: Assets/Prefabs/Ingredients/Onion.prefab
+  artifactKey: Guid(7f3703737cad3e3cc8b226dfc0b745ef) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Prefabs/Ingredients/Onion.prefab using Guid(7f3703737cad3e3cc8b226dfc0b745ef) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 4 workers.
+ -> (artifact id: '9366fdec070a03d34b786c2536f21ef9') in 0.000613 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 0
+========================================================================
+Received Import Request.
+  Time since last request: 0.000362 seconds.
+  path: Assets/Prefabs/Ingredients/PickleSlices.prefab
+  artifactKey: Guid(c7d069fb93c246fbda196f0e5c4f6cb4) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Prefabs/Ingredients/PickleSlices.prefab using Guid(c7d069fb93c246fbda196f0e5c4f6cb4) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 4 workers.
+ -> (artifact id: 'eb8d1d271998c9a6b03eaca2e5cd5dd7') in 0.000671 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 0
+========================================================================
+Received Import Request.
+  Time since last request: 3.357916 seconds.
+  path: Assets/Prefabs/Ingredients/Onion.prefab
+  artifactKey: Guid(7f3703737cad3e3cc8b226dfc0b745ef) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Prefabs/Ingredients/Onion.prefab using Guid(7f3703737cad3e3cc8b226dfc0b745ef) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 4 workers.
+ -> (artifact id: '9366fdec070a03d34b786c2536f21ef9') in 0.000733 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 0
+========================================================================
+Received Import Request.
+  Time since last request: 0.000167 seconds.
+  path: Assets/Prefabs/Ingredients/PickleSlices.prefab
+  artifactKey: Guid(c7d069fb93c246fbda196f0e5c4f6cb4) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Prefabs/Ingredients/PickleSlices.prefab using Guid(c7d069fb93c246fbda196f0e5c4f6cb4) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 4 workers.
+ -> (artifact id: 'eb8d1d271998c9a6b03eaca2e5cd5dd7') in 0.000932 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 0
+========================================================================
+Received Import Request.
+  Time since last request: 0.001313 seconds.
+  path: Assets/Prefabs/Ingredients/Pickle.prefab
+  artifactKey: Guid(77a04a22995dd1075a10aac4bb2df48c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Prefabs/Ingredients/Pickle.prefab using Guid(77a04a22995dd1075a10aac4bb2df48c) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 4 workers.
+ -> (artifact id: 'c86b7f953be89cca3dfb89bfc63d1f53') in 0.000864 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 0
+========================================================================
+Received Import Request.
+  Time since last request: 1.326341 seconds.
+  path: Assets/Prefabs/Ingredients/Onion.prefab
+  artifactKey: Guid(7f3703737cad3e3cc8b226dfc0b745ef) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Prefabs/Ingredients/Onion.prefab using Guid(7f3703737cad3e3cc8b226dfc0b745ef) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 4 workers.
+ -> (artifact id: '9366fdec070a03d34b786c2536f21ef9') in 0.001058 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 0
+========================================================================
+Received Import Request.
+  Time since last request: 0.000356 seconds.
+  path: Assets/Prefabs/Ingredients/PickleSlices.prefab
+  artifactKey: Guid(c7d069fb93c246fbda196f0e5c4f6cb4) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Prefabs/Ingredients/PickleSlices.prefab using Guid(c7d069fb93c246fbda196f0e5c4f6cb4) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 4 workers.
+ -> (artifact id: 'eb8d1d271998c9a6b03eaca2e5cd5dd7') in 0.001259 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 0
+========================================================================
+Received Import Request.
+  Time since last request: 8.420082 seconds.
+  path: Assets/Prefabs/Ingredients/Onion.prefab
+  artifactKey: Guid(7f3703737cad3e3cc8b226dfc0b745ef) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Prefabs/Ingredients/Onion.prefab using Guid(7f3703737cad3e3cc8b226dfc0b745ef) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 4 workers.
+ -> (artifact id: '9366fdec070a03d34b786c2536f21ef9') in 0.002041 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 0
+========================================================================
+Received Import Request.
+  Time since last request: 0.000243 seconds.
+  path: Assets/Prefabs/Ingredients/PickleSlices.prefab
+  artifactKey: Guid(c7d069fb93c246fbda196f0e5c4f6cb4) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Prefabs/Ingredients/PickleSlices.prefab using Guid(c7d069fb93c246fbda196f0e5c4f6cb4) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 4 workers.
+ -> (artifact id: 'eb8d1d271998c9a6b03eaca2e5cd5dd7') in 0.000996 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 0
+========================================================================
+Received Import Request.
+  Time since last request: 0.000042 seconds.
+  path: Assets/Prefabs/Ingredients/Pickle.prefab
+  artifactKey: Guid(77a04a22995dd1075a10aac4bb2df48c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Prefabs/Ingredients/Pickle.prefab using Guid(77a04a22995dd1075a10aac4bb2df48c) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 4 workers.
+ -> (artifact id: 'c86b7f953be89cca3dfb89bfc63d1f53') in 0.000706 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 0
+========================================================================
+Received Import Request.
+  Time since last request: 1.449093 seconds.
+  path: Assets/Prefabs/Ingredients/Onion.prefab
+  artifactKey: Guid(7f3703737cad3e3cc8b226dfc0b745ef) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Prefabs/Ingredients/Onion.prefab using Guid(7f3703737cad3e3cc8b226dfc0b745ef) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 4 workers.
+ -> (artifact id: '9366fdec070a03d34b786c2536f21ef9') in 0.000635 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 0
+========================================================================
+Received Import Request.
+  Time since last request: 0.000167 seconds.
+  path: Assets/Prefabs/Ingredients/PickleSlices.prefab
+  artifactKey: Guid(c7d069fb93c246fbda196f0e5c4f6cb4) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Prefabs/Ingredients/PickleSlices.prefab using Guid(c7d069fb93c246fbda196f0e5c4f6cb4) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 4 workers.
+ -> (artifact id: 'eb8d1d271998c9a6b03eaca2e5cd5dd7') in 0.001841 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 0
+========================================================================
+Received Import Request.
+  Time since last request: 13.600830 seconds.
+  path: Assets/Prefabs/Ingredients/Onion.prefab
+  artifactKey: Guid(7f3703737cad3e3cc8b226dfc0b745ef) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Prefabs/Ingredients/Onion.prefab using Guid(7f3703737cad3e3cc8b226dfc0b745ef) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 4 workers.
+ -> (artifact id: '9366fdec070a03d34b786c2536f21ef9') in 0.000700 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 0

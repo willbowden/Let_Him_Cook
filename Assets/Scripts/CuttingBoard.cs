@@ -19,7 +19,11 @@ public class CuttingBoard : MonoBehaviour
     public void IngredientAdded(SelectEnterEventArgs args)
     {
         GameObject obj = args.interactableObject.transform.gameObject;
-        content = obj;
+
+        // Should be controlled by the Interactable Layer Mask, but worth checking just in case.
+        if (obj.GetComponent<CuttableIngredient>() != null) {
+            content = obj;
+        }
     }
 
     public void IngredientRemoved(SelectExitEventArgs args)
@@ -29,7 +33,12 @@ public class CuttingBoard : MonoBehaviour
 
     private void OnTriggerEnter (Collider other) {
         if (other.gameObject.name == "Knife" && content != null) {
+            Vector3 instancePosition = content.transform.position;
+            Quaternion instanceRotation = content.transform.rotation;
+            GameObject cutPrefab = content.GetComponent<CuttableIngredient>().cutVersionPrefab;
             Destroy(content);
+            Instantiate(cutPrefab, new Vector3(0, 0.02f, 0) + instancePosition, instanceRotation);
+
         }
     }
 }
