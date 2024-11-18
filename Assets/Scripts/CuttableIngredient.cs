@@ -5,4 +5,5 @@ using UnityEngine;
 public class CuttableIngredient : MonoBehaviour
 {
     public GameObject cutVersionPrefab;
+    public int chopsToCut = 3;
 }
