@@ -4,9 +4,11 @@ using UnityEngine;
 using UnityEngine.XR.Interaction.Toolkit;
 using UnityEngine.XR.Interaction.Toolkit.Interactables;
 using UnityEngine.XR.Interaction.Toolkit.Interactors;
+using UnityEngine.UI;
 
 public class CuttingBoard : MonoBehaviour
 {
+    public Scrollbar progressBar;
     private GameObject content;
 
     void Awake()
