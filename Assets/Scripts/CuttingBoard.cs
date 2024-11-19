@@ -8,15 +8,24 @@ using UnityEngine.UI;
 
 public class CuttingBoard : MonoBehaviour
 {
-    public Scrollbar progressBar;
+    public Image progressBar;
     private GameObject content;
     private int chops = 0;
+
+    void Update()
+    {
+        if (Input.GetKeyDown("space"))
+        {
+            Chop();
+        }
+    }
 
     void Awake()
     {
         XRSocketInteractor socket = GetComponent<XRSocketInteractor>();
         socket.selectEntered.AddListener(IngredientAdded);
         socket.selectExited.AddListener(IngredientRemoved);
+        progressBar.gameObject.SetActive(false);
     }
 
     public void IngredientAdded(SelectEnterEventArgs args)
@@ -27,7 +36,8 @@ public class CuttingBoard : MonoBehaviour
         if (obj.GetComponent<CuttableIngredient>() != null)
         {
             content = obj;
-            progressBar.enabled = true;
+            progressBar.gameObject.SetActive(true);
+
         }
     }
 
@@ -40,8 +50,8 @@ public class CuttingBoard : MonoBehaviour
     {
         content = null;
         chops = 0;
-        progressBar.size = 0;
-        progressBar.enabled = false;
+        progressBar.rectTransform.localScale = new Vector3 (0, 1, 1);
+        progressBar.gameObject.SetActive(false);
     }
 
     private void Chop()
@@ -59,14 +69,15 @@ public class CuttingBoard : MonoBehaviour
         }
         else
         {
-            progressBar.size = chops / chopsRequired;
+            float newSize = chops / chopsRequired;
+            progressBar.rectTransform.localScale = new Vector3 (newSize, 1, 1);
+            print(newSize);
         }
     }
 
-    void OnCollisionEnter(Collision col)
+    public void OnCollisionEnter(Collision col)
     {
         Collider other = col.collider;
-        Debug.Log(col.gameObject);
         if (other.gameObject.name == "Knife" && content != null)
         {
             Chop();
