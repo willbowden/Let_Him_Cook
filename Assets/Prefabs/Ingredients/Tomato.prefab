@@ -362,6 +362,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cutVersionPrefab: {fileID: 8380115841864019970, guid: dd94ffc4e56fbde1c80168e5ff8295c3, type: 3}
+  chopsToCut: 3
 --- !u!4 &5869596134474287671 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5003702972686273383, guid: 404e1e494536fc246bcd83fa22c96997, type: 3}

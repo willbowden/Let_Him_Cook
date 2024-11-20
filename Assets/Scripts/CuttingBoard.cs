@@ -8,24 +8,17 @@ using UnityEngine.UI;
 
 public class CuttingBoard : MonoBehaviour
 {
-    public Image progressBar;
+    [SerializeField]
+    private ProgressBar progressBar;
     private GameObject content;
     private int chops = 0;
-
-    void Update()
-    {
-        if (Input.GetKeyDown("space"))
-        {
-            Chop();
-        }
-    }
 
     void Awake()
     {
         XRSocketInteractor socket = GetComponent<XRSocketInteractor>();
         socket.selectEntered.AddListener(IngredientAdded);
         socket.selectExited.AddListener(IngredientRemoved);
-        progressBar.gameObject.SetActive(false);
+        progressBar.Hide();
     }
 
     public void IngredientAdded(SelectEnterEventArgs args)
@@ -36,8 +29,7 @@ public class CuttingBoard : MonoBehaviour
         if (obj.GetComponent<CuttableIngredient>() != null)
         {
             content = obj;
-            progressBar.gameObject.SetActive(true);
-
+            progressBar.Show();
         }
     }
 
@@ -50,35 +42,30 @@ public class CuttingBoard : MonoBehaviour
     {
         content = null;
         chops = 0;
-        progressBar.rectTransform.localScale = new Vector3 (0, 1, 1);
-        progressBar.gameObject.SetActive(false);
+        progressBar.Reset();
+        progressBar.Hide();
     }
 
     private void Chop()
     {
         int chopsRequired = content.GetComponent<CuttableIngredient>().chopsToCut;
         chops += 1;
+        float newSize = (float)chops / chopsRequired;
+        progressBar.SetProgress(newSize);
         if (chops >= chopsRequired)
         {
             content.transform.GetPositionAndRotation(out var instancePosition, out var instanceRotation);
             GameObject cutPrefab = content.GetComponent<CuttableIngredient>().cutVersionPrefab;
             Destroy(content);
-            Instantiate(cutPrefab, new Vector3(0, 0.02f, 0) + instancePosition, instanceRotation);
+            Instantiate(cutPrefab, new Vector3(0, 0.02f, 0) + instancePosition, Quaternion.Euler(new Vector3(0, 90, 0)));
 
-            ResetProgressAndContent();
-        }
-        else
-        {
-            float newSize = chops / chopsRequired;
-            progressBar.rectTransform.localScale = new Vector3 (newSize, 1, 1);
-            print(newSize);
+            // Don't need to call ResetProgressAndContent() here as it is triggered by IngredientRemoved when we Destroy(content).
         }
     }
 
-    public void OnCollisionEnter(Collision col)
+    public void OnTriggerEnter(Collider col)
     {
-        Collider other = col.collider;
-        if (other.gameObject.name == "Knife" && content != null)
+        if (col.gameObject.name == "Knife" && content != null)
         {
             Chop();
         }
