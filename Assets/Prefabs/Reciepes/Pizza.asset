@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: Pizza
   m_EditorClassIdentifier: 
   reciepeImage: {fileID: 21300000, guid: 145a4540495bd49f1a47d7cdaabcc7b3, type: 3}
-  reciepeText: This is the worst idea ever.
+  reciepeText: "This is the worst \nidea ever."
