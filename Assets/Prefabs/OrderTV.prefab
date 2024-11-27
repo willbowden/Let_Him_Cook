@@ -87,7 +87,7 @@ GameObject:
   - component: {fileID: 4091860791421290560}
   - component: {fileID: 7746021678915975979}
   m_Layer: 5
-  m_Name: reciepe
+  m_Name: recipe
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -485,7 +485,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 41a167340697e467da23efeb91976c7f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  orders:
-  - {fileID: 11400000, guid: bdea699fa97cf4843a5645d5f0c7395d, type: 2}
+  orders: []
   imageDisplay: {fileID: 760814910694106974}
   timerDisplay: {fileID: 7746021678915975979}

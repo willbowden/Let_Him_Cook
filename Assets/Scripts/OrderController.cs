@@ -74,7 +74,7 @@ public class OrderController : MonoBehaviour
         {
             isHandlingOrder = true;
             Order currentOrder = orders[orderIndex];
-            imageDisplay.sprite = currentOrder.reciepe.reciepeImage;
+            imageDisplay.sprite = currentOrder.recipe.recipeImage;
             currentTime = currentOrder.timeInSeconds;
         }
         else

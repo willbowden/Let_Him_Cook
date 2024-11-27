@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 1934017591004352840}
   - component: {fileID: 2763742031145826372}
   m_Layer: 5
-  m_Name: reciepe
+  m_Name: recipe
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -376,7 +376,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6605848368340000380}
-  - component: {fileID: 5196541551679344888}
+  - component: {fileID: 7552108857667694386}
   m_Layer: 0
   m_Name: RecipeTV
   m_TagString: Untagged
@@ -400,7 +400,7 @@ Transform:
   - {fileID: 3573794830140856731}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: -90, z: 0}
---- !u!114 &5196541551679344888
+--- !u!114 &7552108857667694386
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -409,10 +409,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 5623617823205565339}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a8a152e57771346c39dc0eafb73a2648, type: 3}
+  m_Script: {fileID: 11500000, guid: f09fc430e1f56433cb205f723f8ef81e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  reciepes:
+  recipes:
   - {fileID: 11400000, guid: a0ed1b9ef2e3448139516ce3c129ce19, type: 2}
   - {fileID: 11400000, guid: 857126ac7f1b940bda908acd4e998a09, type: 2}
   imageDisplay: {fileID: 5304998656736370347}
@@ -537,7 +537,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 5196541551679344888}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: ReciepeController, Assembly-CSharp
         m_MethodName: PreviousReciepe
         m_Mode: 1
@@ -669,7 +669,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 5196541551679344888}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: ReciepeController, Assembly-CSharp
         m_MethodName: NextReciepe
         m_Mode: 1
