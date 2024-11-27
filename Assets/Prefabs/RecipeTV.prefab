@@ -537,9 +537,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: ReciepeController, Assembly-CSharp
-        m_MethodName: PreviousReciepe
+      - m_Target: {fileID: 7552108857667694386}
+        m_TargetAssemblyTypeName: RecipeController, Assembly-CSharp
+        m_MethodName: PreviousRecipe
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -669,9 +669,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: ReciepeController, Assembly-CSharp
-        m_MethodName: NextReciepe
+      - m_Target: {fileID: 7552108857667694386}
+        m_TargetAssemblyTypeName: RecipeController, Assembly-CSharp
+        m_MethodName: NextRecipe
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
