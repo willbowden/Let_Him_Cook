@@ -101,8 +101,8 @@ public class BurgerPlate : MonoBehaviour
     XRSocketInteractor socket = stackSocket.GetComponent<XRSocketInteractor>();
     if (socket == null) { return; }
 
-    socket.selectEntered.AddListener(IngredientAdded);
-    socket.selectExited.AddListener(IngredientRemoved);
+    // socket.selectEntered.AddListener(IngredientAdded);
+    // socket.selectExited.AddListener(IngredientRemoved);
     socket.allowHover = true;
     socket.allowSelect = true;
   }
@@ -112,8 +112,8 @@ public class BurgerPlate : MonoBehaviour
     XRSocketInteractor socket = stackSocket.GetComponent<XRSocketInteractor>();
     if (socket == null) { return; }
 
-    socket.selectEntered.RemoveListener(IngredientAdded);
-    socket.selectExited.RemoveListener(IngredientRemoved);
+    // socket.selectEntered.RemoveListener(IngredientAdded);
+    // socket.selectExited.RemoveListener(IngredientRemoved);
     socket.allowHover = false;
     socket.allowSelect = false;
   }
