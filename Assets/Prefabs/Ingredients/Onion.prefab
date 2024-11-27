@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 750917909578397032}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Onion
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -41,7 +41,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5787965689547026595}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: AttachPoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -74,6 +74,10 @@ PrefabInstance:
     - target: {fileID: 2025623298425526547, guid: e65fbb5a965ea894996d037f3e85e3db, type: 3}
       propertyPath: m_Name
       value: Onion
+      objectReference: {fileID: 0}
+    - target: {fileID: 2025623298425526547, guid: e65fbb5a965ea894996d037f3e85e3db, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 3760141666824316343, guid: e65fbb5a965ea894996d037f3e85e3db, type: 3}
       propertyPath: m_LocalScale.x
@@ -224,7 +228,7 @@ MonoBehaviour:
   m_InteractionManager: {fileID: 0}
   m_Colliders: []
   m_InteractionLayers:
-    m_Bits: 2
+    m_Bits: 6
   m_DistanceCalculationMode: 1
   m_SelectMode: 0
   m_FocusMode: 1
@@ -367,3 +371,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cutVersionPrefab: {fileID: 7326875513912026615, guid: ec4b3764ef176e6ecb0d4c49bf4d229a, type: 3}
+  chopsToCut: 3
