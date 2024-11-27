@@ -1,4 +1,4 @@
-using System.Collection.Generic;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class CheckPlate : MonoBehaviour
@@ -21,7 +21,7 @@ public class CheckPlate : MonoBehaviour
     private void CheckOrder()
     {
         Collider[] objsInArea = Physics.OverlapBox(checkArea.bounds.center, checkArea.bounds.extents, checkArea.transform.rotation, LayerMask.GetMask("Order"));
-        list<string> ingredientsOnPlate = new List<string>();
+        List<string> ingredientsOnPlate = new List<string>();
 
         foreach (var obj in objsInArea)
         {
@@ -31,10 +31,10 @@ public class CheckPlate : MonoBehaviour
             }
         }
 
-        if (ingredientsOnPlate.count == 0)
+        if (ingredientsOnPlate.Count == 0)
         {
             Debug.Log("Empty Plate");
-            GameManager.Instance.AddScore(emptyPts);
+            // GameManager.Instance.AddScore(emptyPts);
         }
 
         string[] requiredIngredients = activeOrders[0].Split(',');
@@ -51,19 +51,19 @@ public class CheckPlate : MonoBehaviour
         if (matchedIngredients == requiredIngredients.Length)
         {
             Debug.Log("Full Plate");
-            GameManager.Instance.AddScore(fullPts);
+            // GameManager.Instance.AddScore(fullPts);
             activeOrders.RemoveAt(0);
         }
         else if (matchedIngredients > 0)
         {
             Debug.Log("Half Plate");
-            GameManager.Instance.AddScore(halfPts);
+            // GameManager.Instance.AddScore(halfPts);
             activeOrders.RemoveAt(0);
         }
         else
         {
             Debug.Log("No Match Plate");
-            GameManager.Instance.AddScore(emptyPts);
+            // GameManager.Instance.AddScore(emptyPts);
         }
     }
 
