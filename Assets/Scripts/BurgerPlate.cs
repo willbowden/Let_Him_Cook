@@ -58,7 +58,7 @@ public class BurgerPlate : MonoBehaviour
       GameObject previousIngredient = contents.Peek();
       GameObject socket = previousIngredient.transform.Find("StackSocket").gameObject;
 
-      HandleAddition(ingredient, socket);
+      HandleAddition(previousIngredient, socket);
     }
     else
     {
@@ -91,7 +91,7 @@ public class BurgerPlate : MonoBehaviour
       GameObject topIngredient = contents.Peek();
       GameObject topSocket = topIngredient.transform.Find("StackSocket").gameObject;
 
-      HandleRemoval(ingredient, topSocket);
+      HandleRemoval(topIngredient, topSocket);
     }
     else
     {
@@ -107,16 +107,7 @@ public class BurgerPlate : MonoBehaviour
     if (ingredient != null)
     {
       ingredient.GetComponent<XRGrabInteractable>().enabled = true;
-      Rigidbody rb = ingredient.GetComponent<Rigidbody>();
-
-      if (contents.Count > 1)
-      {
-        if (rb != null)
-        {
-          rb.isKinematic = false;
-          rb.useGravity = true;
-        }
-      }
+      // ingredient.GetComponent<Collider>().enabled = true;
     }
 
     print(string.Format("Enabling Socket Collider {0}", stackSocket.transform.parent.gameObject.name));
@@ -132,17 +123,7 @@ public class BurgerPlate : MonoBehaviour
     if (ingredient != null)
     {
       ingredient.GetComponent<XRGrabInteractable>().enabled = false;
-
-      if (contents.Count > 1)
-      {
-        Rigidbody rb = ingredient.GetComponent<Rigidbody>();
-
-        if (rb != null)
-        {
-          rb.isKinematic = true;
-          rb.useGravity = false;
-        }
-      }
+      // ingredient.GetComponent<Collider>().enabled = false;
     }
 
     print(string.Format("Disabling Socket Collider {0}", stackSocket.transform.parent.gameObject.name));
