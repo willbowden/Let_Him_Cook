@@ -1,9 +1,7 @@
-using System;
 using System.Collections.Generic;
-using Unity.VisualScripting;
-using UnityEditor.SceneManagement;
 using UnityEngine;
 using UnityEngine.XR.Interaction.Toolkit;
+using UnityEngine.XR.Interaction.Toolkit.Interactables;
 using UnityEngine.XR.Interaction.Toolkit.Interactors;
 
 public class BurgerPlate : MonoBehaviour
@@ -51,18 +49,20 @@ public class BurgerPlate : MonoBehaviour
     newSocketInteractor.selectEntered.AddListener(IngredientAdded);
     newSocketInteractor.selectExited.AddListener(IngredientRemoved);
 
-    print(string.Format("Added new socket. Selecting: {0}, Hovering: {1}", newSocketInteractor.allowSelect, newSocketInteractor.allowHover));
+    string parentName = transform.parent.gameObject.name;
+
+    print(string.Format("Socket on {0} ENTERED by {1}", parentName, ingredient.name));
 
     if (contents.Count > 0)
     {
       GameObject previousIngredient = contents.Peek();
       GameObject socket = previousIngredient.transform.Find("StackSocket").gameObject;
-     
-      EnableSocket(socket);
+
+      HandleAddition(ingredient, socket);
     }
     else
     {
-      DisableSocket(bottomSocket);
+      HandleAddition(null, bottomSocket);
     }
 
     contents.Push(ingredient);
@@ -72,7 +72,10 @@ public class BurgerPlate : MonoBehaviour
   {
 
     GameObject ingredient = args.interactableObject.transform.gameObject;
-    print(string.Format("Removing ingredient {0}", ingredient.name));
+
+    string parentName = transform.parent.gameObject.name;
+
+    print(string.Format("Socket on {0} EXITED by {1}", parentName, ingredient.name));
 
     if (ingredient != contents.Peek()) { return; }
 
@@ -88,33 +91,62 @@ public class BurgerPlate : MonoBehaviour
       GameObject topIngredient = contents.Peek();
       GameObject topSocket = topIngredient.transform.Find("StackSocket").gameObject;
 
-      EnableSocket(topSocket);
+      HandleRemoval(ingredient, topSocket);
     }
     else
     {
-      EnableSocket(bottomSocket);
+      HandleRemoval(null, bottomSocket);
     }
   }
 
-  private void EnableSocket(GameObject stackSocket)
+  private void HandleRemoval(GameObject ingredient, GameObject stackSocket)
   {
     XRSocketInteractor socket = stackSocket.GetComponent<XRSocketInteractor>();
     if (socket == null) { return; }
 
-    socket.selectEntered.AddListener(IngredientAdded);
-    socket.selectExited.AddListener(IngredientRemoved);
-    socket.allowHover = true;
-    socket.allowSelect = true;
+    if (ingredient != null)
+    {
+      ingredient.GetComponent<XRGrabInteractable>().enabled = true;
+      Rigidbody rb = ingredient.GetComponent<Rigidbody>();
+
+      if (contents.Count > 1)
+      {
+        if (rb != null)
+        {
+          rb.isKinematic = false;
+          rb.useGravity = true;
+        }
+      }
+    }
+
+    print(string.Format("Enabling Socket Collider {0}", stackSocket.transform.parent.gameObject.name));
+
+    socket.GetComponent<BoxCollider>().enabled = true;
   }
 
-  private void DisableSocket(GameObject stackSocket)
+  private void HandleAddition(GameObject ingredient, GameObject stackSocket)
   {
     XRSocketInteractor socket = stackSocket.GetComponent<XRSocketInteractor>();
     if (socket == null) { return; }
 
-    socket.selectEntered.RemoveListener(IngredientAdded);
-    socket.selectExited.RemoveListener(IngredientRemoved);
-    socket.allowHover = false;
-    socket.allowSelect = false;
+    if (ingredient != null)
+    {
+      ingredient.GetComponent<XRGrabInteractable>().enabled = false;
+
+      if (contents.Count > 1)
+      {
+        Rigidbody rb = ingredient.GetComponent<Rigidbody>();
+
+        if (rb != null)
+        {
+          rb.isKinematic = true;
+          rb.useGravity = false;
+        }
+      }
+    }
+
+    print(string.Format("Disabling Socket Collider {0}", stackSocket.transform.parent.gameObject.name));
+
+    socket.GetComponent<BoxCollider>().enabled = false;
   }
 }
