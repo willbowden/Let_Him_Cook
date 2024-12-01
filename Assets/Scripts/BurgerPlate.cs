@@ -1,123 +1,95 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting.Dependencies.Sqlite;
 using UnityEngine;
 using UnityEngine.XR.Interaction.Toolkit;
 using UnityEngine.XR.Interaction.Toolkit.Interactables;
 using UnityEngine.XR.Interaction.Toolkit.Interactors;
 using Vector3 = UnityEngine.Vector3;
 
+
 public class BurgerPlate : MonoBehaviour
 {
   [SerializeField]
-  // private Transform nextAttachPoint;
   private Stack<GameObject> contents = new();
-  [SerializeField]
-  private GameObject socket;
   [SerializeField]
   private GameObject burgerStack;
   [SerializeField]
-  private GameObject bottomSocketPoint;
+  private GameObject bottomAttachPoint;
 
-  private XRSocketInteractor socketInteractor;
+  private GameObject nextAttachPoint;
+
+  private LayerMask STACKED_MASK;
+  private LayerMask NOTHING_MASK;
+  private LayerMask INGREDIENT_MASK;
 
   void Start()
   {
-    socketInteractor = socket.GetComponent<XRSocketInteractor>();
-    socketInteractor.selectEntered.AddListener(IngredientAdded);
-    // socketInteractor.selectExited.AddListener(IngredientRemoved);
+    nextAttachPoint = bottomAttachPoint;
+    STACKED_MASK = LayerMask.NameToLayer("StackedIngredient");
+    NOTHING_MASK = LayerMask.NameToLayer("Nothing");
+    INGREDIENT_MASK = LayerMask.NameToLayer("Ingredient");
   }
 
-  private void IngredientAdded(SelectEnterEventArgs args)
+  private void OnTriggerEnter(Collider other)
+  {
+    XRGrabInteractable grab = other.gameObject.GetComponent<XRGrabInteractable>();
+    if (grab != null)
+    {
+      grab.selectExited.AddListener(IngredientAdded);
+    }
+  }
+
+  private void OnTriggerExit(Collider other)
+  {
+    XRGrabInteractable grab = other.gameObject.GetComponent<XRGrabInteractable>();
+    if (grab != null)
+    {
+      grab.selectExited.RemoveListener(IngredientAdded);
+    }
+  }
+
+  // TODO: Hologram or some indication of potential action.
+  // TODO: Allow removal of ingredients.
+
+  private void IngredientAdded(SelectExitEventArgs args)
   {
     GameObject ingredient = args.interactableObject.transform.gameObject;
     ingredient.transform.SetParent(burgerStack.transform);
 
     Rigidbody rb = ingredient.GetComponent<Rigidbody>();
-
     rb.isKinematic = true;
     rb.useGravity = false;
 
-    socketInteractor.enabled = false;
+    ingredient.layer = STACKED_MASK;
+    ingredient.GetComponent<Collider>().excludeLayers = STACKED_MASK;
 
-    Vector3 offset = new(0, ingredient.GetComponent<MeshRenderer>().bounds.size.y, 0);
-    socket.transform.position += offset;
+    Transform ingredientAttachPoint = ingredient.transform.Find("AttachPoint");
+    Vector3 offset = ingredient.transform.position - ingredientAttachPoint.position;
+    Vector3 newPosition = nextAttachPoint.transform.position + offset;
 
-    socketInteractor.enabled = true;
+    Quaternion newRotation = Quaternion.LookRotation(nextAttachPoint.transform.forward, nextAttachPoint.transform.up);
 
-    string parentName = transform.parent.gameObject.name;
+    ingredient.transform.SetPositionAndRotation(newPosition, newRotation);
 
-    print(string.Format("Adding {1} to {0}", parentName, ingredient.name));
-
-    contents.Push(ingredient);
+    args.interactableObject.selectEntered.AddListener(IngredientRemoved);
+    // Push contents to stack. Disable grabbing of objects below.
   }
 
-  private IEnumerator MoveSocket(GameObject ingredient)
+  private void IngredientRemoved(SelectEnterEventArgs args)
   {
-    Vector3 offset = new(0, ingredient.GetComponent<MeshRenderer>().bounds.size.y, 0);
-    yield return new WaitForSeconds(0.1f);
-    socket.transform.position += offset;
-  }
+    GameObject ingredient = args.interactableObject.transform.gameObject;
+    ingredient.transform.SetParent(null);
 
-  // private void IngredientRemoved(SelectExitEventArgs args)
-  // {
+    Rigidbody rb = ingredient.GetComponent<Rigidbody>();
+    rb.isKinematic = false;
+    rb.useGravity = true;
 
-  //   GameObject ingredient = args.interactableObject.transform.gameObject;
+    ingredient.layer = INGREDIENT_MASK;
+    ingredient.GetComponent<Collider>().excludeLayers = NOTHING_MASK;
 
-  //   string parentName = transform.parent.gameObject.name;
+    args.interactableObject.selectEntered.RemoveListener(IngredientRemoved);
 
-  //   print(string.Format("Socket on {0} EXITED by {1}", parentName, ingredient.name));
-
-  //   if (ingredient != contents.Peek()) { return; }
-
-  //   ingredient.transform.SetParent(null);
-
-  //   GameObject socket = ingredient.transform.Find("StackSocket").gameObject;
-  //   Destroy(socket);
-
-  //   contents.Pop();
-
-  //   if (contents.Count > 0)
-  //   {
-  //     GameObject topIngredient = contents.Peek();
-  //     GameObject topSocket = topIngredient.transform.Find("StackSocket").gameObject;
-
-  //     HandleRemoval(topIngredient, topSocket);
-  //   }
-  //   else
-  //   {
-  //     HandleRemoval(null, bottomSocket);
-  //   }
-  // }
-
-  private void HandleRemoval(GameObject ingredient, GameObject stackSocket)
-  {
-    XRSocketInteractor socket = stackSocket.GetComponent<XRSocketInteractor>();
-    if (socket == null) { return; }
-
-    if (ingredient != null)
-    {
-      ingredient.GetComponent<XRGrabInteractable>().enabled = true;
-      // ingredient.GetComponent<Collider>().enabled = true;
-    }
-
-    print(string.Format("Enabling Socket Collider {0}", stackSocket.transform.parent.gameObject.name));
-
-    socket.GetComponent<BoxCollider>().enabled = true;
-  }
-
-  private void HandleAddition(GameObject ingredient, GameObject stackSocket)
-  {
-    XRSocketInteractor socket = stackSocket.GetComponent<XRSocketInteractor>();
-    if (socket == null) { return; }
-
-    if (ingredient != null)
-    {
-      ingredient.GetComponent<XRGrabInteractable>().enabled = false;
-      // ingredient.GetComponent<Collider>().enabled = false;
-    }
-
-    print(string.Format("Disabling Socket Collider {0}", stackSocket.transform.parent.gameObject.name));
-
-    socket.GetComponent<BoxCollider>().enabled = false;
+    // Pop from stack. Enable grabbing of object below.
   }
 }
