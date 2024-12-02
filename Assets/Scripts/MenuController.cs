@@ -11,6 +11,7 @@ public class MenuController : MonoBehaviour
     [SerializeField] private Button levels; // Reference to the levels button
 
     [Header("Level Buttons")]
+    public GameObject canvas; // Assign your Canvas in the Inspector
     [SerializeField] private GameObject levelButtonsContainer; // Parent GameObject for level buttons
     [SerializeField] private Button backButton; // Reference to the back button
 
@@ -23,7 +24,7 @@ public class MenuController : MonoBehaviour
         pauseResumeText = pauseResume.GetComponentInChildren<Text>();
         if (pauseResumeText != null)
         {
-            pauseResumeText.text = "Pause"; // Set initial text
+            pauseResumeText.text = "Resume"; // Set initial text
         }
 
         // Ensure level buttons and back button are hidden initially
@@ -37,27 +38,13 @@ public class MenuController : MonoBehaviour
         }
     }
 
-    public void PauseResume()
+    public void Resume()
     {
-        if (isPaused)
-        {
-            Time.timeScale = 1; // Resume the game
-            if (pauseResumeText != null)
-            {
-                pauseResumeText.text = "Pause";
-            }
-            isPaused = false;
-        }
-        else
-        {
-            Time.timeScale = 0; // Pause the game
-            if (pauseResumeText != null)
-            {
-                pauseResumeText.text = "Resume";
-            }
-            isPaused = true;
-        }
+        Time.timeScale = 1; // Resume the game by setting time scale back to normal
+        isPaused = false;   // Ensure the paused state is updated
+        canvas.SetActive(false);
     }
+
 
     public void Quit()
     {
