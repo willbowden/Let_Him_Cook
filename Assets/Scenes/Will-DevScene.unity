@@ -768,6 +768,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 5811805137272695001, guid: a5d913796e62848a0859bf132a08ba7c, type: 3}
+      propertyPath: m_PhysicsLayerMask.m_Bits
+      value: 705
+      objectReference: {fileID: 0}
     - target: {fileID: 7558897098227670290, guid: a5d913796e62848a0859bf132a08ba7c, type: 3}
       propertyPath: m_BackGroundColor.a
       value: 1
