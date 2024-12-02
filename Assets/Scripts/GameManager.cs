@@ -18,7 +18,7 @@ public class GameManager : MonoBehaviour{
     public static event Action<int> OnScoreAdded;
 
     private bool isGameRunning = false;
-    private List<Tuple<string, DateTime>> orders = new List<Tuple<string, DateTime>>();
+    private List<Tuple<string, DateTime>> orders = new List<Tuple<string, DateTime>>(); // Recipe name and timestamp.
 
     // Unity Methods
     void Start()
@@ -54,7 +54,7 @@ public class GameManager : MonoBehaviour{
     {
         isGameRunning = false;
 
-        // Add end-game logic
+        // TODO: Add end-game logic
     }
 
     // Timer for creating orders
@@ -93,7 +93,7 @@ public class GameManager : MonoBehaviour{
             return;
         }
 
-        orders.RemoveAt(0); // Remove the first order
+        orders.RemoveAt(0);
 
         if (wasSuccessful)
         {
