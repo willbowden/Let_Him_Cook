@@ -98,6 +98,8 @@ public class BurgerPlate : MonoBehaviour
     GameObject ingredient = args.interactableObject.transform.gameObject;
     ingredient.transform.SetParent(null);
 
+    print(string.Format("Removing ingredient: {0}", ingredient.name));
+
     Rigidbody rb = ingredient.GetComponent<Rigidbody>();
     rb.isKinematic = false;
     rb.useGravity = true;
