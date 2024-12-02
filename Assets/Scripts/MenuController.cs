@@ -11,6 +11,7 @@ public class MenuController : MonoBehaviour
     [SerializeField] private Button levels; // Reference to the levels button
 
     [Header("Level Buttons")]
+    public GameObject canvas; // Assign your Canvas in the Inspector
     [SerializeField] private GameObject levelButtonsContainer; // Parent GameObject for level buttons
     [SerializeField] private Button backButton; // Reference to the back button
 
@@ -41,6 +42,7 @@ public class MenuController : MonoBehaviour
     {
         Time.timeScale = 1; // Resume the game by setting time scale back to normal
         isPaused = false;   // Ensure the paused state is updated
+        canvas.SetActive(false);
     }
 
 
