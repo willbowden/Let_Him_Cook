@@ -1,119 +1,116 @@
-using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
-using Unity.VisualScripting.Dependencies.Sqlite;
+using System.Numerics;
 using UnityEngine;
 using UnityEngine.XR.Interaction.Toolkit;
 using UnityEngine.XR.Interaction.Toolkit.Interactables;
 using UnityEngine.XR.Interaction.Toolkit.Interactors;
 using Vector3 = UnityEngine.Vector3;
 
-
 public class BurgerPlate : MonoBehaviour
 {
   [SerializeField]
+  private GameObject socketPrefab;
+
   private Stack<GameObject> contents = new();
-  [SerializeField]
-  private GameObject burgerStack;
-  [SerializeField]
-  private GameObject bottomAttachPoint;
-
-  private GameObject nextAttachPoint;
-
-  private LayerMask STACKED_MASK;
-  private LayerMask NOTHING_MASK;
-  private LayerMask INGREDIENT_MASK;
-
-  public int ContentCount
-  {
-    get => contents.Count;
-  }
-
-  public GameObject TopIngredient
-  {
-    get => contents.Peek();
-  }
+  private GameObject bottomSocket;
+  // private InteractionLayerMask INGREDIENT_MASK;
+  // private InteractionLayerMask STACK_INGREDIENT_MASK;
+  private LayerMask INGREDIENT_PHYSICS_MASK;
+  private LayerMask STACK_INGREDIENT_PHYSICS_MASK;
+  private LayerMask TOP_INGREDIENT_PHYSICS_MASK;
 
   void Start()
   {
-    nextAttachPoint = bottomAttachPoint;
-    STACKED_MASK = LayerMask.NameToLayer("StackedIngredient");
-    NOTHING_MASK = LayerMask.NameToLayer("Nothing");
-    INGREDIENT_MASK = LayerMask.NameToLayer("Ingredient");
+    bottomSocket = transform.Find("StackSocket").gameObject;
+
+    var socketInteractor = bottomSocket.GetComponent<XRSocketInteractor>();
+    socketInteractor.selectEntered.AddListener(IngredientAdded);
+    socketInteractor.selectExited.AddListener(IngredientRemoved);
+
+    // INGREDIENT_MASK = InteractionLayerMask.NameToLayer("Ingredients");
+    // STACK_INGREDIENT_MASK = InteractionLayerMask.NameToLayer("StackedIngredients");
+    INGREDIENT_PHYSICS_MASK = LayerMask.NameToLayer("Ingredient");
+    STACK_INGREDIENT_PHYSICS_MASK = LayerMask.NameToLayer("StackedIngredient");
+    TOP_INGREDIENT_PHYSICS_MASK = LayerMask.NameToLayer("TopStackIngredient");
   }
 
-  private void OnTriggerEnter(Collider other)
-  {
-    XRGrabInteractable grab = other.gameObject.GetComponent<XRGrabInteractable>();
-    if (grab != null)
-    {
-      grab.selectExited.AddListener(IngredientAdded);
-    }
-  }
-
-  private void OnTriggerExit(Collider other)
-  {
-    XRGrabInteractable grab = other.gameObject.GetComponent<XRGrabInteractable>();
-    if (grab != null)
-    {
-      grab.selectExited.RemoveListener(IngredientAdded);
-    }
-  }
-
-  // TODO: Hologram or some indication of potential action.
-  // TODO: Allow removal of ingredients.
-
-  private void IngredientAdded(SelectExitEventArgs args)
+  private void IngredientAdded(SelectEnterEventArgs args)
   {
     GameObject ingredient = args.interactableObject.transform.gameObject;
-    ingredient.transform.SetParent(burgerStack.transform);
+    ingredient.GetComponent<Collider>().excludeLayers = STACK_INGREDIENT_PHYSICS_MASK;
+    ingredient.layer = TOP_INGREDIENT_PHYSICS_MASK;
 
-    Rigidbody rb = ingredient.GetComponent<Rigidbody>();
-    rb.isKinematic = true;
-    rb.useGravity = false;
+    Vector3 ingredientSize = ingredient.GetComponent<MeshRenderer>().bounds.size;
 
-    Collider col = ingredient.GetComponent<Collider>();
-    col.enabled = false;
+    GameObject previousSocket;
 
-    ingredient.layer = STACKED_MASK;
-    ingredient.GetComponent<Collider>().excludeLayers = STACKED_MASK;
+    if (contents.Count > 0)
+    {
+      GameObject previousIngredient = contents.Peek();
+      previousIngredient.layer = STACK_INGREDIENT_PHYSICS_MASK;
 
-    Transform ingredientAttachPoint = ingredient.transform.Find("AttachPoint");
-    Vector3 offset = ingredient.transform.position - ingredientAttachPoint.position;
-    Vector3 newPosition = nextAttachPoint.transform.position + offset;
+      previousSocket = previousIngredient.transform.Find("StackSocket").gameObject;
+    }
+    else
+    {
+      previousSocket = bottomSocket;
+    }
 
-    Quaternion newRotation = Quaternion.LookRotation(nextAttachPoint.transform.forward, nextAttachPoint.transform.up);
+    previousSocket.GetComponent<XRSocketInteractor>().allowHover = false;
 
-    ingredient.transform.SetPositionAndRotation(newPosition, newRotation);
+    Vector3 offset = new(0, ingredientSize.y, 0);
+
+    GameObject newSocket = Instantiate(socketPrefab, ingredient.transform);
+    newSocket.transform.position += offset;
+    newSocket.name = "StackSocket";
+    newSocket.GetComponent<BoxCollider>().size = new Vector3(1, 0.5f, 1);
+    newSocket.GetComponent<BoxCollider>().center = new Vector3(0, 0.5f, 0);
+
+    var newSocketInteractor = newSocket.GetComponent<XRSocketInteractor>();
+    newSocketInteractor.attachTransform = newSocket.transform;
+    newSocketInteractor.selectEntered.AddListener(IngredientAdded);
+    newSocketInteractor.selectExited.AddListener(IngredientRemoved);
+
+    string parentName = transform.parent.gameObject.name;
+
+    print(string.Format("Socket on {0} ENTERED by {1}", parentName, ingredient.name));
 
     contents.Push(ingredient);
-
-    // Push contents to stack. Disable grabbing of objects below.
   }
 
-  public void IngredientRemoved(XRBaseInteractor interactor)
+  private void IngredientRemoved(SelectExitEventArgs args)
   {
-    GameObject ingredient = TopIngredient;
-    ingredient.transform.SetParent(null);
 
-    print(string.Format("Removing ingredient: {0}", ingredient.name));
+    GameObject ingredient = args.interactableObject.transform.gameObject;
 
-    Rigidbody rb = ingredient.GetComponent<Rigidbody>();
-    rb.isKinematic = false;
-    rb.useGravity = true;
+    GameObject socket = ingredient.transform.Find("StackSocket").gameObject;
+    Destroy(socket);
 
-    Collider col = ingredient.GetComponent<Collider>();
-    col.enabled = true;
+    ingredient.GetComponent<Collider>().excludeLayers = 0;
+    ingredient.layer = INGREDIENT_PHYSICS_MASK;
 
-    ingredient.layer = INGREDIENT_MASK;
-    ingredient.GetComponent<Collider>().excludeLayers = NOTHING_MASK;
+    string parentName = transform.parent.gameObject.name;
 
-    XRGrabInteractable grab = ingredient.GetComponent<XRGrabInteractable>();
-
-    interactor.StartManualInteraction((IXRSelectInteractable)grab);
-
-    // grab.interactionManager.SelectEnter((IXRSelectInteractor)interactor, grab);
+    print(string.Format("Socket on {0} EXITED by {1}", parentName, ingredient.name));
 
     contents.Pop();
+
+    GameObject previousSocket;
+
+    if (contents.Count > 0)
+    {
+      GameObject topIngredient = contents.Peek();
+      topIngredient.layer = TOP_INGREDIENT_PHYSICS_MASK;
+      previousSocket = topIngredient.transform.Find("StackSocket").gameObject;
+    }
+    else
+    {
+      previousSocket = bottomSocket;
+    }
+
+    previousSocket.GetComponent<XRSocketInteractor>().allowHover = true;
+
+    // Vector3 originalSize = socketPrefab.GetComponent<BoxCollider>().size;
+    // previousSocket.GetComponent<BoxCollider>().size = originalSize;
   }
 }
