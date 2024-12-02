@@ -86,16 +86,14 @@ public class BurgerPlate : MonoBehaviour
 
     ingredient.transform.SetPositionAndRotation(newPosition, newRotation);
 
-    args.interactableObject.selectEntered.AddListener(IngredientRemoved);
-
     contents.Push(ingredient);
 
     // Push contents to stack. Disable grabbing of objects below.
   }
 
-  public void IngredientRemoved(SelectEnterEventArgs args)
+  public void IngredientRemoved(XRBaseInteractor interactor)
   {
-    GameObject ingredient = args.interactableObject.transform.gameObject;
+    GameObject ingredient = TopIngredient;
     ingredient.transform.SetParent(null);
 
     print(string.Format("Removing ingredient: {0}", ingredient.name));
@@ -110,10 +108,12 @@ public class BurgerPlate : MonoBehaviour
     ingredient.layer = INGREDIENT_MASK;
     ingredient.GetComponent<Collider>().excludeLayers = NOTHING_MASK;
 
-    args.interactableObject.selectEntered.RemoveListener(IngredientRemoved);
+    XRGrabInteractable grab = ingredient.GetComponent<XRGrabInteractable>();
+
+    interactor.StartManualInteraction((IXRSelectInteractable)grab);
+
+    // grab.interactionManager.SelectEnter((IXRSelectInteractor)interactor, grab);
 
     contents.Pop();
-
-    // Pop from stack. Enable grabbing of object below.
   }
 }

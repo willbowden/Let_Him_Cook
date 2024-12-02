@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.XR.Interaction.Toolkit;
 using UnityEngine.XR.Interaction.Toolkit.Interactables;
@@ -12,6 +13,9 @@ public class BurgerStack : MonoBehaviour
     private GameObject burgerPlate;
 
     private XRInteractionManager interactionManager;
+
+    private List<XRBaseInteractor> presentInteractors = new();
+    private bool isInTrigger = false;
 
     void Start()
     {
@@ -27,8 +31,9 @@ public class BurgerStack : MonoBehaviour
     {
         if (other.gameObject.name == "Controller_Base")
         {
-           NearFarInteractor nfi = other.gameObject.GetComponent<ControllerCollision>().nearFarInteractor.GetComponent<NearFarInteractor>();
-           nfi.selectEntered.AddListener(StackGrabbed);
+            NearFarInteractor nfi = other.gameObject.GetComponent<ControllerCollision>().nearFarInteractor.GetComponent<NearFarInteractor>();
+            isInTrigger = true;
+            presentInteractors.Add(nfi);
         }
     }
 
@@ -36,28 +41,36 @@ public class BurgerStack : MonoBehaviour
     {
         if (other.gameObject.name == "Controller_Base")
         {
-           NearFarInteractor nfi = other.gameObject.GetComponent<ControllerCollision>().nearFarInteractor.GetComponent<NearFarInteractor>();
-           nfi.selectEntered.RemoveListener(StackGrabbed);
+            NearFarInteractor nfi = other.gameObject.GetComponent<ControllerCollision>().nearFarInteractor.GetComponent<NearFarInteractor>();
+            presentInteractors.Remove(nfi);
+            if (presentInteractors.Count == 0)
+            {
+                isInTrigger = false;
+            }
         }
     }
 
-    private void StackGrabbed(SelectEnterEventArgs args)
+    void Update()
+    {
+        if (isInTrigger && presentInteractors.Count > 0)
+        {
+            foreach (XRBaseInteractor interactor in presentInteractors)
+            {
+                if (interactor.isSelectActive)
+                {
+                    StackGrabbed(interactor);
+                }
+            }
+        }
+    }
+
+    private void StackGrabbed(XRBaseInteractor interactor)
     {
         if (burgerPlate.TryGetComponent(out BurgerPlate plate))
         {
             if (plate.ContentCount <= 0) return;
         }
 
-        GameObject topIngredient = plate.TopIngredient;
-        XRGrabInteractable grab = topIngredient.GetComponent<XRGrabInteractable>();
-
-        // XRBaseInteractor interactor = args.interactorObject as XRBaseInteractor;
-        
-        print(string.Format("Grabbing {0}!", topIngredient.name));
-
-        args.interactableObject = grab;
-        plate.IngredientRemoved(args);
-
-        // grab.interactionManager.SelectEnter((IXRSelectInteractor)interactor, grab);
+        plate.IngredientRemoved(interactor);
     }
 }
