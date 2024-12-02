@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using Unity.VisualScripting.Dependencies.Sqlite;
 using UnityEngine;
 using UnityEngine.XR.Interaction.Toolkit;
@@ -22,6 +23,16 @@ public class BurgerPlate : MonoBehaviour
   private LayerMask STACKED_MASK;
   private LayerMask NOTHING_MASK;
   private LayerMask INGREDIENT_MASK;
+
+  public int ContentCount
+  {
+    get => contents.Count;
+  }
+
+  public GameObject TopIngredient
+  {
+    get => contents.Peek();
+  }
 
   void Start()
   {
@@ -61,6 +72,9 @@ public class BurgerPlate : MonoBehaviour
     rb.isKinematic = true;
     rb.useGravity = false;
 
+    Collider col = ingredient.GetComponent<Collider>();
+    col.enabled = false;
+
     ingredient.layer = STACKED_MASK;
     ingredient.GetComponent<Collider>().excludeLayers = STACKED_MASK;
 
@@ -73,10 +87,13 @@ public class BurgerPlate : MonoBehaviour
     ingredient.transform.SetPositionAndRotation(newPosition, newRotation);
 
     args.interactableObject.selectEntered.AddListener(IngredientRemoved);
+
+    contents.Push(ingredient);
+
     // Push contents to stack. Disable grabbing of objects below.
   }
 
-  private void IngredientRemoved(SelectEnterEventArgs args)
+  public void IngredientRemoved(SelectEnterEventArgs args)
   {
     GameObject ingredient = args.interactableObject.transform.gameObject;
     ingredient.transform.SetParent(null);
@@ -85,10 +102,15 @@ public class BurgerPlate : MonoBehaviour
     rb.isKinematic = false;
     rb.useGravity = true;
 
+    Collider col = ingredient.GetComponent<Collider>();
+    col.enabled = true;
+
     ingredient.layer = INGREDIENT_MASK;
     ingredient.GetComponent<Collider>().excludeLayers = NOTHING_MASK;
 
     args.interactableObject.selectEntered.RemoveListener(IngredientRemoved);
+
+    contents.Pop();
 
     // Pop from stack. Enable grabbing of object below.
   }
