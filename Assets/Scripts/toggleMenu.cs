@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class CanvasInteraction : MonoBehaviour
+public class toggleMenu : MonoBehaviour
 {
     public Camera mainCamera; // Reference to the main camera
     public float distanceFromCamera = 0.6f; // Distance from the camera to place the canvas
@@ -21,9 +21,11 @@ public class CanvasInteraction : MonoBehaviour
 
     private void OnDisable()
     {
-        // Unsubscribe to avoid memory leaks
-        homeButtonAction.action.performed -= OnHomeButtonPressed;
-        homeButtonAction.action.Disable();
+        if (canvas != null || mainCamera != null || homeButtonAction != null) {
+            // Unsubscribe to avoid memory leaks
+            homeButtonAction.action.performed -= OnHomeButtonPressed;
+            homeButtonAction.action.Disable();
+        }
     }
 
     private void OnHomeButtonPressed(InputAction.CallbackContext context)
