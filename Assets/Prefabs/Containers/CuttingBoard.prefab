@@ -287,6 +287,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: ProgressBar
       objectReference: {fileID: 0}
+    - target: {fileID: 766477224914996693, guid: 2c3e002af4f4d37a18acf80785430542, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1710186537386636778, guid: 2c3e002af4f4d37a18acf80785430542, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.018600583
