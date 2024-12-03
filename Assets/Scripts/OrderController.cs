@@ -21,6 +21,9 @@ public class OrderController : MonoBehaviour
     {
         // Restaurant starts closed, no orders loaded initially
         ResetUI();
+        Open();
+
+        
     }
 
     void Update()
