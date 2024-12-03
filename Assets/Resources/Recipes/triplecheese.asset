@@ -1,0 +1,31 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 990b642bdc9e140d0bea6b5dc60aa3de, type: 3}
+  m_Name: triplecheese
+  m_EditorClassIdentifier: 
+  recipeImage: {fileID: 21300000, guid: 21c1813606269482abe0ee6f32633ac6, type: 3}
+  recipeText: '1xTop Bun
+
+    1xCheese
+
+    1xCheese
+
+    1xCheese
+
+    1xPickles
+
+    1xPatty
+
+    1xBottom
+    Bun
+
+'

@@ -4,6 +4,14 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour{
+
+    [Header("Order Controller Reference")]
+    [SerializeField] private OrderController orderController; // Reference to OrderController
+
+    private List<Recipe> recipeList; // List of Recipe ScriptableObjects
+    
+    
+    
     // Game variables
     int score;
     public int maxConcurrentOrders = 5;
@@ -25,6 +33,7 @@ public class GameManager : MonoBehaviour{
     // Unity Methods
     void Start()
     {
+        orderController = FindObjectOfType<OrderController>();
         GameStart();
     }
 
@@ -46,9 +55,11 @@ public class GameManager : MonoBehaviour{
         isGameRunning = true;
         gameTimeRemaining = gameDuration;
         score = 0;
+        LoadRecipes();
         orders.Clear();
-
         StartCoroutine(OrderTimer());
+        PopulateOrders();
+
     }
 
     // End the game
@@ -67,7 +78,7 @@ public class GameManager : MonoBehaviour{
             yield return new WaitForSeconds(UnityEngine.Random.Range(minTimeBetweenOrders, maxTimeBetweenOrders));
             if (orders.Count < maxConcurrentOrders)
             {
-                CreateOrder();
+                CreateRandomOrder();
             }
         }
     }
@@ -107,42 +118,69 @@ public class GameManager : MonoBehaviour{
     }
 
     // Create a random order
-    void CreateOrder()
+    void CreateRandomOrder()
     {
         if (orders.Count >= maxConcurrentOrders)
         {
             return;
         }
 
-        string recipeName = GenerateRandomRecipe();
-        AddOrder(recipeName);
+        int randomIndex = UnityEngine.Random.Range(0, recipeList.Count);
+        Recipe randomRecipe = recipeList[randomIndex];
+
+        // Create a new order using the randomly selected recipe
+        Order newOrder = new Order
+        {
+            name = randomRecipe.name, 
+            recipe = randomRecipe, 
+            timeInSeconds = (int)UnityEngine.Random.Range(5f, 10f)
+        };
+
+        orderController.AddOrder(newOrder);
+        Debug.Log($"New order created: {newOrder.name}");
     }
 
-    // Generate a random recipe
-    private string GenerateRandomRecipe()
+    private void PopulateOrders()
     {
-        string[] recipes = { "Cheeseburger", "Veggie Burger", "Chicken Burger", "Double Cheeseburger", "Bacon Burger" };
-        return recipes[UnityEngine.Random.Range(0, recipes.Length)];
+
+        if (orderController == null)
+        {
+            Debug.LogError("OrderController is null. Assign it in the Inspector in unity or find it at runtime.");
+            return;
+        }
+        
+        foreach (var recipe in recipeList)
+        {
+            // Create a new Order using the Recipe
+            Order newOrder = new Order
+            {
+                name = recipe.name, 
+                recipe = recipe,
+                timeInSeconds = (int)UnityEngine.Random.Range(5f, 10f)
+            };
+
+            // Add the Order to the OrderController
+            Debug.Log($"Created order {newOrder}");
+
+            Debug.Log("Attempting to call AddOrder()...");
+
+            orderController.AddOrder(newOrder);
+
+            Debug.Log("AddOrder() was called successfully.");
+        }
+
+        Debug.Log("Orders have been populated.");
     }
 
-    private void burgerstuff()
+    private void LoadRecipes()
     {
-        // Burger stuff
-        burgerRecipes = new List<List<string>>();
-        List<string> cheeseburger = new List<string> { "Bun", "Beef Patty", "Cheese", "Lettuce", "Tomato", "Bun" };
-        List<string> triplecheese = new List<string> { "Bun", "Beef Patty", "Cheese", "Cheese", "Cheese", "Tomato","Pickles", "Bun" };
-        List<string> spicyburger = new List<string> { "Bun", "Beef Patty", "Lettuce", "Red Pepper", "Onion", "Bun"};
-        List<string> avocadoburger = new List<string> { "Bun", "Beef Patty", "Lettuce", "Avocado", "Tomato", "Onion", "Bun"};
-        List<string> chesseburger_pickles = new List<string> { "Bun", "Beef Patty", "Cheese", "Lettuce", "Tomato", "Pickles", "Bun" };
-        List<string> abomination = new List<string> { "Bun", "Beef Patty", "Lettuce", "Avocado", "Tomato", "Onion", "Cheese", "Red Pepper", "Pickle", "Bun"};
-        List<string> sigma = new List<string> { "Bun", "Pickle", "Pickle", "Pickle", "Pickle", "Pickle", "Bun"};
-
-        burgerRecipes.Add(cheeseburger);
-        burgerRecipes.Add(triplecheese);
-        burgerRecipes.Add(spicyburger);
-        burgerRecipes.Add(avocadoburger);
-        burgerRecipes.Add(chesseburger_pickles);
-        burgerRecipes.Add(abomination);
-        burgerRecipes.Add(sigma);
-    }
+        Recipe[] recipes = Resources.LoadAll<Recipe>("Recipes");
+        if (recipes == null || recipes.Length == 0)
+        {
+            Debug.LogError("No recipes found in Resources/Recipes!");
+            return;
+        }
+        recipeList = new List<Recipe>(recipes);
+        Debug.Log($"Loaded {recipeList.Count} recipes.");
+}
 }
