@@ -11,6 +11,8 @@ public class GameManager : MonoBehaviour{
     public float minTimeBetweenOrders = 5f; // Minimum interval for new orders
     public float maxTimeBetweenOrders = 15f; // Maximum interval for new orders
     private float gameTimeRemaining;
+    private List<List<string>> burgerRecipes;
+
 
     // Events
     public static event Action<string, DateTime> OnOrderAdded;
@@ -94,6 +96,7 @@ public class GameManager : MonoBehaviour{
         }
 
         orders.RemoveAt(0);
+        // CheckPlate.Instance.CheckOrder(); // how do i use this. Make it so this returns true or false?
 
         if (wasSuccessful)
         {
@@ -120,5 +123,26 @@ public class GameManager : MonoBehaviour{
     {
         string[] recipes = { "Cheeseburger", "Veggie Burger", "Chicken Burger", "Double Cheeseburger", "Bacon Burger" };
         return recipes[UnityEngine.Random.Range(0, recipes.Length)];
+    }
+
+    private void burgerstuff()
+    {
+        // Burger stuff
+        burgerRecipes = new List<List<string>>();
+        List<string> cheeseburger = new List<string> { "Bun", "Beef Patty", "Cheese", "Lettuce", "Tomato", "Bun" };
+        List<string> triplecheese = new List<string> { "Bun", "Beef Patty", "Cheese", "Cheese", "Cheese", "Tomato","Pickles", "Bun" };
+        List<string> spicyburger = new List<string> { "Bun", "Beef Patty", "Lettuce", "Red Pepper", "Onion", "Bun"};
+        List<string> avocadoburger = new List<string> { "Bun", "Beef Patty", "Lettuce", "Avocado", "Tomato", "Onion", "Bun"};
+        List<string> chesseburger_pickles = new List<string> { "Bun", "Beef Patty", "Cheese", "Lettuce", "Tomato", "Pickles", "Bun" };
+        List<string> abomination = new List<string> { "Bun", "Beef Patty", "Lettuce", "Avocado", "Tomato", "Onion", "Cheese", "Red Pepper", "Pickle", "Bun"};
+        List<string> sigma = new List<string> { "Bun", "Pickle", "Pickle", "Pickle", "Pickle", "Pickle", "Bun"};
+
+        burgerRecipes.Add(cheeseburger);
+        burgerRecipes.Add(triplecheese);
+        burgerRecipes.Add(spicyburger);
+        burgerRecipes.Add(avocadoburger);
+        burgerRecipes.Add(chesseburger_pickles);
+        burgerRecipes.Add(abomination);
+        burgerRecipes.Add(sigma);
     }
 }
