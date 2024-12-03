@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 391f7971de3e747e988d648bdc405ee3, type: 3}
   m_Name: burgerOrder
   m_EditorClassIdentifier: 
-  reciepe: {fileID: 11400000, guid: a0ed1b9ef2e3448139516ce3c129ce19, type: 2}
+  recipe: {fileID: 11400000, guid: a0ed1b9ef2e3448139516ce3c129ce19, type: 2}
   timeInSeconds: 120

@@ -69,6 +69,10 @@ namespace UnityEngine.XR.Interaction.Toolkit.Samples.StarterAssets
         [Tooltip("The reference to the action of scrolling UI with this controller.")]
         InputActionReference m_UIScroll;
 
+        [SerializeField]
+        [Tooltip("The reference to the action menuButton with this controller.")]
+        InputActionReference m_menuButton;
+
         [Space]
         [Header("Locomotion Settings")]
 
