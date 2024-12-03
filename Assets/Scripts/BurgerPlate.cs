@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Collections.Generic;
 using System.Numerics;
 using UnityEngine;
@@ -38,11 +39,10 @@ public class BurgerPlate : MonoBehaviour
   private void IngredientAdded(SelectEnterEventArgs args)
   {
     GameObject ingredient = args.interactableObject.transform.gameObject;
+    if (ingredient == null) return;
+    
     ingredient.GetComponent<Collider>().excludeLayers = STACK_INGREDIENT_PHYSICS_MASK;
     ingredient.layer = TOP_INGREDIENT_PHYSICS_MASK;
-
-    Vector3 ingredientSize = ingredient.GetComponent<MeshRenderer>().bounds.size;
-    Transform attachPoint = ingredient.transform.Find("AttachPoint");
 
     GameObject previousSocket;
 
@@ -60,17 +60,33 @@ public class BurgerPlate : MonoBehaviour
 
     previousSocket.GetComponent<XRSocketInteractor>().allowHover = false;
 
+    StartCoroutine(CreateSocket(ingredient));
+
+    // string parentName = transform.parent.gameObject.name;
+
+    // print(string.Format("Socket on {0} ENTERED by {1}", parentName, ingredient.name));
+
+    contents.Push(ingredient);
+  }
+
+  private IEnumerator CreateSocket(GameObject ingredient)
+  {
+    yield return new WaitForSeconds(0.1f);
+
+    Vector3 ingredientSize = ingredient.GetComponent<MeshRenderer>().bounds.size;
+    Transform attachPoint = ingredient.transform.Find("AttachPoint");
+
     Vector3 offset = new(0, ingredientSize.y, 0);
 
     GameObject newSocket = Instantiate(socketPrefab, ingredient.transform);
     newSocket.transform.position += offset;
     newSocket.name = "StackSocket";
-    Vector3 newColliderSize = new Vector3(1, 0.5f, 1);
+    Vector3 newColliderSize = new(1, 0.5f, 1);
     BoxCollider bc = newSocket.GetComponent<BoxCollider>();
     bc.size = newColliderSize;
     Vector3 worldSize = newSocket.transform.TransformVector(newColliderSize);
     Vector3 worldCenter = newSocket.transform.TransformPoint(bc.center);
-    Vector3 newCenter = new Vector3(worldCenter.x, (worldSize.y / 2) + attachPoint.position.y + ingredientSize.y, worldCenter.z);
+    Vector3 newCenter = new(worldCenter.x, (worldSize.y / 2) + attachPoint.position.y + ingredientSize.y, worldCenter.z);
     bc.center = newSocket.transform.InverseTransformPoint(newCenter);
 
     newSocket.transform.Find("AttachPoint").position = new Vector3(attachPoint.position.x, attachPoint.position.y + ingredientSize.y, attachPoint.position.z);
@@ -79,18 +95,12 @@ public class BurgerPlate : MonoBehaviour
     newSocketInteractor.attachTransform = newSocket.transform.Find("AttachPoint");
     newSocketInteractor.selectEntered.AddListener(IngredientAdded);
     newSocketInteractor.selectExited.AddListener(IngredientRemoved);
-
-    string parentName = transform.parent.gameObject.name;
-
-    print(string.Format("Socket on {0} ENTERED by {1}", parentName, ingredient.name));
-
-    contents.Push(ingredient);
   }
 
   private void IngredientRemoved(SelectExitEventArgs args)
   {
-
     GameObject ingredient = args.interactableObject.transform.gameObject;
+    if (ingredient == null) return;
 
     GameObject socket = ingredient.transform.Find("StackSocket").gameObject;
     Destroy(socket);
@@ -98,9 +108,9 @@ public class BurgerPlate : MonoBehaviour
     ingredient.GetComponent<Collider>().excludeLayers = 0;
     ingredient.layer = INGREDIENT_PHYSICS_MASK;
 
-    string parentName = transform.parent.gameObject.name;
+    // string parentName = transform.parent.gameObject.name;
 
-    print(string.Format("Socket on {0} EXITED by {1}", parentName, ingredient.name));
+    // print(string.Format("Socket on {0} EXITED by {1}", parentName, ingredient.name));
 
     contents.Pop();
 
