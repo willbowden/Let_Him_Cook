@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using System.Numerics;
 using UnityEngine;
 using UnityEngine.XR.Interaction.Toolkit;
+using UnityEngine.XR.Interaction.Toolkit.Attachment;
 using UnityEngine.XR.Interaction.Toolkit.Interactables;
 using UnityEngine.XR.Interaction.Toolkit.Interactors;
 using Vector3 = UnityEngine.Vector3;
@@ -41,6 +42,7 @@ public class BurgerPlate : MonoBehaviour
     ingredient.layer = TOP_INGREDIENT_PHYSICS_MASK;
 
     Vector3 ingredientSize = ingredient.GetComponent<MeshRenderer>().bounds.size;
+    Transform attachPoint = ingredient.transform.Find("AttachPoint");
 
     GameObject previousSocket;
 
@@ -63,11 +65,18 @@ public class BurgerPlate : MonoBehaviour
     GameObject newSocket = Instantiate(socketPrefab, ingredient.transform);
     newSocket.transform.position += offset;
     newSocket.name = "StackSocket";
-    newSocket.GetComponent<BoxCollider>().size = new Vector3(1, 0.5f, 1);
-    newSocket.GetComponent<BoxCollider>().center = new Vector3(0, 0.5f, 0);
+    Vector3 newColliderSize = new Vector3(1, 0.5f, 1);
+    BoxCollider bc = newSocket.GetComponent<BoxCollider>();
+    bc.size = newColliderSize;
+    Vector3 worldSize = newSocket.transform.TransformVector(newColliderSize);
+    Vector3 worldCenter = newSocket.transform.TransformPoint(bc.center);
+    Vector3 newCenter = new Vector3(worldCenter.x, (worldSize.y / 2) + attachPoint.position.y + ingredientSize.y, worldCenter.z);
+    bc.center = newSocket.transform.InverseTransformPoint(newCenter);
+
+    newSocket.transform.Find("AttachPoint").position = new Vector3(attachPoint.position.x, attachPoint.position.y + ingredientSize.y, attachPoint.position.z);
 
     var newSocketInteractor = newSocket.GetComponent<XRSocketInteractor>();
-    newSocketInteractor.attachTransform = newSocket.transform;
+    newSocketInteractor.attachTransform = newSocket.transform.Find("AttachPoint");
     newSocketInteractor.selectEntered.AddListener(IngredientAdded);
     newSocketInteractor.selectExited.AddListener(IngredientRemoved);
 
