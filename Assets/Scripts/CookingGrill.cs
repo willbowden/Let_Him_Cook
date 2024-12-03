@@ -35,6 +35,7 @@ public class CookingGrill : MonoBehaviour
         GameObject progressBarInstance = Instantiate(progressBarPrefab, patty.transform);
         // progressBarInstance.transform.SetParent(, false);
         progressBarInstance.transform.position = patty.transform.position + new Vector3(0, 0.2f, 0);
+        progressBarInstance.transform.rotation = Quaternion.Euler(0, 180, 0);
         progressBarInstance.transform.localScale = new Vector3(1, 1, 1);
 
         // Initialize progress tracking
@@ -65,7 +66,6 @@ public class CookingGrill : MonoBehaviour
         while (pattyCookingProgress[patty] < 1f)
         {
             pattyCookingProgress[patty] += Time.deltaTime / cookingTime;
-            // progressSlider.value = Mathf.Clamp01(pattyCookingProgress[patty]);
             progressBar.SetProgress(Mathf.Clamp01(pattyCookingProgress[patty]));
             yield return null;
         }
@@ -79,13 +79,10 @@ public class CookingGrill : MonoBehaviour
         patty.transform.GetPositionAndRotation(out var instancePosition, out var instanceRotation);
         GameObject cookedPrefab = patty.GetComponent<GrillableIngredient>().cookedVersionPrefab;
 
+        // Clean up
         RemovePattyFromGrill(patty);
         Destroy(patty);
 
         Instantiate(cookedPrefab, instancePosition, instanceRotation);
-
-        // Clean up
-        // RemovePattyFromGrill(patty);
-        // Destroy(patty);
     }
 }
