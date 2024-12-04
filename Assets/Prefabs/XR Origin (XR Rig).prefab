@@ -512,4 +512,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b12c609d50bbe4f9faefd27ceb3b7ce5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  mainCamera: {fileID: 0}
+  distanceFromCamera: 0.5
   canvas: {fileID: 0}
+  homeButtonAction: {fileID: 0}
