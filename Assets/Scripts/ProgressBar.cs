@@ -24,8 +24,8 @@ public class ProgressBar : MonoBehaviour
 
     public void SetProgress(float amount)
     {
-        print("Setting size");
-        print(amount);
+        // print("Setting size");
+        // print(amount);
         barImage.fillAmount = amount;
     }
 

@@ -22,6 +22,11 @@ public class BurgerPlate : MonoBehaviour
   private LayerMask STACK_INGREDIENT_PHYSICS_MASK;
   private LayerMask TOP_INGREDIENT_PHYSICS_MASK;
 
+  public Stack<GameObject> GetContents()
+  {
+    return contents;
+  }
+
   void Start()
   {
     bottomSocket = transform.Find("StackSocket").gameObject;
@@ -35,13 +40,17 @@ public class BurgerPlate : MonoBehaviour
     INGREDIENT_PHYSICS_MASK = LayerMask.NameToLayer("Ingredient");
     STACK_INGREDIENT_PHYSICS_MASK = LayerMask.NameToLayer("StackedIngredient");
     TOP_INGREDIENT_PHYSICS_MASK = LayerMask.NameToLayer("TopStackIngredient");
+
+    XRGrabInteractable plateGrab = GetComponent<XRGrabInteractable>();
+    plateGrab.selectEntered.AddListener(PlateGrabbed);
+    plateGrab.selectExited.AddListener(PlateReleased);
   }
 
   private void IngredientAdded(SelectEnterEventArgs args)
   {
     GameObject ingredient = args.interactableObject.transform.gameObject;
     if (ingredient == null) return;
-    
+
     ingredient.GetComponent<Collider>().excludeLayers = STACK_INGREDIENT_PHYSICS_MASK;
     ingredient.layer = TOP_INGREDIENT_PHYSICS_MASK;
 
@@ -132,5 +141,27 @@ public class BurgerPlate : MonoBehaviour
 
     // Vector3 originalSize = socketPrefab.GetComponent<BoxCollider>().size;
     // previousSocket.GetComponent<BoxCollider>().size = originalSize;
+  }
+
+  private void PlateGrabbed(SelectEnterEventArgs args)
+  {
+    if (contents.Count > 0)
+    {
+      GameObject topIngredient = contents.Peek();
+      XRSocketInteractor socket = topIngredient.transform.Find("StackSocket").GetComponent<XRSocketInteractor>();
+      socket.allowSelect = false;
+      socket.allowHover = false;
+    }
+  }
+
+  private void PlateReleased(SelectExitEventArgs args)
+  {
+    if (contents.Count > 0)
+    {
+      GameObject topIngredient = contents.Peek();
+      XRSocketInteractor socket = topIngredient.transform.Find("StackSocket").GetComponent<XRSocketInteractor>();
+      socket.allowSelect = true;
+      socket.allowHover = true;
+    }
   }
 }
