@@ -40,6 +40,7 @@ public class CheckPlate : MonoBehaviour
         
         foreach (GameObject plateObject in PlatesInArea){
             score += CheckOneOrder(plateObject);
+
         }
 
         return score;
@@ -50,18 +51,22 @@ public class CheckPlate : MonoBehaviour
         Stack<GameObject> plate_ingredients = plate.GetContents();
         int score = 0;
         int highestScore = 0;
+        Order orderToRemove = new();
         List<GameObject> PlateIngredientsList = new List<GameObject>(plate_ingredients);
 
         orders = orderController.GetOrders();    
+
+        // Need to get the order which gave the highest score and remove it
         foreach (Order order in orders){
     
             score = ScoreOrdering(plateObject, order);
         
             if (score > highestScore){
                 highestScore = score;
+                orderToRemove = order;
             }
         }
-
+        orderController.RemoveOrder(orderToRemove);
         return highestScore;
 
     }

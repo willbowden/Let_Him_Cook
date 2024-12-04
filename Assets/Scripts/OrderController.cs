@@ -125,6 +125,9 @@ public class OrderController : MonoBehaviour
         {
             LoadOrder(); // Start handling the new order if none is active
         }
+
+        // LoadOrder();
+
     }
 
     // Remove all orders and reset
