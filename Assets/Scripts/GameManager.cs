@@ -8,16 +8,16 @@ public class GameManager : MonoBehaviour{
     [Header("Order Controller Reference")]
     [SerializeField] private OrderController orderController; // Reference to OrderController
 
-    private List<Recipe> recipeList; // List of Recipe ScriptableObjects
+    private List<Recipe> recipeList;
     
     
     
     // Game variables
     int score;
     public int maxConcurrentOrders = 5;
-    public float gameDuration = 600f; // Total game time in seconds
-    public float minTimeBetweenOrders = 5f; // Minimum interval for new orders
-    public float maxTimeBetweenOrders = 15f; // Maximum interval for new orders
+    public float gameDuration = 600f;
+    public float minTimeBetweenOrders = 5f;
+    public float maxTimeBetweenOrders = 15f;
     private float gameTimeRemaining;
     private List<List<string>> burgerRecipes;
 
@@ -140,6 +140,7 @@ public class GameManager : MonoBehaviour{
         Debug.Log($"New order created: {newOrder.name}");
     }
 
+    // This is not gonna be used
     private void PopulateOrders()
     {
 
