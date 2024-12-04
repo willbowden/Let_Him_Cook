@@ -15,9 +15,6 @@ EditorBuildSettings:
     path: Assets/Scenes/Will-DevScene.unity
     guid: 19e5e297f1944e1958f9c7041c81ad71
   - enabled: 0
-    path: Assets/Scenes/sven-fridge2.unity
-    guid: 98a46bbc9e30f4d5897c98a89376e57e
-  - enabled: 0
     path: Assets/Scenes/kitchen UI advancement.unity
     guid: ac6498188cb604f7097292cc41fed6e8
   m_configObjects:
