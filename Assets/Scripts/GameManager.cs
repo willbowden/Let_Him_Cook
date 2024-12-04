@@ -7,20 +7,18 @@ public class GameManager : MonoBehaviour{
 
     [Header("Order Controller Reference")]
     [SerializeField] private OrderController orderController; // Reference to OrderController
+    [SerializeField] private CheckPlate CheckPlateController;
+    [SerializeField] private ScoreController scoreController;
 
     private List<Recipe> recipeList;
     
-    
-    
     // Game variables
-    int score;
     public int maxConcurrentOrders = 5;
     public float gameDuration = 600f;
     public float minTimeBetweenOrders = 5f;
     public float maxTimeBetweenOrders = 15f;
     private float gameTimeRemaining;
     private List<List<string>> burgerRecipes;
-
 
     // Events
     public static event Action<string, DateTime> OnOrderAdded;
@@ -34,6 +32,8 @@ public class GameManager : MonoBehaviour{
     void Start()
     {
         orderController = FindObjectOfType<OrderController>();
+        CheckPlateController = FindObjectOfType<CheckPlate>();
+        scoreController = FindObjectOfType<ScoreController>();
         GameStart();
     }
 
@@ -54,7 +54,6 @@ public class GameManager : MonoBehaviour{
     {
         isGameRunning = true;
         gameTimeRemaining = gameDuration;
-        score = 0;
         LoadRecipes();
         orders.Clear();
         StartCoroutine(OrderTimer());
@@ -83,38 +82,19 @@ public class GameManager : MonoBehaviour{
         }
     }
 
-    // Add a new order
-    public void AddOrder(string recipeName)
-    {
-        var order = new Tuple<string, DateTime>(recipeName, DateTime.Now);
-        orders.Add(order);
-        OnOrderAdded?.Invoke(recipeName, DateTime.Now);
-    }
-
-    // Add to score
-    public void AddScore(int addedScore)
-    {
-        score += addedScore;
-        OnScoreAdded?.Invoke(addedScore);
-    }
-
     // Submit an order
-    public void OrderSubmitted(int addedScore, bool wasSuccessful)
+    public void OrderSubmitted()
     {
         if (orders.Count == 0)
         {
             return;
         }
 
+        // Need to be able to remove one order
         orders.RemoveAt(0);
-        // CheckPlate.Instance.CheckOrder(); // how do i use this. Make it so this returns true or false?
-
-        if (wasSuccessful)
-        {
-            AddScore(addedScore);
-        }
-
-        OnOrderRemoved?.Invoke(wasSuccessful);
+        int score = CheckPlateController.CheckOrders();
+        scoreController.UpdateScore(score);        
+        // OnOrderRemoved?.Invoke(wasSuccessful); JUNK?
     }
 
     // Create a random order
@@ -184,4 +164,22 @@ public class GameManager : MonoBehaviour{
         recipeList = new List<Recipe>(recipes);
         Debug.Log($"Loaded {recipeList.Count} recipes.");
 }
+
+
+
+    // JUNK ????
+    // Add a new order
+    public void AddOrder(string recipeName)
+    {
+        var order = new Tuple<string, DateTime>(recipeName, DateTime.Now);
+        orders.Add(order);
+        OnOrderAdded?.Invoke(recipeName, DateTime.Now);
+    }
+
+    // Add to score
+    // public void AddScore(int addedScore)
+    // {
+    //     score += addedScore;
+    //     OnScoreAdded?.Invoke(addedScore);
+    // }
 }

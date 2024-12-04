@@ -17,14 +17,6 @@ public class CheckPlate : MonoBehaviour
         orderController = FindObjectOfType<OrderController>();
     }
 
-    private void Update()
-    {
-        // if (Input.GetButtonDown(checkBtn) && activeOrders.Count > 0)
-        // {
-        //     CheckOrder();
-        // }
-    }
-
     private void OnTriggerEnter(Collider other){
         
         if (other.gameObject.name != "BurgerPlate") {
@@ -43,35 +35,35 @@ public class CheckPlate : MonoBehaviour
         PlatesInArea.Remove(other.gameObject);
     }
 
-    private void CheckOneOrder(GameObject plateObject) {
+    public int CheckOrders(){
+        int score = 0;
+        
+        foreach (GameObject plateObject in PlatesInArea){
+            score += CheckOneOrder(plateObject);
+        }
+
+        return score;
+    }
+
+    private int CheckOneOrder(GameObject plateObject) {
         BurgerPlate plate = plateObject.GetComponent<BurgerPlate>();
         Stack<GameObject> plate_ingredients = plate.GetContents();
-
+        int score = 0;
+        int highestScore = 0;
         List<GameObject> PlateIngredientsList = new List<GameObject>(plate_ingredients);
 
-        orders = orderController.GetOrders();
-
-        foreach (GameObject ingredient in plate_ingredients)
-        {
-            // ingredient.name == order[i]
-            Debug.Log($"The burger is made up of: {ingredient.name}");
-        }
-
-    
-
-
+        orders = orderController.GetOrders();    
         foreach (Order order in orders){
-
-        ScoreOrdering(plateObject, order);
-            
+    
+            score = ScoreOrdering(plateObject, order);
+        
+            if (score > highestScore){
+                highestScore = score;
+            }
         }
 
-        // Scoring burger ? 
-        // What matters?
-        // Accuracy of Ingredients (Are the correct ingredients used?)
-        // Order of Ingredients (Are the ingredients assembled in the right sequence?)
-        // Completeness (Does the burger have all the required ingredients?)
-        // Extra Ingredients (Are there ingredients that should not be present?)
+        return highestScore;
+
     }
 
     public List<string> getOrderRecipeIngredients(Order order){
@@ -88,7 +80,8 @@ public class CheckPlate : MonoBehaviour
 
         BurgerPlate plate = plateObject.GetComponent<BurgerPlate>();
         List<string> IngredientsToMatch = getOrderRecipeIngredients(order);
-        int score = 0;
+        int correctIngredients = 0;
+        int weight = 100;
         Stack<GameObject> plate_ingredients = plate.GetContents();
         List<GameObject> PlateIngredientsList = new List<GameObject>(plate_ingredients);
 
@@ -96,9 +89,8 @@ public class CheckPlate : MonoBehaviour
         int i = 0; // Start from the last index of IngredientsToMatch
         foreach (GameObject ingredient in plate_ingredients)
         {
-
             if (ingredient.name == IngredientsToMatch[i]){
-                score += 10;
+                correctIngredients += 1;
                 Debug.Log($"Correct match: Ingredient is {ingredient.name}");
             }
 
@@ -110,19 +102,83 @@ public class CheckPlate : MonoBehaviour
             if (i > IngredientsToMatch.Count)
             {
                 Debug.LogWarning("No more ingredients to match in the recipe.");
-                break; // Exit the loop if we've checked all recipe ingredients
+                break;
             }
         }
 
-        Debug.Log($"Score for ordering is {score}");
+        if (i >= IngredientsToMatch.Count)
+        {
+            Debug.LogWarning("There are more ingredients on the plate than in the recipe.");
+            correctIngredients -= (i - IngredientsToMatch.Count);
+        }
 
-        return score;
+        if (i < IngredientsToMatch.Count)
+        {
+            Debug.LogWarning("The burger is missing ingredients.");
+            correctIngredients -= (IngredientsToMatch.Count - i);
+        }
 
+        if (i == IngredientsToMatch.Count && correctIngredients == IngredientsToMatch.Count) {
+            weight += 20;
+        }
+
+        float score = ((float)correctIngredients / IngredientsToMatch.Count) * weight;
+        int end_score = Mathf.RoundToInt(score);
+        Debug.Log($"Score based on ordering is {end_score}");
+        return end_score;  // Round the score to the nearest integer
     }
 
-    public void CheckOrders(){
-        CheckOneOrder(PlatesInArea[0]);
+    public int ScoreRegardlessOrdering(GameObject plateObject, Order order)
+    {
+        BurgerPlate plate = plateObject.GetComponent<BurgerPlate>();
+        List<string> IngredientsToMatch = getOrderRecipeIngredients(order);
+        int correctIngredients = 0;
+        int weight = 100;
+
+        Stack<GameObject> plate_ingredients = plate.GetContents();
+        List<GameObject> PlateIngredientsList = new List<GameObject>(plate_ingredients);
+
+        List<string> ingredientsOnPlate = PlateIngredientsList.Select(ingredient => ingredient.name).ToList();
+
+        foreach (string ingredient in IngredientsToMatch)
+        {
+            if (ingredientsOnPlate.Contains(ingredient))
+            {
+                correctIngredients += 1;
+                ingredientsOnPlate.Remove(ingredient); 
+                Debug.Log($"Correct match: Ingredient is {ingredient}");
+            }
+            else
+            {
+                Debug.Log($"Incorrect match: Missing {ingredient} on the plate");
+            }
+        }
+
+        if (ingredientsOnPlate.Count >= IngredientsToMatch.Count)
+        {
+            Debug.LogWarning("There are more ingredients on the plate than in the recipe.");
+            correctIngredients -= (ingredientsOnPlate.Count - IngredientsToMatch.Count);
+        }
+
+        if (ingredientsOnPlate.Count < IngredientsToMatch.Count)
+        {
+            Debug.LogWarning("The burger is missing ingredients.");
+            correctIngredients -= (IngredientsToMatch.Count - ingredientsOnPlate.Count);
+        }
+
+        if (ingredientsOnPlate.Count == IngredientsToMatch.Count && correctIngredients == IngredientsToMatch.Count) {
+            weight += 20;
+        }
+
+        float score = ((float)correctIngredients / IngredientsToMatch.Count) * weight;
+
+        Debug.Log($"Score based on matching ingredients is {score}");
+
+        return Mathf.RoundToInt(score);
     }
+
+
+
 
 
 

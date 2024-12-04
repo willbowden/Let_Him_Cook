@@ -117,6 +117,16 @@ public class OrderController : MonoBehaviour
         }
     }
 
+    public void RemoveOrder(Order order)
+    {
+        orders.Remove(order);
+        Debug.Log($"Order Removed: {order.name}");
+        if (!isHandlingOrder && isRestaurantOpen)
+        {
+            LoadOrder(); // Start handling the new order if none is active
+        }
+    }
+
     // Remove all orders and reset
     public void RemoveAllOrders()
     {
