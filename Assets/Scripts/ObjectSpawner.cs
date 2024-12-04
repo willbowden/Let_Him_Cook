@@ -42,7 +42,7 @@ public class ObjectSpawner : MonoBehaviour
     {
         spawnCountdownRunning = true;
 
-        yield return new WaitForSeconds(4);
+        yield return new WaitForSeconds(3);
 
         Spawn();
 
