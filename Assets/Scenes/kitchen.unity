@@ -1985,7 +1985,7 @@ PrefabInstance:
       objectReference: {fileID: 1913130632760709513, guid: ac0df17a4ccbb0feeabf66ea117fabe8, type: 3}
     - target: {fileID: 852917078938411484, guid: db0e1b1bf8a3b702d91e496ddb6815f8, type: 3}
       propertyPath: m_Name
-      value: Topbun_spawner
+      value: TopBunSpawner
       objectReference: {fileID: 0}
     - target: {fileID: 1023374718367352580, guid: db0e1b1bf8a3b702d91e496ddb6815f8, type: 3}
       propertyPath: m_LocalPosition.x
@@ -2576,7 +2576,7 @@ PrefabInstance:
       objectReference: {fileID: 1913130632760709513, guid: 6aa6572fd0a6446df903cace5f6d3cd9, type: 3}
     - target: {fileID: 852917078938411484, guid: db0e1b1bf8a3b702d91e496ddb6815f8, type: 3}
       propertyPath: m_Name
-      value: BottomBun_spawner
+      value: BottomBunSpawner
       objectReference: {fileID: 0}
     - target: {fileID: 1023374718367352580, guid: db0e1b1bf8a3b702d91e496ddb6815f8, type: 3}
       propertyPath: m_LocalPosition.x
@@ -2703,7 +2703,7 @@ PrefabInstance:
       objectReference: {fileID: 7536979919363853452, guid: 8b2042254d18638dc822f3b30d6c35ea, type: 3}
     - target: {fileID: 852917078938411484, guid: db0e1b1bf8a3b702d91e496ddb6815f8, type: 3}
       propertyPath: m_Name
-      value: Bowl_spawner
+      value: BurgerPlateSpawner
       objectReference: {fileID: 0}
     - target: {fileID: 1023374718367352580, guid: db0e1b1bf8a3b702d91e496ddb6815f8, type: 3}
       propertyPath: m_LocalPosition.x
@@ -2711,11 +2711,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1023374718367352580, guid: db0e1b1bf8a3b702d91e496ddb6815f8, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 3.315
+      value: 3.1776
       objectReference: {fileID: 0}
     - target: {fileID: 1023374718367352580, guid: db0e1b1bf8a3b702d91e496ddb6815f8, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 2.891
+      value: 2.7545
       objectReference: {fileID: 0}
     - target: {fileID: 1023374718367352580, guid: db0e1b1bf8a3b702d91e496ddb6815f8, type: 3}
       propertyPath: m_LocalRotation.w
@@ -2791,10 +2791,30 @@ PrefabInstance:
       propertyPath: m_DebugVisualizationsEnabled
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7558897098227670290, guid: a5d913796e62848a0859bf132a08ba7c, type: 3}
+      propertyPath: m_BackGroundColor.a
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7558897098227670290, guid: a5d913796e62848a0859bf132a08ba7c, type: 3}
+      propertyPath: m_BackGroundColor.b
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7558897098227670290, guid: a5d913796e62848a0859bf132a08ba7c, type: 3}
+      propertyPath: m_BackGroundColor.g
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7558897098227670290, guid: a5d913796e62848a0859bf132a08ba7c, type: 3}
+      propertyPath: m_BackGroundColor.r
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8457254924911806687, guid: a5d913796e62848a0859bf132a08ba7c, type: 3}
       propertyPath: m_InteractionManager
       value: 
       objectReference: {fileID: 1678605587}
+    - target: {fileID: 8700233513905374665, guid: a5d913796e62848a0859bf132a08ba7c, type: 3}
+      propertyPath: m_CameraYOffset
+      value: 1.85
+      objectReference: {fileID: 0}
     - target: {fileID: 9089680783638631115, guid: a5d913796e62848a0859bf132a08ba7c, type: 3}
       propertyPath: canvas
       value: 
