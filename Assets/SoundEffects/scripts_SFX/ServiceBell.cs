@@ -4,6 +4,8 @@ public class ServiceBell : MonoBehaviour
 {
     [SerializeField] private CheckPlate CheckPlateController; // Reference to OrderController
     [SerializeField] private GameManager gameManager;
+    [SerializeField] private ScoreController scoreController;
+
 
     private AudioSource bellSound;
 
@@ -13,6 +15,7 @@ public class ServiceBell : MonoBehaviour
         bellSound = GetComponent<AudioSource>();
         CheckPlateController = FindObjectOfType<CheckPlate>();
         gameManager = FindObjectOfType<GameManager>();
+        scoreController = FindObjectOfType<ScoreController>();
 
     }
 
@@ -20,7 +23,7 @@ public class ServiceBell : MonoBehaviour
     void OnMouseDown()
     {
         PlaySound();
-        CheckPlateController.CheckOrders();
+        // CheckPlateController.CheckOrders();
         gameManager.OrderSubmitted();
     }
 

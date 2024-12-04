@@ -85,13 +85,13 @@ public class GameManager : MonoBehaviour{
     // Submit an order
     public void OrderSubmitted()
     {
-        if (orders.Count == 0)
-        {
-            return;
-        }
+        // if (orders.Count == 0)
+        // {
+        //     return;
+        // }
 
         // Need to be able to remove one order
-        orders.RemoveAt(0);
+        // orders.RemoveAt(0);
         int score = CheckPlateController.CheckOrders();
         scoreController.UpdateScore(score);        
         // OnOrderRemoved?.Invoke(wasSuccessful); JUNK?
