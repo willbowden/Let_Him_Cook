@@ -10,7 +10,20 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 990b642bdc9e140d0bea6b5dc60aa3de, type: 3}
-  m_Name: Pizza
+  m_Name: Cheese Burger
   m_EditorClassIdentifier: 
-  recipeImage: {fileID: 21300000, guid: 145a4540495bd49f1a47d7cdaabcc7b3, type: 3}
-  recipeText: nothing
+  recipeImage: {fileID: 21300000, guid: 21c1813606269482abe0ee6f32633ac6, type: 3}
+  recipeText: 'Top Bun
+
+    Tomato Slice
+
+    Lettuce
+
+    Cheese
+
+    Patty
+
+    Bottom
+    Bun
+
+'
