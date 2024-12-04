@@ -107,7 +107,6 @@ public class GameManager : MonoBehaviour{
         }
 
         orders.RemoveAt(0);
-        // CheckPlate.Instance.CheckOrder(); // how do i use this. Make it so this returns true or false?
 
         if (wasSuccessful)
         {
