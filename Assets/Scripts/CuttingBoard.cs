@@ -57,7 +57,7 @@ public class CuttingBoard : MonoBehaviour
             content.transform.GetPositionAndRotation(out var instancePosition, out var instanceRotation);
             GameObject cutPrefab = content.GetComponent<CuttableIngredient>().cutVersionPrefab;
             Destroy(content);
-            Instantiate(cutPrefab, new Vector3(0, 0.02f, 0) + instancePosition, Quaternion.Euler(new Vector3(0, 90, 0)));
+            Instantiate(cutPrefab, new Vector3(0, 0.02f, 0) + instancePosition, transform.rotation * Quaternion.Euler(new Vector3(0, 90, 0)));
 
             // Don't need to call ResetProgressAndContent() here as it is triggered by IngredientRemoved when we Destroy(content).
         }
