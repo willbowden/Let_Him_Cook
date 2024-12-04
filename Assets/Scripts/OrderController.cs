@@ -21,6 +21,9 @@ public class OrderController : MonoBehaviour
     {
         // Restaurant starts closed, no orders loaded initially
         ResetUI();
+        Open();
+
+        
     }
 
     void Update()
@@ -114,6 +117,19 @@ public class OrderController : MonoBehaviour
         }
     }
 
+    public void RemoveOrder(Order order)
+    {
+        orders.Remove(order);
+        Debug.Log($"Order Removed: {order.name}");
+        if (!isHandlingOrder && isRestaurantOpen)
+        {
+            LoadOrder(); // Start handling the new order if none is active
+        }
+
+        // LoadOrder();
+
+    }
+
     // Remove all orders and reset
     public void RemoveAllOrders()
     {
@@ -131,5 +147,9 @@ public class OrderController : MonoBehaviour
         timerDisplay.text = "--:--"; // Reset the timer display
         currentTime = 0;
         isHandlingOrder = false;
+    }
+
+    public List<Order> GetOrders(){
+        return orders;
     }
 }
