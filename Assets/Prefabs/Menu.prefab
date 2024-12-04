@@ -1566,7 +1566,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mainCamera: {fileID: 0}
   distanceFromCamera: 0.5
-  positionOffset: {x: 0, y: 0, z: 0}
   canvas: {fileID: 3972949122722626247}
   homeButtonAction: {fileID: 0}
 --- !u!1 &8428757804527662996
