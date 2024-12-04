@@ -58,7 +58,7 @@ public class GameManager : MonoBehaviour{
         LoadRecipes();
         orders.Clear();
         StartCoroutine(OrderTimer());
-        PopulateOrders();
+        // PopulateOrders();
 
     }
 
@@ -78,7 +78,7 @@ public class GameManager : MonoBehaviour{
             yield return new WaitForSeconds(UnityEngine.Random.Range(minTimeBetweenOrders, maxTimeBetweenOrders));
             if (orders.Count < maxConcurrentOrders)
             {
-                CreateRandomOrder();
+                // CreateRandomOrder();
             }
         }
     }

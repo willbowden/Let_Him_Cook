@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: burgerOrder
   m_EditorClassIdentifier: 
   recipe: {fileID: 11400000, guid: a0ed1b9ef2e3448139516ce3c129ce19, type: 2}
-  timeInSeconds: 5
+  timeInSeconds: 120

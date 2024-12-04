@@ -135,4 +135,8 @@ public class OrderController : MonoBehaviour
         currentTime = 0;
         isHandlingOrder = false;
     }
+
+    public List<Order> GetOrders(){
+        return orders;
+    }
 }
