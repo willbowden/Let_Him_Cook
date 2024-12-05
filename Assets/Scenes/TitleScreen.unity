@@ -513,6 +513,22 @@ PrefabInstance:
       propertyPath: m_Camera
       value: 
       objectReference: {fileID: 705289183}
+    - target: {fileID: 7243824710629771098, guid: 40167ac8abc874e0fa7f0b3f5b4db42d, type: 3}
+      propertyPath: m_text
+      value: '1. TV On wall displays incoming orders.
+
+
+        2. Make food based
+        on the recipe on the recipe screen on the counter.
+
+
+        3. Place meal
+        on plate then on the tray next to the bell.
+
+
+        4. Click Bell to submit
+        the meal.'
+      objectReference: {fileID: 0}
     - target: {fileID: 7731776297423744594, guid: 40167ac8abc874e0fa7f0b3f5b4db42d, type: 3}
       propertyPath: m_AdditionalShaderChannelsFlag
       value: 25
