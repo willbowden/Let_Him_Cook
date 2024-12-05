@@ -97,6 +97,7 @@ public class GameManager : MonoBehaviour{
         // orders.RemoveAt(0);
         Debug.Log("I was called succesfully");
         int score = CheckPlateController.CheckOrders();
+        Debug.Log($"From Gamemanager trying to add score {score} ");
         scoreController.UpdateScore(score);
         // OnOrderRemoved?.Invoke(wasSuccessful); JUNK?
     }
