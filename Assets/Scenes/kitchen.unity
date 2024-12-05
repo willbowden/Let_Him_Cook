@@ -1694,7 +1694,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7995399492540075702, guid: 9b271c8a3082948c1830a9bcae5b34ce, type: 3}
       propertyPath: orders.Array.size
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7995399492540075702, guid: 9b271c8a3082948c1830a9bcae5b34ce, type: 3}
       propertyPath: orders.Array.data[0]
