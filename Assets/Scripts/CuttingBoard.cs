@@ -65,7 +65,7 @@ public class CuttingBoard : MonoBehaviour
 
     public void OnTriggerEnter(Collider col)
     {
-        if (col.gameObject.name == "Knife" && content != null)
+        if (col.gameObject.name.Contains("Knife") && content != null)
         {
             Chop();
         }
