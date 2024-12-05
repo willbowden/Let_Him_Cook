@@ -16,8 +16,11 @@ public class GameManager : MonoBehaviour{
     // Game variables
     public int maxConcurrentOrders = 5;
     public float gameDuration = 600f;
-    public float minTimeBetweenOrders = 5f;
-    public float maxTimeBetweenOrders = 15f;
+    public float minTimeBetweenOrders = 30f;
+    public float maxTimeBetweenOrders = 60f;
+    public float orderMinDuration = 30f;
+    public float orderMaxDuration = 120f;
+
     private float gameTimeRemaining;
     private List<List<string>> burgerRecipes;
 
@@ -139,7 +142,7 @@ public class GameManager : MonoBehaviour{
             {
                 name = recipe.name, 
                 recipe = recipe,
-                timeInSeconds = (int)UnityEngine.Random.Range(5f, 10f)
+                timeInSeconds = (int)UnityEngine.Random.Range(orderMinDuration, orderMaxDuration)
             };
 
             // Add the Order to the OrderController
