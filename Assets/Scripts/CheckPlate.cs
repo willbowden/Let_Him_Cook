@@ -37,26 +37,24 @@ public class CheckPlate : MonoBehaviour
 
     public int CheckOrders(){
         int score = 0;
-        
+                
         foreach (GameObject plateObject in PlatesInArea){
             score += CheckOneOrder(plateObject);
+
             DestroyPlate(plateObject);
         }
 
         return score;
     }
 
-    private void DestroyPlate(GameObject plateObject) 
+    public void DestroyPlate(GameObject plateObject)
     {
-        if (plateObject != null)
+        foreach (Transform child in plateObject.transform)
         {
-            Destroy(plateObject);
-            Debug.Log($"Plate {plateObject.name} has been destroyed.");
+            Destroy(child.gameObject);
         }
-        else
-        {
-            Debug.LogWarning("Attempted to destroy a null plate object.");
-        }
+        // Destroy(plateObject);
+
     }
 
     private int CheckOneOrder(GameObject plateObject) {
