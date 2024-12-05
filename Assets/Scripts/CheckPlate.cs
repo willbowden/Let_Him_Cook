@@ -40,10 +40,23 @@ public class CheckPlate : MonoBehaviour
         
         foreach (GameObject plateObject in PlatesInArea){
             score += CheckOneOrder(plateObject);
-
+            DestroyPlate(plateObject);
         }
 
         return score;
+    }
+
+    private void DestroyPlate(GameObject plateObject) 
+    {
+        if (plateObject != null)
+        {
+            Destroy(plateObject);
+            Debug.Log($"Plate {plateObject.name} has been destroyed.");
+        }
+        else
+        {
+            Debug.LogWarning("Attempted to destroy a null plate object.");
+        }
     }
 
     private int CheckOneOrder(GameObject plateObject) {
