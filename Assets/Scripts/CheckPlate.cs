@@ -60,6 +60,9 @@ public class CheckPlate : MonoBehaviour
     }
 
     private int CheckOneOrder(GameObject plateObject) {
+        if (plateObject == null) {
+            return 0;
+        }
         BurgerPlate plate = plateObject.GetComponent<BurgerPlate>();
         Stack<GameObject> plate_ingredients = plate.GetContents();
         int score = 0;
@@ -68,10 +71,12 @@ public class CheckPlate : MonoBehaviour
         List<GameObject> PlateIngredientsList = new List<GameObject>(plate_ingredients);
 
         orders = orderController.GetOrders();    
-
+        if (orders.Count == 0){
+                return 0;
+        }
         // Need to get the order which gave the highest score and remove it
         foreach (Order order in orders){
-    
+
             score = ScoreOrdering(plateObject, order);
         
             if (score > highestScore){
