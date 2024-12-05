@@ -4466,7 +4466,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1711801245222829056, guid: 56b0072c697594a42a1b912f85ceadb4, type: 3}
       propertyPath: Loop
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1711801245222829056, guid: 56b0072c697594a42a1b912f85ceadb4, type: 3}
       propertyPath: m_PlayOnAwake

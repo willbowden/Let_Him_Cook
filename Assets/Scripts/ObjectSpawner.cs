@@ -54,7 +54,7 @@ public class ObjectSpawner : MonoBehaviour
     void OnTriggerEnter(Collider col)
     {
         // print(string.Format("Collider {0} entering", col.gameObject.name));
-        if (col.gameObject.name == spawn.name)
+        if (col.gameObject.name.Contains(spawn.name))
         {
             objectsInZone += 1;
         }
@@ -63,7 +63,7 @@ public class ObjectSpawner : MonoBehaviour
     void OnTriggerExit(Collider col)
     {
         // print(string.Format("Collider {0} exiting", col.gameObject.name));
-        if (col.gameObject.name == spawn.name)
+        if (col.gameObject.name.Contains(spawn.name))
         {
             objectsInZone -= 1;
             if (objectsInZone == 0 && !spawnCountdownRunning)
