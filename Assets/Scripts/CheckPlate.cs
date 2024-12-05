@@ -127,6 +127,10 @@ public class CheckPlate : MonoBehaviour
             weight += 20;
         }
 
+        if (order.timeInSeconds == 0) {
+            weight -= 30;
+        }
+
         float score = ((float)correctIngredients / IngredientsToMatch.Count) * weight;
         int end_score = Mathf.RoundToInt(score);
         Debug.Log($"Score based on ordering is {end_score}");
