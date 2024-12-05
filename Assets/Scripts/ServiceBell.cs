@@ -24,15 +24,16 @@ public class ServiceBell : MonoBehaviour
     // Method to handle poke interaction
     public void OnPoke()
     {
+        print("POKED!");
         PlaySound();
     }
 
     // Shared method to play the bell sound
     public void PlaySound()
     {
-        if (bellSound != null && !bellSound.isPlaying)
+        if (bellSound != null)
         {
-            bellSound.Play();
+            bellSound.PlayOneShot(bellSound.clip);
         }
     }
 }
