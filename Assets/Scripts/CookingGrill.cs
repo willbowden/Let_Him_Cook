@@ -101,6 +101,7 @@ public class CookingGrill : MonoBehaviour
         RemovePattyFromGrill(patty);
         Destroy(patty);
 
-        Instantiate(cookedPrefab, instancePosition, instanceRotation);
+        GameObject ob = Instantiate(cookedPrefab, instancePosition, instanceRotation);
+        ob.name = cookedPrefab.name;
     }
 }

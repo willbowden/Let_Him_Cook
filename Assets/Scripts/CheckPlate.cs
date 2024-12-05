@@ -19,7 +19,7 @@ public class CheckPlate : MonoBehaviour
 
     private void OnTriggerEnter(Collider other){
         
-        if (other.gameObject.name != "BurgerPlate") {
+        if (!other.gameObject.name.Contains("BurgerPlate")) {
             return;
         }
 
@@ -28,7 +28,7 @@ public class CheckPlate : MonoBehaviour
 
     private void OnTriggerExit(Collider other){
 
-        if (other.gameObject.name != "BurgerPlate") {
+        if (other.gameObject.name.Contains("BurgerPlate")) {
             return;
         }
 
@@ -113,7 +113,7 @@ public class CheckPlate : MonoBehaviour
         int i = 0; // Start from the last index of IngredientsToMatch
         foreach (GameObject ingredient in plate_ingredients)
         {
-            if (ingredient.name == IngredientsToMatch[i]){
+            if (ingredient.name.Contains(IngredientsToMatch[i])){
                 correctIngredients += 1;
                 Debug.Log($"Correct match: Ingredient is {ingredient.name}");
             }
