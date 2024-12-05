@@ -22,7 +22,7 @@ public class ObjectSpawner : MonoBehaviour
         }   
         else
         {
-            Spawn();
+            Spawn();            
         }
     }
 
@@ -42,7 +42,7 @@ public class ObjectSpawner : MonoBehaviour
     {
         spawnCountdownRunning = true;
 
-        yield return new WaitForSeconds(4);
+        yield return new WaitForSeconds(3);
 
         Spawn();
 
@@ -51,6 +51,7 @@ public class ObjectSpawner : MonoBehaviour
 
     void OnTriggerEnter(Collider col)
     {
+        print(string.Format("Collider {0} entering", col.gameObject.name));
         if (col.gameObject.name == spawn.name)
         {
             objectsInZone += 1;
@@ -59,6 +60,7 @@ public class ObjectSpawner : MonoBehaviour
 
     void OnTriggerExit(Collider col)
     {
+        print(string.Format("Collider {0} exiting", col.gameObject.name));
         if (col.gameObject.name == spawn.name)
         {
             objectsInZone -= 1;
