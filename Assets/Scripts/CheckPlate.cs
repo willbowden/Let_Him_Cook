@@ -44,7 +44,7 @@ public class CheckPlate : MonoBehaviour
 
             DestroyPlate(plateObject);
         }
-        Debug.Log($"Trying to add score {score}");
+        Debug.Log($"From Checkorders Trying to add score {score}");
 
         return score;
     }
@@ -62,8 +62,8 @@ public class CheckPlate : MonoBehaviour
     private int CheckOneOrder(GameObject plateObject) {
         BurgerPlate plate = plateObject.GetComponent<BurgerPlate>();
         Stack<GameObject> plate_ingredients = plate.GetContents();
-        int score = -100000;
-        int highestScore = 0;
+        int score = 0;
+        int highestScore = -10000;
         Order orderToRemove = new();
         List<GameObject> PlateIngredientsList = new List<GameObject>(plate_ingredients);
 
@@ -80,6 +80,7 @@ public class CheckPlate : MonoBehaviour
             }
         }
         orderController.RemoveOrder(orderToRemove);
+        Debug.Log($"From CheckOneOrder trying to add score {highestScore}");
         return highestScore;
 
     }
