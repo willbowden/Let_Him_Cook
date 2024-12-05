@@ -10,8 +10,15 @@ public class CookingGrill : MonoBehaviour
     [SerializeField]
     private float cookingTime = 5f; // Time required to cook each patty
 
+    private AudioSource audioSource;
+
     private Dictionary<GameObject, ProgressBar> pattyToProgressBar = new Dictionary<GameObject, ProgressBar>(); // Map each patty to its progress bar
     private Dictionary<GameObject, float> pattyCookingProgress = new Dictionary<GameObject, float>(); // Map each patty to its cooking progress
+
+    void Start()
+    {
+        audioSource = GetComponent<AudioSource>();
+    }
 
     private void OnTriggerEnter(Collider other)
     {
@@ -44,6 +51,11 @@ public class CookingGrill : MonoBehaviour
 
         pattyToProgressBar[patty].Show();
 
+        if (pattyToProgressBar.Count > 0 && audioSource != null)
+        {
+            audioSource.Play();
+        }
+
         // Start the cooking process
         StartCoroutine(CookPatty(patty));
     }
@@ -57,6 +69,11 @@ public class CookingGrill : MonoBehaviour
 
         pattyToProgressBar.Remove(patty);
         pattyCookingProgress.Remove(patty);
+
+        if (pattyToProgressBar.Count <= 0)
+        {
+            audioSource.Stop();
+        }
     }
 
     private IEnumerator CookPatty(GameObject patty)
