@@ -22,7 +22,8 @@ public class CookingGrill : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if ((other.gameObject.name == "PattyRaw" || other.gameObject.name == "PattyCooked") && !pattyToProgressBar.ContainsKey(other.gameObject))
+        print(other.gameObject.name);
+        if ((other.gameObject.name.Contains("PattyRaw") || other.gameObject.name.Contains("PattyCooked")) && !pattyToProgressBar.ContainsKey(other.gameObject))
         {
             AddPattyToGrill(other.gameObject);
         }
