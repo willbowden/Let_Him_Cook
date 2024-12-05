@@ -95,10 +95,12 @@ public class GameManager : MonoBehaviour{
 
         // Need to be able to remove one order
         // orders.RemoveAt(0);
+        Debug.Log("I was called succesfully");
         int score = CheckPlateController.CheckOrders();
-        scoreController.UpdateScore(score);        
+        scoreController.UpdateScore(score);
         // OnOrderRemoved?.Invoke(wasSuccessful); JUNK?
     }
+
 
     // Create a random order
     void CreateRandomOrder()
@@ -118,7 +120,7 @@ public class GameManager : MonoBehaviour{
         {
             name = randomRecipe.name, 
             recipe = randomRecipe, 
-            timeInSeconds = (int)UnityEngine.Random.Range(minTimeBetweenOrders, maxTimeBetweenOrders)
+            timeInSeconds = (int)UnityEngine.Random.Range(orderMinDuration, orderMaxDuration)
         };
 
         orderController.AddOrder(newOrder);

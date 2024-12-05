@@ -37,32 +37,32 @@ public class CheckPlate : MonoBehaviour
 
     public int CheckOrders(){
         int score = 0;
-        
+        Debug.Log("Check orders was called");
+                
         foreach (GameObject plateObject in PlatesInArea){
             score += CheckOneOrder(plateObject);
+
             DestroyPlate(plateObject);
         }
+        Debug.Log($"Trying to add score {score}");
 
         return score;
     }
 
-    private void DestroyPlate(GameObject plateObject) 
+    public void DestroyPlate(GameObject plateObject)
     {
-        if (plateObject != null)
+        foreach (Transform child in plateObject.transform)
         {
-            Destroy(plateObject);
-            Debug.Log($"Plate {plateObject.name} has been destroyed.");
+            Destroy(child.gameObject);
         }
-        else
-        {
-            Debug.LogWarning("Attempted to destroy a null plate object.");
-        }
+        // Destroy(plateObject);
+
     }
 
     private int CheckOneOrder(GameObject plateObject) {
         BurgerPlate plate = plateObject.GetComponent<BurgerPlate>();
         Stack<GameObject> plate_ingredients = plate.GetContents();
-        int score = 0;
+        int score = -100000;
         int highestScore = 0;
         Order orderToRemove = new();
         List<GameObject> PlateIngredientsList = new List<GameObject>(plate_ingredients);
