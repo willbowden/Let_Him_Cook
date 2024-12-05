@@ -118,7 +118,7 @@ public class GameManager : MonoBehaviour{
         {
             name = randomRecipe.name, 
             recipe = randomRecipe, 
-            timeInSeconds = (int)UnityEngine.Random.Range(5f, 10f)
+            timeInSeconds = (int)UnityEngine.Random.Range(minTimeBetweenOrders, maxTimeBetweenOrders)
         };
 
         orderController.AddOrder(newOrder);
