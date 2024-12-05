@@ -30,7 +30,8 @@ public class ObjectSpawner : MonoBehaviour
 
     void Spawn()
     {
-        GameObject spawned = Instantiate(spawn, spawnPoint.position, spawnPoint.rotation);
+        GameObject spawned = Instantiate(spawn, spawnPoint.position, spawnPoint.rotation);  
+        spawned.name = spawn.name;
 
         Vector3 initialPosition = spawned.transform.position;
         Quaternion initialRotation = spawned.transform.rotation;
