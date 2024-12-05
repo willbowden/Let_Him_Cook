@@ -77,7 +77,7 @@ public class GameManager : MonoBehaviour{
             yield return new WaitForSeconds(UnityEngine.Random.Range(minTimeBetweenOrders, maxTimeBetweenOrders));
             if (orders.Count < maxConcurrentOrders)
             {
-                // CreateRandomOrder();
+                CreateRandomOrder();
             }
         }
     }
