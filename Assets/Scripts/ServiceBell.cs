@@ -1,39 +1,34 @@
 using UnityEngine;
-using UnityEngine.XR.Interaction.Toolkit;
 
 public class ServiceBell : MonoBehaviour
 {
+    [SerializeField] private CheckPlate CheckPlateController; // Reference to OrderController
+    [SerializeField] private GameManager gameManager;
+
+
     private AudioSource bellSound;
 
     void Start()
     {
         // Get the AudioSource component attached to this GameObject
         bellSound = GetComponent<AudioSource>();
-        if (bellSound == null)
-        {
-            Debug.LogError("No AudioSource found on this GameObject.");
-        }
+        gameManager = FindObjectOfType<GameManager>();
+
     }
 
     // For mouse interaction
     void OnMouseDown()
     {
         PlaySound();
+        gameManager.OrderSubmitted();
     }
 
-    // Method to handle poke interaction
-    public void OnPoke()
-    {
-        print("POKED!");
-        PlaySound();
-    }
-
-    // Shared method to play the bell sound
+    // For VR interaction, you can call this method from a VR controller script
     public void PlaySound()
     {
-        if (bellSound != null)
+        if (bellSound != null && !bellSound.isPlaying)
         {
-            bellSound.PlayOneShot(bellSound.clip);
+            bellSound.Play();
         }
     }
 }
