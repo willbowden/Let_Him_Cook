@@ -9,6 +9,7 @@ public class GameManager : MonoBehaviour{
     [SerializeField] private OrderController orderController; // Reference to OrderController
     [SerializeField] private CheckPlate CheckPlateController;
     [SerializeField] private ScoreController scoreController;
+    [SerializeField] private List<Order> orders = new List<Order>(); // List of orders
 
     private List<Recipe> recipeList;
     
@@ -26,7 +27,6 @@ public class GameManager : MonoBehaviour{
     public static event Action<int> OnScoreAdded;
 
     private bool isGameRunning = false;
-    private List<Tuple<string, DateTime>> orders = new List<Tuple<string, DateTime>>(); // Recipe name and timestamp.
 
     // Unity Methods
     void Start()
@@ -100,6 +100,8 @@ public class GameManager : MonoBehaviour{
     // Create a random order
     void CreateRandomOrder()
     {
+        List<Order> orders = orderController.GetOrders();
+        
         if (orders.Count >= maxConcurrentOrders)
         {
             return;
@@ -165,16 +167,6 @@ public class GameManager : MonoBehaviour{
         Debug.Log($"Loaded {recipeList.Count} recipes.");
 }
 
-
-
-    // JUNK ????
-    // Add a new order
-    public void AddOrder(string recipeName)
-    {
-        var order = new Tuple<string, DateTime>(recipeName, DateTime.Now);
-        orders.Add(order);
-        OnOrderAdded?.Invoke(recipeName, DateTime.Now);
-    }
 
     // Add to score
     // public void AddScore(int addedScore)
