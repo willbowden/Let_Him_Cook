@@ -9,6 +9,8 @@ public class ObjectSpawner : MonoBehaviour
     private GameObject spawn;
     [SerializeField]
     private Transform spawnPoint;
+    [SerializeField]
+    private float spawnCooldown = 1f;
     private int objectsInZone = 0;
     private bool spawnCountdownRunning = false;
     
@@ -42,7 +44,7 @@ public class ObjectSpawner : MonoBehaviour
     {
         spawnCountdownRunning = true;
 
-        yield return new WaitForSeconds(3);
+        yield return new WaitForSeconds(spawnCooldown);
 
         Spawn();
 
@@ -51,7 +53,7 @@ public class ObjectSpawner : MonoBehaviour
 
     void OnTriggerEnter(Collider col)
     {
-        print(string.Format("Collider {0} entering", col.gameObject.name));
+        // print(string.Format("Collider {0} entering", col.gameObject.name));
         if (col.gameObject.name == spawn.name)
         {
             objectsInZone += 1;
@@ -60,7 +62,7 @@ public class ObjectSpawner : MonoBehaviour
 
     void OnTriggerExit(Collider col)
     {
-        print(string.Format("Collider {0} exiting", col.gameObject.name));
+        // print(string.Format("Collider {0} exiting", col.gameObject.name));
         if (col.gameObject.name == spawn.name)
         {
             objectsInZone -= 1;

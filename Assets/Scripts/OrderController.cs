@@ -75,7 +75,11 @@ public class OrderController : MonoBehaviour
         {
             if (order.timeInSeconds > 0)
             {
-                order.timeInSeconds -= (int)Time.deltaTime;
+                // Debug.Log($"update timeInSeconds {order.timeInSeconds}");
+                order.timeInSeconds -= Time.deltaTime;
+            }
+            else {
+                order.timeInSeconds = 0;
             }
         }
     }
@@ -83,6 +87,7 @@ public class OrderController : MonoBehaviour
     // Update the UI to reflect the current orders
     private void UpdateUI()
     {
+        // Debug.Log("update UI");
         if (orders.Count == 0)
         {
             ResetUI();

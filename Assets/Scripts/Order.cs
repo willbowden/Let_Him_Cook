@@ -6,5 +6,5 @@ using UnityEngine;
 public class Order : ScriptableObject
 {
     public Recipe recipe; // Store recipe
-    public int timeInSeconds;  // line for time in seconds
+    public float timeInSeconds;  // line for time in seconds
 }
