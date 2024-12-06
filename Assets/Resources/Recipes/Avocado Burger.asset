@@ -13,4 +13,37 @@ MonoBehaviour:
   m_Name: Avocado Burger
   m_EditorClassIdentifier: 
   recipeImage: {fileID: 21300000, guid: 145a4540495bd49f1a47d7cdaabcc7b3, type: 3}
-  recipeText: nothing
+  recipeText: 'BunTop
+
+    LettuceSlice
+
+    OnionSlice
+
+    TomatoSlice
+
+    AvocadoSlice
+
+    RedPepperSlice
+
+    PattyCooked
+
+    BunBottom
+
+'
+  recipeTextDisplay: '1 x Top Bun
+
+    1 x Lettuce Slice
+
+    1 x Onion Slice
+
+    1
+    x Tomato Slice
+
+    1 x Avocado Slice
+
+    1 x Red Pepper Slice
+
+    1 x Patty
+
+    1
+    x Bottom bun'

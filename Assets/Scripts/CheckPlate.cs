@@ -393,7 +393,7 @@ public class CheckPlate : MonoBehaviour
         if (hasBurgerRaw) weight -= 20;
 
         if (correctIngredients == IngredientsToMatch.Count) weight += 20; // Bonus for perfect match
-        if (order.timeInSeconds == 0) weight -= 30; // Penalty for late order
+        if (order.timeInSeconds <= 0) weight -= 30; // Penalty for late order
 
         float score = ((float)correctIngredients / IngredientsToMatch.Count) * weight;
         int finalScore = Mathf.RoundToInt(score);

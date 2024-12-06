@@ -8,4 +8,6 @@
         public Sprite recipeImage; // Store sprite for the recipe image
         [TextArea(3, 10)]           // Allows multiline text input in the Inspector
         public string recipeText;  // Multiline string for the recipe text
+        [TextArea(3, 10)]           // Allows multiline text input in the Inspector
+        public string recipeTextDisplay;
     }

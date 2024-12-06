@@ -27,7 +27,7 @@ public class RecipeController : MonoBehaviour
         if (recipeIndex >= 0 && recipeIndex < recipes.Length)
         {
             imageDisplay.sprite = recipes[recipeIndex].recipeImage;
-            textDisplay.text = recipes[recipeIndex].recipeText;
+            textDisplay.text = recipes[recipeIndex].recipeTextDisplay;
             recipeName.text = recipes[recipeIndex].name;
         }
         else

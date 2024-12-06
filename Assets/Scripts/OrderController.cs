@@ -73,14 +73,10 @@ public class OrderController : MonoBehaviour
     {
         foreach (var order in orders)
         {
-            if (order.timeInSeconds > 0)
-            {
-                // Debug.Log($"update timeInSeconds {order.timeInSeconds}");
-                order.timeInSeconds -= Time.deltaTime;
-            }
-            else {
-                order.timeInSeconds = 0;
-            }
+
+            // Debug.Log($"update timeInSeconds {order.timeInSeconds}");
+            order.timeInSeconds -= Time.deltaTime;
+        
         }
     }
 
@@ -101,10 +97,20 @@ public class OrderController : MonoBehaviour
         for (int i = 0; i < orders.Count; i++)
         {
             var order = orders[i];
-            namesText += $"{i + 1}. {order.name}\n";
-            int minutes = Mathf.FloorToInt(order.timeInSeconds / 60);
-            int seconds = Mathf.FloorToInt(order.timeInSeconds % 60);
-            timesText += $"[{minutes:D2}:{seconds:D2}]\n";
+            int minutes = Mathf.RoundToInt(order.timeInSeconds / 60);
+            int seconds = Mathf.RoundToInt(order.timeInSeconds % 60);
+            // int minutes = Mathf.FloorToInt(order.timeInSeconds / 60);
+            // int seconds = Mathf.FloorToInt(order.timeInSeconds % 60);
+            if (order.timeInSeconds < 0)
+            {
+                timesText += $"<color=red>[{minutes:D2}:{seconds:D2}]</color>\n";
+                namesText += $"<color=red>{i + 1}. {order.name}</color>\n";
+            }
+            else
+            {
+                timesText += $"[{minutes:D2}:{seconds:D2}]\n";
+                namesText += $"{i + 1}. {order.name}\n";
+            }
         }
 
         orderNames.text = namesText.TrimEnd();
