@@ -47,7 +47,11 @@ MonoBehaviour:
   orderController: {fileID: 0}
   CheckPlateController: {fileID: 0}
   scoreController: {fileID: 0}
+  orders: []
   maxConcurrentOrders: 5
   gameDuration: 600
-  minTimeBetweenOrders: 5
-  maxTimeBetweenOrders: 15
+  minTimeBetweenOrders: 45
+  maxTimeBetweenOrders: 120
+  orderMinDuration: 120
+  orderMaxDuration: 180
+  kitchenPrepDuration: 30
