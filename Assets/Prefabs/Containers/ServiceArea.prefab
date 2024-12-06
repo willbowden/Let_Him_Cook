@@ -47,6 +47,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   orderController: {fileID: 0}
+  PlatesInArea: []
   checkArea: {fileID: 6730082195910847557}
 --- !u!65 &6730082195910847557
 BoxCollider:
@@ -91,15 +92,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 81f34fb059bf64a8da6e18c28ceeab94, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.00912714
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 81f34fb059bf64a8da6e18c28ceeab94, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.00007092953
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 81f34fb059bf64a8da6e18c28ceeab94, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -0.14189863
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 81f34fb059bf64a8da6e18c28ceeab94, type: 3}
       propertyPath: m_LocalRotation.w
