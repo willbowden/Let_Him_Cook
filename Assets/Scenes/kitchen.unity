@@ -2079,6 +2079,42 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: -23
       objectReference: {fileID: 0}
+    - target: {fileID: 7552108857667694386, guid: 611b5c1a250894f7c84fd7b4e2b24cde, type: 3}
+      propertyPath: recipes.Array.size
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 7552108857667694386, guid: 611b5c1a250894f7c84fd7b4e2b24cde, type: 3}
+      propertyPath: recipes.Array.data[0]
+      value: 
+      objectReference: {fileID: 11400000, guid: aa2ecf754696adf4fb53df0e72669f5e, type: 2}
+    - target: {fileID: 7552108857667694386, guid: 611b5c1a250894f7c84fd7b4e2b24cde, type: 3}
+      propertyPath: recipes.Array.data[1]
+      value: 
+      objectReference: {fileID: 11400000, guid: 46ee5ee7eae4d5a48bca84d603bf3368, type: 2}
+    - target: {fileID: 7552108857667694386, guid: 611b5c1a250894f7c84fd7b4e2b24cde, type: 3}
+      propertyPath: recipes.Array.data[2]
+      value: 
+      objectReference: {fileID: 11400000, guid: d12164fc704eb2044ad64a8c873358d9, type: 2}
+    - target: {fileID: 7552108857667694386, guid: 611b5c1a250894f7c84fd7b4e2b24cde, type: 3}
+      propertyPath: recipes.Array.data[3]
+      value: 
+      objectReference: {fileID: 11400000, guid: f1cf1dbdcf9b9274797392ff55bad328, type: 2}
+    - target: {fileID: 7552108857667694386, guid: 611b5c1a250894f7c84fd7b4e2b24cde, type: 3}
+      propertyPath: recipes.Array.data[4]
+      value: 
+      objectReference: {fileID: 11400000, guid: 0ba8bdd7520746942aab4279f2f5c02d, type: 2}
+    - target: {fileID: 7552108857667694386, guid: 611b5c1a250894f7c84fd7b4e2b24cde, type: 3}
+      propertyPath: recipes.Array.data[5]
+      value: 
+      objectReference: {fileID: 11400000, guid: 96334bb528765464ea8607154c1ea452, type: 2}
+    - target: {fileID: 7552108857667694386, guid: 611b5c1a250894f7c84fd7b4e2b24cde, type: 3}
+      propertyPath: recipes.Array.data[6]
+      value: 
+      objectReference: {fileID: 11400000, guid: 191ecf92ca90bfd4b90367493667b4e9, type: 2}
+    - target: {fileID: 7552108857667694386, guid: 611b5c1a250894f7c84fd7b4e2b24cde, type: 3}
+      propertyPath: recipes.Array.data[7]
+      value: 
+      objectReference: {fileID: 11400000, guid: 3d2487b93cadae54897129f59ba369a7, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
