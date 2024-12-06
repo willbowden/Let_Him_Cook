@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 990b642bdc9e140d0bea6b5dc60aa3de, type: 3}
   m_Name: Cheese Burger
   m_EditorClassIdentifier: 
-  recipeImage: {fileID: 21300000, guid: 21c1813606269482abe0ee6f32633ac6, type: 3}
+  recipeImage: {fileID: 21300000, guid: 3f66c48be41e4104091c431068780252, type: 3}
   recipeText: 'BunTop
 
     TomatoSlice
