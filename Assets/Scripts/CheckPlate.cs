@@ -320,6 +320,7 @@ public class CheckPlate : MonoBehaviour
             Debug.LogWarning("No orders available to check.");
             return 0;
         }
+        
 
         // Find the order with the highest score and remove it
         foreach (Order order in orders)
@@ -381,6 +382,13 @@ public class CheckPlate : MonoBehaviour
             Debug.LogWarning("Missing ingredients on the plate.");
             correctIngredients -= (IngredientsToMatch.Count - i);
         }
+
+        bool hasBurgerBurnt = PlateIngredientsList.Any(ingredient => ingredient.name == "BurgerBurnt");
+        bool hasBurgerRaw = PlateIngredientsList.Any(ingredient => ingredient.name == "BurgerRaw");
+        
+        
+        if (hasBurgerCooked) weight -= 20;
+        if (hasBurgerRaw) weight -= 20;
 
         if (correctIngredients == IngredientsToMatch.Count) weight += 20; // Bonus for perfect match
         if (order.timeInSeconds == 0) weight -= 30; // Penalty for late order
