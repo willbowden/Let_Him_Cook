@@ -9,6 +9,7 @@ public class GameManager : MonoBehaviour{
     [SerializeField] private OrderController orderController; // Reference to OrderController
     [SerializeField] private CheckPlate CheckPlateController;
     [SerializeField] private ScoreController scoreController;
+    [SerializeField] private EndController endController;
     [SerializeField] private List<Order> orders = new List<Order>(); // List of orders
 
     private List<Recipe> recipeList;
@@ -30,6 +31,7 @@ public class GameManager : MonoBehaviour{
     public static event Action<int> OnScoreAdded;
 
     private bool isGameRunning = false;
+    private int score = 0;
 
     // Unity Methods
     void Start()
@@ -37,6 +39,7 @@ public class GameManager : MonoBehaviour{
         orderController = FindObjectOfType<OrderController>();
         CheckPlateController = FindObjectOfType<CheckPlate>();
         scoreController = FindObjectOfType<ScoreController>();
+        endController = FindObjectOfType<EndController>();
     }
 
     void Update()
@@ -76,6 +79,7 @@ public class GameManager : MonoBehaviour{
         isGameRunning = false;
 
         // TODO: Add end-game logic
+        endController.Appear(score);
     }
 
     // Timer for creating orders
@@ -102,7 +106,7 @@ public class GameManager : MonoBehaviour{
         // Need to be able to remove one order
         // orders.RemoveAt(0);
         Debug.Log("I was called succesfully");
-        int score = CheckPlateController.CheckOrders();
+        score = CheckPlateController.CheckOrders();
         Debug.Log($"From Gamemanager trying to add score {score} ");
         scoreController.UpdateScore(score);
         // OnOrderRemoved?.Invoke(wasSuccessful); JUNK?
