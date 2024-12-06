@@ -2307,6 +2307,22 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: -23
       objectReference: {fileID: 0}
+    - target: {fileID: 7552108857667694386, guid: 611b5c1a250894f7c84fd7b4e2b24cde, type: 3}
+      propertyPath: recipes.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 7552108857667694386, guid: 611b5c1a250894f7c84fd7b4e2b24cde, type: 3}
+      propertyPath: recipes.Array.data[0]
+      value: 
+      objectReference: {fileID: 11400000, guid: 46ee5ee7eae4d5a48bca84d603bf3368, type: 2}
+    - target: {fileID: 7552108857667694386, guid: 611b5c1a250894f7c84fd7b4e2b24cde, type: 3}
+      propertyPath: recipes.Array.data[1]
+      value: 
+      objectReference: {fileID: 11400000, guid: d12164fc704eb2044ad64a8c873358d9, type: 2}
+    - target: {fileID: 7552108857667694386, guid: 611b5c1a250894f7c84fd7b4e2b24cde, type: 3}
+      propertyPath: recipes.Array.data[2]
+      value: 
+      objectReference: {fileID: 11400000, guid: 191ecf92ca90bfd4b90367493667b4e9, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
