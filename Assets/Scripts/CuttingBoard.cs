@@ -5,16 +5,22 @@ using UnityEngine.XR.Interaction.Toolkit;
 using UnityEngine.XR.Interaction.Toolkit.Interactables;
 using UnityEngine.XR.Interaction.Toolkit.Interactors;
 using UnityEngine.UI;
+using System.Linq;
 
 public class CuttingBoard : MonoBehaviour
 {
     [SerializeField]
     private ProgressBar progressBar;
+    [SerializeField]
+    private List<AudioClip> audioClips;
+    
+    private AudioSource audioSource;
     private GameObject content;
     private int chops = 0;
 
     void Awake()
     {
+        audioSource = GetComponent<AudioSource>();
         XRSocketInteractor socket = GetComponent<XRSocketInteractor>();
         socket.selectEntered.AddListener(IngredientAdded);
         socket.selectExited.AddListener(IngredientRemoved);
@@ -48,6 +54,7 @@ public class CuttingBoard : MonoBehaviour
 
     private void Chop()
     {
+
         int chopsRequired = content.GetComponent<CuttableIngredient>().chopsToCut;
         chops += 1;
         float newSize = (float)chops / chopsRequired;
@@ -67,6 +74,11 @@ public class CuttingBoard : MonoBehaviour
     {
         if (col.gameObject.name.Contains("Knife") && content != null)
         {
+            if (audioClips.Count > 0 && audioSource != null)
+            {
+                int index = (int)UnityEngine.Random.Range(0, audioClips.Count);
+                audioSource.PlayOneShot(audioClips[index]);
+            }
             Chop();
         }
     }
