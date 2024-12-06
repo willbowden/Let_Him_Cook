@@ -20,7 +20,7 @@ public class GameManager : MonoBehaviour{
     public float maxTimeBetweenOrders = 60f;
     public float orderMinDuration = 30f;
     public float orderMaxDuration = 120f;
-
+    public float kitchenPrepDuration = 30f;
     private float gameTimeRemaining;
     private List<List<string>> burgerRecipes;
 
@@ -37,12 +37,18 @@ public class GameManager : MonoBehaviour{
         orderController = FindObjectOfType<OrderController>();
         CheckPlateController = FindObjectOfType<CheckPlate>();
         scoreController = FindObjectOfType<ScoreController>();
-        GameStart();
     }
 
     void Update()
     {
-        if (!isGameRunning) return;
+        while (kitchenPrepDuration > 0){
+            kitchenPrepDuration -= Time.deltaTime;
+            return;
+        }
+        
+        if (!isGameRunning) {
+            GameStart();
+        }
 
         gameTimeRemaining -= Time.deltaTime;
 

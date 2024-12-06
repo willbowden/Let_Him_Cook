@@ -5307,11 +5307,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6973455791418623781, guid: e4306b5f2510f2d47af9254ea46529d7, type: 3}
       propertyPath: orderMaxDuration
-      value: 180
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 6973455791418623781, guid: e4306b5f2510f2d47af9254ea46529d7, type: 3}
       propertyPath: orderMinDuration
-      value: 60
+      value: 5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

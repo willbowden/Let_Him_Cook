@@ -10,35 +10,57 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 990b642bdc9e140d0bea6b5dc60aa3de, type: 3}
-  m_Name: Triple Cheese
+  m_Name: Abomination Burger
   m_EditorClassIdentifier: 
-  recipeImage: {fileID: 21300000, guid: 1059cd530a645744c85353ca4358b662, type: 3}
+  recipeImage: {fileID: 21300000, guid: f6aab7f8c5b59c440927c8707e5caed5, type: 3}
   recipeText: 'BunTop
 
+    PattyRaw
+
+    PattyRaw
+
+    PattyRaw
+
+    PattyBurnt
+
+    PattyBurnt
+
+    PattyBurnt
+
+    CheeseSlice
+
     CheeseSlice
 
     CheeseSlice
 
     CheeseSlice
+
+    CheeseSlice
+
+    CheeseSlice
+
+    OnionSlice
 
     PickleSlice
 
-    PickleSlice
-
-    PattyCooked
+    BunBottom
 
     BunBottom
 
 '
   recipeTextDisplay: '1 x Top Bun
 
-    3 x Cheese
+    6 x Cheese Slice
 
-    2 x Pickles
+    3 x Burnt Patties
 
-    1 x Patty
+    3
+    x Raw Patties
 
-    1
-    x Bottom Bun
+    1 x Onion Slice
+
+    1 x Pickle Slice
+
+    2 x Bottom Bun
 
 '
