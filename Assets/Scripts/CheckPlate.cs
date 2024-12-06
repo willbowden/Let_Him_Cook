@@ -309,10 +309,12 @@ public class CheckPlate : MonoBehaviour
         if (plate == null) return 0;
 
         Stack<GameObject> plateIngredients = plate.GetContents();
+        if (plateIngredients.Count == 0) return 0;
         int score = 0;
         int highestScore = -10000;
         Order orderToRemove = new();
         List<GameObject> PlateIngredientsList = new(plateIngredients);
+
 
         orders = orderController.GetOrders();
         if (orders.Count == 0)
