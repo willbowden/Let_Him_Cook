@@ -9,6 +9,8 @@ public class CookingGrill : MonoBehaviour
     private GameObject progressBarPrefab; // Prefab for the progress bar
     [SerializeField]
     private float cookingTime = 5f; // Time required to cook each patty
+    [SerializeField]
+    private AudioClip flameWhooshClip;
 
     private AudioSource audioSource;
 
@@ -93,6 +95,10 @@ public class CookingGrill : MonoBehaviour
 
     private void FinishCooking(GameObject patty)
     {
+        if (flameWhooshClip != null && audioSource != null)
+        {
+            audioSource.PlayOneShot(flameWhooshClip);
+        }
         // Replace raw patty with cooked version
         patty.transform.GetPositionAndRotation(out var instancePosition, out var instanceRotation);
         GameObject cookedPrefab = patty.GetComponent<GrillableIngredient>().cookedVersionPrefab;

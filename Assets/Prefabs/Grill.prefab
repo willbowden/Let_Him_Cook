@@ -68,7 +68,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   progressBarPrefab: {fileID: 1669803959332250227}
-  cookingTime: 5
+  cookingTime: 10
+  flameWhooshClip: {fileID: 8300000, guid: 91e918249b338478286e5fdb2c72b6e2, type: 3}
 --- !u!82 &1711801245222829056
 AudioSource:
   m_ObjectHideFlags: 0
