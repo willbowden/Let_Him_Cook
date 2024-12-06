@@ -12,8 +12,11 @@ public class OrderController : MonoBehaviour
     [SerializeField] private TMP_Text orderNames; // Reference to the TMP_Text for the names
     [SerializeField] private TMP_Text orderTimes; // Reference to the TMP_Text for the times
 
+    private AudioSource chimeSource;
+
     void Start()
     {
+        chimeSource = GetComponent<AudioSource>();
         // Restaurant starts closed, no orders loaded initially
         ResetUI();
         Open();
@@ -47,6 +50,7 @@ public class OrderController : MonoBehaviour
     // Add a new order to the list
     public void AddOrder(Order order)
     {
+        chimeSource.Play();
         orders.Add(order);
         Debug.Log($"Order added: {order.name}");
         UpdateUI();
