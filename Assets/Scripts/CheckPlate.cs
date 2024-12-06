@@ -387,7 +387,7 @@ public class CheckPlate : MonoBehaviour
         bool hasBurgerRaw = PlateIngredientsList.Any(ingredient => ingredient.name == "BurgerRaw");
         
         
-        if (hasBurgerCooked) weight -= 20;
+        if (hasBurgerBurnt) weight -= 20;
         if (hasBurgerRaw) weight -= 20;
 
         if (correctIngredients == IngredientsToMatch.Count) weight += 20; // Bonus for perfect match
