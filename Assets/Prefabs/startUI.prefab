@@ -297,7 +297,7 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2237125449098595486}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.00375, y: 0.00375, z: 0.00375}
   m_ConstrainProportionsScale: 0
@@ -308,7 +308,7 @@ RectTransform:
   - {fileID: 1807365349183883602}
   - {fileID: 2443380694743223088}
   m_Father: {fileID: 5881574397395290318}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
@@ -943,7 +943,7 @@ MonoBehaviour:
     on the tray next to the bell.
 
 
-    4. Click Bell to submit bell.'
+    4. Click Bell to submit the meal.'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -1290,6 +1290,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5881574397395290318}
   - component: {fileID: 8849116053583330442}
+  - component: {fileID: 763459973669056960}
   m_Layer: 0
   m_Name: startUI
   m_TagString: Untagged
@@ -1333,6 +1334,19 @@ MonoBehaviour:
   canvas: {fileID: 2237125449098595486}
   htpContainer: {fileID: 3679437526978730748}
   backButton: {fileID: 4310808773963390489}
+--- !u!114 &763459973669056960
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5685775495886156466}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6835c0b319d2f7257b5ec5b8ea652653, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mainCamera: {fileID: 0}
 --- !u!1 &6424232756860965647
 GameObject:
   m_ObjectHideFlags: 0

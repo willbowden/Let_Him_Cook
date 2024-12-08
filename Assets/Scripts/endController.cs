@@ -29,14 +29,7 @@ public class EndController : MonoBehaviour
         score.text = "Score:\n" + scoreValue;
 
         // Position the canvas
-        canvas.transform.position = mainCamera.transform.position + mainCamera.transform.forward * distanceFromCamera;
-        canvas.transform.LookAt(mainCamera.transform);
-        canvas.transform.Rotate(0, 180, 0);
-
-        // Disable further updates
-        enabled = false;
-
-        Time.timeScale = 0;
+        transform.position = mainCamera.transform.position + mainCamera.transform.forward * distanceFromCamera;
     }
 
     public void Quit()

@@ -25,11 +25,6 @@ public class startController : MonoBehaviour
 
     void Start()
     {
-        
-    }
-
-    void LateUpdate()
-    {
         if (mainCamera == null) return;
 
         if (htpContainer != null)
@@ -40,18 +35,7 @@ public class startController : MonoBehaviour
         {
             backButton.gameObject.SetActive(false); // Show back button
         }
-
-        // Position the canvas
-        transform.position = mainCamera.transform.position + mainCamera.transform.forward * distanceFromCamera;
-        transform.LookAt(mainCamera.transform);
-        transform.Rotate(0, 180, 0);
-
-        // Stop checking after assignment
-        enabled = false;
-
-        Time.timeScale = 0;
     }
-
 
     public void Quit()
     {

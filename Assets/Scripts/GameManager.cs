@@ -23,7 +23,6 @@ public class GameManager : MonoBehaviour{
     public float orderMaxDuration = 120f;
     public float kitchenPrepDuration = 30f;
     private float gameTimeRemaining;
-    private List<List<string>> burgerRecipes;
 
     // Events
     public static event Action<string, DateTime> OnOrderAdded;

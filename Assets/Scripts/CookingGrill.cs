@@ -49,10 +49,13 @@ public class CookingGrill : MonoBehaviour
         progressBarInstance.transform.localScale = new Vector3(1, 1, 1);
 
         // Initialize progress tracking
-        pattyToProgressBar[patty] =  progressBarInstance.GetComponent<ProgressBar>();
-        pattyCookingProgress[patty] = 0f;
+        pattyToProgressBar[patty] = progressBarInstance.GetComponent<ProgressBar>();
 
-        pattyToProgressBar[patty].Show();
+        if (pattyToProgressBar.TryGetValue(patty, out ProgressBar progressBar))
+        {
+            pattyCookingProgress[patty] = 0f;
+            pattyToProgressBar[patty].Show();
+        }
 
         if (pattyToProgressBar.Count > 0 && audioSource != null)
         {
@@ -67,30 +70,32 @@ public class CookingGrill : MonoBehaviour
     {
         if (pattyToProgressBar.TryGetValue(patty, out ProgressBar progressBar))
         {
+            pattyToProgressBar.Remove(patty);
+            pattyCookingProgress.Remove(patty);
+
+            if (pattyToProgressBar.Count <= 0)
+            {
+                audioSource.Stop();
+            }
+            
             Destroy(progressBar.gameObject);
-        }
-
-        pattyToProgressBar.Remove(patty);
-        pattyCookingProgress.Remove(patty);
-
-        if (pattyToProgressBar.Count <= 0)
-        {
-            audioSource.Stop();
         }
     }
 
     private IEnumerator CookPatty(GameObject patty)
     {
-        ProgressBar progressBar = pattyToProgressBar[patty];
-
-        while (pattyCookingProgress[patty] < 1f)
+        if (pattyToProgressBar.TryGetValue(patty, out ProgressBar progressBar))
         {
-            pattyCookingProgress[patty] += Time.deltaTime / cookingTime;
-            progressBar.SetProgress(Mathf.Clamp01(pattyCookingProgress[patty]));
-            yield return null;
+            while (pattyCookingProgress[patty] < 1f)
+            {
+                pattyCookingProgress[patty] += Time.deltaTime / cookingTime;
+                progressBar.SetProgress(Mathf.Clamp01(pattyCookingProgress[patty]));
+                yield return null;
+            }
+
+            FinishCooking(patty);
         }
 
-        FinishCooking(patty);
     }
 
     private void FinishCooking(GameObject patty)
