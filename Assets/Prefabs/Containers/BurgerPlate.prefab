@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 5446303409916588047}
   - component: {fileID: 6377549792054253951}
   - component: {fileID: 1015155308156346201}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: BurgerPlate
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -304,6 +304,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 82949151699889621}
     m_Modifications:
+    - target: {fileID: 6732457884109506136, guid: 10854dc0c32f8827dbaf841d32b9b2d7, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 6871380218561086106, guid: 10854dc0c32f8827dbaf841d32b9b2d7, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -347,6 +351,10 @@ PrefabInstance:
     - target: {fileID: 7116400360579021578, guid: 10854dc0c32f8827dbaf841d32b9b2d7, type: 3}
       propertyPath: m_Name
       value: StackSocket
+      objectReference: {fileID: 0}
+    - target: {fileID: 7116400360579021578, guid: 10854dc0c32f8827dbaf841d32b9b2d7, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

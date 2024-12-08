@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 9123861617288031050}
   - component: {fileID: 6054760193605511532}
   - component: {fileID: 1752382064370024806}
+  - component: {fileID: 5147895706422593263}
   m_Layer: 6
   m_Name: Knife
   m_TagString: Untagged
@@ -281,6 +282,18 @@ MonoBehaviour:
   m_MinimumScaleRatio: 0.25
   m_MaximumScaleRatio: 2
   m_ScaleMultiplier: 0.25
+--- !u!114 &5147895706422593263
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 10640834578319712}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 92e679b57f3afab2f8b4e5a795a84e1f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &6693848741456553572
 GameObject:
   m_ObjectHideFlags: 0
