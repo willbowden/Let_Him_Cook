@@ -385,10 +385,10 @@ public class CheckPlate : MonoBehaviour
             correctIngredients -= (IngredientsToMatch.Count - i);
         }
 
-        bool hasBurgerBurnt = PlateIngredientsList.Any(ingredient => ingredient.name == "BurgerBurnt");
-        bool hasBurgerRaw = PlateIngredientsList.Any(ingredient => ingredient.name == "BurgerRaw");
-        bool hasBurgerRawInRecipe = IngredientsToMatch.Contains("BurgerRaw");          
-        bool hasBurgerBurntInRecipe = IngredientsToMatch.Contains("BurgerBurnt");          
+        bool hasBurgerBurnt = PlateIngredientsList.Any(ingredient => ingredient.name == "PattyBurnt");
+        bool hasBurgerRaw = PlateIngredientsList.Any(ingredient => ingredient.name == "PattyRaw");
+        bool hasBurgerRawInRecipe = IngredientsToMatch.Contains("PattyRaw");          
+        bool hasBurgerBurntInRecipe = IngredientsToMatch.Contains("PattyBurnt");          
 
 
         if (hasBurgerRaw && !hasBurgerRawInRecipe) weight -= 20;
@@ -397,7 +397,7 @@ public class CheckPlate : MonoBehaviour
         if (correctIngredients == IngredientsToMatch.Count) weight += 20; // Bonus for perfect match
         if (order.timeInSeconds <= 0) weight -= 30; // Penalty for late order
 
-        float score = ((float)correctIngredients / IngredientsToMatch.Count) * weight;
+        float score = ((float)correctIngredients / IngredientsToMatch.Count) * IngredientsToMatch.Count * weight;
         int finalScore = Mathf.RoundToInt(score);
         Debug.Log($"Score: {finalScore}");
         return finalScore;
