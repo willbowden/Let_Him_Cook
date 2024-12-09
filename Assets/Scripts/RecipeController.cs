@@ -12,6 +12,7 @@ public class RecipeController : MonoBehaviour
 
     [Header("UI Elements")]
     [SerializeField] private Image imageDisplay;  // Reference to the UI Image component
+    [SerializeField] private TMP_Text recipeName; // Reference to the TMP_Text component
     [SerializeField] private TMP_Text textDisplay; // Reference to the TMP_Text component
 
     void Start()
@@ -26,7 +27,8 @@ public class RecipeController : MonoBehaviour
         if (recipeIndex >= 0 && recipeIndex < recipes.Length)
         {
             imageDisplay.sprite = recipes[recipeIndex].recipeImage;
-            textDisplay.text = recipes[recipeIndex].recipeText;
+            textDisplay.text = recipes[recipeIndex].recipeTextDisplay;
+            recipeName.text = recipes[recipeIndex].name;
         }
         else
         {

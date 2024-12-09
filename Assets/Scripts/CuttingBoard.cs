@@ -5,16 +5,23 @@ using UnityEngine.XR.Interaction.Toolkit;
 using UnityEngine.XR.Interaction.Toolkit.Interactables;
 using UnityEngine.XR.Interaction.Toolkit.Interactors;
 using UnityEngine.UI;
+using System.Linq;
 
 public class CuttingBoard : MonoBehaviour
 {
     [SerializeField]
     private ProgressBar progressBar;
+    [SerializeField]
+    private List<AudioClip> audioClips;
+
+    private AudioSource audioSource;
     private GameObject content;
     private int chops = 0;
+    private bool canChop = true;
 
     void Awake()
     {
+        audioSource = GetComponent<AudioSource>();
         XRSocketInteractor socket = GetComponent<XRSocketInteractor>();
         socket.selectEntered.AddListener(IngredientAdded);
         socket.selectExited.AddListener(IngredientRemoved);
@@ -48,26 +55,42 @@ public class CuttingBoard : MonoBehaviour
 
     private void Chop()
     {
+        if (audioClips.Count > 0 && audioSource != null)
+        {
+            int index = (int)UnityEngine.Random.Range(0, audioClips.Count);
+            audioSource.PlayOneShot(audioClips[index]);
+        }
+
         int chopsRequired = content.GetComponent<CuttableIngredient>().chopsToCut;
         chops += 1;
         float newSize = (float)chops / chopsRequired;
         progressBar.SetProgress(newSize);
+
         if (chops >= chopsRequired)
         {
             content.transform.GetPositionAndRotation(out var instancePosition, out var instanceRotation);
             GameObject cutPrefab = content.GetComponent<CuttableIngredient>().cutVersionPrefab;
             Destroy(content);
             Instantiate(cutPrefab, new Vector3(0, 0.02f, 0) + instancePosition, transform.rotation * Quaternion.Euler(new Vector3(0, 90, 0)));
-
-            // Don't need to call ResetProgressAndContent() here as it is triggered by IngredientRemoved when we Destroy(content).
         }
     }
 
     public void OnTriggerEnter(Collider col)
     {
-        if (col.gameObject.name == "Knife" && content != null)
+        if (col.gameObject.name.Contains("Knife") && content != null)
         {
-            Chop();
+            if (canChop)
+            {
+                Chop();
+                canChop = false;
+                StartCoroutine(ChopCooldown());
+            }
         }
+    }
+
+    private IEnumerator ChopCooldown()
+    {
+        yield return new WaitForSeconds(0.1f);
+        canChop = true;
     }
 }

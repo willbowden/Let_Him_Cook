@@ -50,7 +50,7 @@ public class BurgerPlate : MonoBehaviour
   {
     GameObject ingredient = args.interactableObject.transform.gameObject;
     if (ingredient == null) return;
-
+    ingredient.transform.SetParent(transform);
     ingredient.GetComponent<Collider>().excludeLayers = STACK_INGREDIENT_PHYSICS_MASK;
     ingredient.layer = TOP_INGREDIENT_PHYSICS_MASK;
 
@@ -111,7 +111,7 @@ public class BurgerPlate : MonoBehaviour
   {
     GameObject ingredient = args.interactableObject.transform.gameObject;
     if (ingredient == null) return;
-
+    ingredient.transform.SetParent(null);
     GameObject socket = ingredient.transform.Find("StackSocket").gameObject;
     Destroy(socket);
 

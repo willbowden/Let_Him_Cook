@@ -9,13 +9,23 @@ public class CookingGrill : MonoBehaviour
     private GameObject progressBarPrefab; // Prefab for the progress bar
     [SerializeField]
     private float cookingTime = 5f; // Time required to cook each patty
+    [SerializeField]
+    private AudioClip flameWhooshClip;
+
+    private AudioSource audioSource;
 
     private Dictionary<GameObject, ProgressBar> pattyToProgressBar = new Dictionary<GameObject, ProgressBar>(); // Map each patty to its progress bar
     private Dictionary<GameObject, float> pattyCookingProgress = new Dictionary<GameObject, float>(); // Map each patty to its cooking progress
 
+    void Start()
+    {
+        audioSource = GetComponent<AudioSource>();
+    }
+
     private void OnTriggerEnter(Collider other)
     {
-        if ((other.gameObject.name == "PattyRaw" || other.gameObject.name == "PattyCooked") && !pattyToProgressBar.ContainsKey(other.gameObject))
+        print(other.gameObject.name);
+        if ((other.gameObject.name.Contains("PattyRaw") || other.gameObject.name.Contains("PattyCooked")) && !pattyToProgressBar.ContainsKey(other.gameObject))
         {
             AddPattyToGrill(other.gameObject);
         }
@@ -39,10 +49,18 @@ public class CookingGrill : MonoBehaviour
         progressBarInstance.transform.localScale = new Vector3(1, 1, 1);
 
         // Initialize progress tracking
-        pattyToProgressBar[patty] =  progressBarInstance.GetComponent<ProgressBar>();
-        pattyCookingProgress[patty] = 0f;
+        pattyToProgressBar[patty] = progressBarInstance.GetComponent<ProgressBar>();
 
-        pattyToProgressBar[patty].Show();
+        if (pattyToProgressBar.TryGetValue(patty, out ProgressBar progressBar))
+        {
+            pattyCookingProgress[patty] = 0f;
+            pattyToProgressBar[patty].Show();
+        }
+
+        if (pattyToProgressBar.Count > 0 && audioSource != null)
+        {
+            audioSource.Play();
+        }
 
         // Start the cooking process
         StartCoroutine(CookPatty(patty));
@@ -52,29 +70,40 @@ public class CookingGrill : MonoBehaviour
     {
         if (pattyToProgressBar.TryGetValue(patty, out ProgressBar progressBar))
         {
+            pattyToProgressBar.Remove(patty);
+            pattyCookingProgress.Remove(patty);
+
+            if (pattyToProgressBar.Count <= 0)
+            {
+                audioSource.Stop();
+            }
+            
             Destroy(progressBar.gameObject);
         }
-
-        pattyToProgressBar.Remove(patty);
-        pattyCookingProgress.Remove(patty);
     }
 
     private IEnumerator CookPatty(GameObject patty)
     {
-        ProgressBar progressBar = pattyToProgressBar[patty];
-
-        while (pattyCookingProgress[patty] < 1f)
+        if (pattyToProgressBar.TryGetValue(patty, out ProgressBar progressBar))
         {
-            pattyCookingProgress[patty] += Time.deltaTime / cookingTime;
-            progressBar.SetProgress(Mathf.Clamp01(pattyCookingProgress[patty]));
-            yield return null;
+            while (pattyCookingProgress[patty] < 1f)
+            {
+                pattyCookingProgress[patty] += Time.deltaTime / cookingTime;
+                progressBar.SetProgress(Mathf.Clamp01(pattyCookingProgress[patty]));
+                yield return null;
+            }
+
+            FinishCooking(patty);
         }
 
-        FinishCooking(patty);
     }
 
     private void FinishCooking(GameObject patty)
     {
+        if (flameWhooshClip != null && audioSource != null)
+        {
+            audioSource.PlayOneShot(flameWhooshClip);
+        }
         // Replace raw patty with cooked version
         patty.transform.GetPositionAndRotation(out var instancePosition, out var instanceRotation);
         GameObject cookedPrefab = patty.GetComponent<GrillableIngredient>().cookedVersionPrefab;
@@ -83,6 +112,7 @@ public class CookingGrill : MonoBehaviour
         RemovePattyFromGrill(patty);
         Destroy(patty);
 
-        Instantiate(cookedPrefab, instancePosition, instanceRotation);
+        GameObject ob = Instantiate(cookedPrefab, instancePosition, instanceRotation);
+        ob.name = cookedPrefab.name;
     }
 }

@@ -4,12 +4,24 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour{
+
+    [Header("Order Controller Reference")]
+    [SerializeField] private OrderController orderController; // Reference to OrderController
+    [SerializeField] private CheckPlate CheckPlateController;
+    [SerializeField] private ScoreController scoreController;
+    [SerializeField] private EndController endController;
+    [SerializeField] private List<Order> orders = new List<Order>(); // List of orders
+
+    private List<Recipe> recipeList;
+    
     // Game variables
-    int score;
     public int maxConcurrentOrders = 5;
-    public float gameDuration = 600f; // Total game time in seconds
-    public float minTimeBetweenOrders = 5f; // Minimum interval for new orders
-    public float maxTimeBetweenOrders = 15f; // Maximum interval for new orders
+    public float gameDuration = 600f;
+    public float minTimeBetweenOrders = 30f;
+    public float maxTimeBetweenOrders = 60f;
+    public float orderMinDuration = 30f;
+    public float orderMaxDuration = 120f;
+    public float kitchenPrepDuration = 30f;
     private float gameTimeRemaining;
 
     // Events
@@ -18,17 +30,27 @@ public class GameManager : MonoBehaviour{
     public static event Action<int> OnScoreAdded;
 
     private bool isGameRunning = false;
-    private List<Tuple<string, DateTime>> orders = new List<Tuple<string, DateTime>>();
+    private int score = 0;
 
     // Unity Methods
     void Start()
     {
-        GameStart();
+        orderController = FindObjectOfType<OrderController>();
+        CheckPlateController = FindObjectOfType<CheckPlate>();
+        scoreController = FindObjectOfType<ScoreController>();
+        endController = FindObjectOfType<EndController>();
     }
 
     void Update()
     {
-        if (!isGameRunning) return;
+        while (kitchenPrepDuration > 0){
+            kitchenPrepDuration -= Time.deltaTime;
+            return;
+        }
+        
+        if (!isGameRunning) {
+            GameStart();
+        }
 
         gameTimeRemaining -= Time.deltaTime;
 
@@ -43,10 +65,12 @@ public class GameManager : MonoBehaviour{
     {
         isGameRunning = true;
         gameTimeRemaining = gameDuration;
-        score = 0;
+        LoadRecipes();
         orders.Clear();
-
+        CreateRandomOrder();
         StartCoroutine(OrderTimer());
+        // PopulateOrders();
+
     }
 
     // End the game
@@ -54,7 +78,8 @@ public class GameManager : MonoBehaviour{
     {
         isGameRunning = false;
 
-        // Add end-game logic
+        // TODO: Add end-game logic
+        endController.Appear(score);
     }
 
     // Timer for creating orders
@@ -65,60 +90,104 @@ public class GameManager : MonoBehaviour{
             yield return new WaitForSeconds(UnityEngine.Random.Range(minTimeBetweenOrders, maxTimeBetweenOrders));
             if (orders.Count < maxConcurrentOrders)
             {
-                CreateOrder();
+                CreateRandomOrder();
             }
         }
     }
 
-    // Add a new order
-    public void AddOrder(string recipeName)
-    {
-        var order = new Tuple<string, DateTime>(recipeName, DateTime.Now);
-        orders.Add(order);
-        OnOrderAdded?.Invoke(recipeName, DateTime.Now);
-    }
-
-    // Add to score
-    public void AddScore(int addedScore)
-    {
-        score += addedScore;
-        OnScoreAdded?.Invoke(addedScore);
-    }
-
     // Submit an order
-    public void OrderSubmitted(int addedScore, bool wasSuccessful)
+    public void OrderSubmitted()
     {
-        if (orders.Count == 0)
-        {
-            return;
-        }
+        // if (orders.Count == 0)
+        // {
+        //     return;
+        // }
 
-        orders.RemoveAt(0); // Remove the first order
-
-        if (wasSuccessful)
-        {
-            AddScore(addedScore);
-        }
-
-        OnOrderRemoved?.Invoke(wasSuccessful);
+        // Need to be able to remove one order
+        // orders.RemoveAt(0);
+        Debug.Log("I was called succesfully");
+        score = CheckPlateController.CheckOrders();
+        Debug.Log($"From Gamemanager trying to add score {score} ");
+        scoreController.UpdateScore(score);
+        // OnOrderRemoved?.Invoke(wasSuccessful); JUNK?
     }
+
 
     // Create a random order
-    void CreateOrder()
+    void CreateRandomOrder()
     {
+        List<Order> orders = orderController.GetOrders();
+        
         if (orders.Count >= maxConcurrentOrders)
         {
             return;
         }
 
-        string recipeName = GenerateRandomRecipe();
-        AddOrder(recipeName);
+        int randomIndex = UnityEngine.Random.Range(0, recipeList.Count);
+        Recipe randomRecipe = recipeList[randomIndex];
+
+        // Create a new order using the randomly selected recipe
+        Order newOrder = new Order
+        {
+            name = randomRecipe.name, 
+            recipe = randomRecipe, 
+            timeInSeconds = (int)UnityEngine.Random.Range(orderMinDuration, orderMaxDuration)
+        };
+
+        orderController.AddOrder(newOrder);
+        Debug.Log($"New order created: {newOrder.name}");
     }
 
-    // Generate a random recipe
-    private string GenerateRandomRecipe()
+    // This is not gonna be used
+    private void PopulateOrders()
     {
-        string[] recipes = { "Cheeseburger", "Veggie Burger", "Chicken Burger", "Double Cheeseburger", "Bacon Burger" };
-        return recipes[UnityEngine.Random.Range(0, recipes.Length)];
+
+        if (orderController == null)
+        {
+            Debug.LogError("OrderController is null. Assign it in the Inspector in unity or find it at runtime.");
+            return;
+        }
+        
+        foreach (var recipe in recipeList)
+        {
+            // Create a new Order using the Recipe
+            Order newOrder = new Order
+            {
+                name = recipe.name, 
+                recipe = recipe,
+                timeInSeconds = (int)UnityEngine.Random.Range(orderMinDuration, orderMaxDuration)
+            };
+
+            // Add the Order to the OrderController
+            Debug.Log($"Created order {newOrder}");
+
+            Debug.Log("Attempting to call AddOrder()...");
+
+            orderController.AddOrder(newOrder);
+
+            Debug.Log("AddOrder() was called successfully.");
+        }
+
+        Debug.Log("Orders have been populated.");
     }
+
+    private void LoadRecipes()
+    {
+        Recipe[] recipes = Resources.LoadAll<Recipe>("Recipes");
+        if (recipes == null || recipes.Length == 0)
+        {
+            Debug.LogError("No recipes found in Resources/Recipes!");
+            return;
+        }
+        recipeList = new List<Recipe>(recipes);
+        Debug.Log($"Loaded {recipeList.Count} recipes.");
+}
+
+
+    // Add to score
+    // public void AddScore(int addedScore)
+    // {
+    //     score += addedScore;
+    //     OnScoreAdded?.Invoke(addedScore);
+    // }
 }
