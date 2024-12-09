@@ -77,6 +77,7 @@ public class GameManager : MonoBehaviour{
     public void GameEnd()
     {
         isGameRunning = false;
+        
 
         // TODO: Add end-game logic
         endController.Appear(score);
@@ -116,6 +117,10 @@ public class GameManager : MonoBehaviour{
     // Create a random order
     void CreateRandomOrder()
     {
+
+        if (!isGameRunning) {
+            return;
+        }
         List<Order> orders = orderController.GetOrders();
         
         if (orders.Count >= maxConcurrentOrders)
