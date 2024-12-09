@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 990b642bdc9e140d0bea6b5dc60aa3de, type: 3}
   m_Name: Triple Cheese
   m_EditorClassIdentifier: 
-  recipeImage: {fileID: 21300000, guid: 1059cd530a645744c85353ca4358b662, type: 3}
+  recipeImage: {fileID: 21300000, guid: 947adc20bbcc4084a9cb15f5160cfac3, type: 3}
   recipeText: 'BunTop
 
     CheeseSlice
