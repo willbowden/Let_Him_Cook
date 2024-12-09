@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using System;
 
 public class OrderController : MonoBehaviour
 {
@@ -13,9 +14,11 @@ public class OrderController : MonoBehaviour
     [SerializeField] private TMP_Text orderTimes; // Reference to the TMP_Text for the times
 
     private AudioSource chimeSource;
+    private GameManager gameManager;
 
     void Start()
     {
+        gameManager = FindObjectOfType<GameManager>();
         chimeSource = GetComponent<AudioSource>();
         // Restaurant starts closed, no orders loaded initially
         ResetUI();
@@ -80,7 +83,7 @@ public class OrderController : MonoBehaviour
 
             // Debug.Log($"update timeInSeconds {order.timeInSeconds}");
             order.timeInSeconds -= Time.deltaTime;
-        
+
         }
     }
 
@@ -101,8 +104,8 @@ public class OrderController : MonoBehaviour
         for (int i = 0; i < orders.Count; i++)
         {
             var order = orders[i];
-            int minutes = Mathf.RoundToInt(order.timeInSeconds / 60);
-            int seconds = Mathf.RoundToInt(order.timeInSeconds % 60);
+            int minutes = (int)Math.Floor(order.timeInSeconds / 60);
+            int seconds = (int)Math.Floor(order.timeInSeconds % 60);
             // int minutes = Mathf.FloorToInt(order.timeInSeconds / 60);
             // int seconds = Mathf.FloorToInt(order.timeInSeconds % 60);
             if (order.timeInSeconds < 0)
@@ -124,11 +127,22 @@ public class OrderController : MonoBehaviour
     // Reset the UI
     private void ResetUI()
     {
-        orderNames.text = "No orders.";
-        orderTimes.text = "[--:--]";
+        if (gameManager != null && gameManager.kitchenPrepDuration > 0)
+        {
+            int minutes = (int)Math.Floor(gameManager.kitchenPrepDuration / 60);
+            int seconds = (int)Math.Floor(gameManager.kitchenPrepDuration % 60);
+            orderNames.text = "Kitchen will open in:";
+            orderTimes.text = $"[{minutes:D2}:{seconds:D2}]";
+        }
+        else
+        {
+            orderNames.text = "No orders.";
+            orderTimes.text = "[--:--]";
+        }
     }
 
-    public List<Order> GetOrders() {
+    public List<Order> GetOrders()
+    {
         return orders;
     }
 }

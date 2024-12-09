@@ -67,6 +67,7 @@ public class GameManager : MonoBehaviour{
         gameTimeRemaining = gameDuration;
         LoadRecipes();
         orders.Clear();
+        CreateRandomOrder();
         StartCoroutine(OrderTimer());
         // PopulateOrders();
 
