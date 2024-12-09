@@ -30,7 +30,9 @@ public class GameManager : MonoBehaviour{
     public static event Action<int> OnScoreAdded;
 
     private bool isGameRunning = false;
-    private int score = 0;
+    // private int score = 0;
+
+    public int totalScore = 0;
 
     // Unity Methods
     void Start()
@@ -80,7 +82,7 @@ public class GameManager : MonoBehaviour{
         
 
         // TODO: Add end-game logic
-        endController.Appear(score);
+        endController.Appear();
     }
 
     // Timer for creating orders
@@ -107,9 +109,10 @@ public class GameManager : MonoBehaviour{
         // Need to be able to remove one order
         // orders.RemoveAt(0);
         Debug.Log("I was called succesfully");
-        score = CheckPlateController.CheckOrders();
+        int score = CheckPlateController.CheckOrders();
         Debug.Log($"From Gamemanager trying to add score {score} ");
         scoreController.UpdateScore(score);
+        totalScore += score;
         // OnOrderRemoved?.Invoke(wasSuccessful); JUNK?
     }
 

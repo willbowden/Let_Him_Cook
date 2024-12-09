@@ -541,6 +541,17 @@ SphereCollider:
   serializedVersion: 3
   m_Radius: 0.01
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &298676001 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2780072460562164261, guid: 7344563c3edbe444ba252a9c61415105, type: 3}
+  m_PrefabInstance: {fileID: 802271316}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &337716545
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -803,11 +814,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6973455791418623781, guid: e4306b5f2510f2d47af9254ea46529d7, type: 3}
       propertyPath: gameDuration
-      value: 600
+      value: 120
       objectReference: {fileID: 0}
     - target: {fileID: 6973455791418623781, guid: e4306b5f2510f2d47af9254ea46529d7, type: 3}
       propertyPath: kitchenPrepDuration
-      value: 30
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 6973455791418623781, guid: e4306b5f2510f2d47af9254ea46529d7, type: 3}
+      propertyPath: maxTimeBetweenOrders
+      value: 60
+      objectReference: {fileID: 0}
+    - target: {fileID: 6973455791418623781, guid: e4306b5f2510f2d47af9254ea46529d7, type: 3}
+      propertyPath: minTimeBetweenOrders
+      value: 15
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -2405,30 +2424,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1399010057}
     m_Modifications:
-    - target: {fileID: 3701565773415211832, guid: 116fd66a484ef6235b2b0a6dd52c346a, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -1.2500001
-      objectReference: {fileID: 0}
-    - target: {fileID: 3701565773415211832, guid: 116fd66a484ef6235b2b0a6dd52c346a, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: -0.292
-      objectReference: {fileID: 0}
-    - target: {fileID: 3701565773415211832, guid: 116fd66a484ef6235b2b0a6dd52c346a, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3701565773415211832, guid: 116fd66a484ef6235b2b0a6dd52c346a, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3701565773415211832, guid: 116fd66a484ef6235b2b0a6dd52c346a, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3701565773415211832, guid: 116fd66a484ef6235b2b0a6dd52c346a, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 180
-      objectReference: {fileID: 0}
     - target: {fileID: 10640834578319712, guid: ab152338d143b5908995eadd31ef083c, type: 3}
       propertyPath: m_Name
       value: Knife
@@ -2472,6 +2467,30 @@ PrefabInstance:
     - target: {fileID: 823628100537930714, guid: ab152338d143b5908995eadd31ef083c, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3701565773415211832, guid: 116fd66a484ef6235b2b0a6dd52c346a, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -1.2500001
+      objectReference: {fileID: 0}
+    - target: {fileID: 3701565773415211832, guid: 116fd66a484ef6235b2b0a6dd52c346a, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0.292
+      objectReference: {fileID: 0}
+    - target: {fileID: 3701565773415211832, guid: 116fd66a484ef6235b2b0a6dd52c346a, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3701565773415211832, guid: 116fd66a484ef6235b2b0a6dd52c346a, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3701565773415211832, guid: 116fd66a484ef6235b2b0a6dd52c346a, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3701565773415211832, guid: 116fd66a484ef6235b2b0a6dd52c346a, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 180
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -3858,6 +3877,10 @@ PrefabInstance:
       propertyPath: mainCamera
       value: 
       objectReference: {fileID: 1249318914}
+    - target: {fileID: 5190480070417563500, guid: 73d22552922084e38a677814c01c38eb, type: 3}
+      propertyPath: scoreUIText
+      value: 
+      objectReference: {fileID: 298676001}
     - target: {fileID: 5649959123312012816, guid: 73d22552922084e38a677814c01c38eb, type: 3}
       propertyPath: m_Name
       value: EndUI
