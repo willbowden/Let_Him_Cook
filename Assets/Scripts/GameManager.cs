@@ -3,7 +3,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GameManager : MonoBehaviour{
+public class GameManager : MonoBehaviour
+{
 
     [Header("Order Controller Reference")]
     [SerializeField] private OrderController orderController; // Reference to OrderController
@@ -12,8 +13,10 @@ public class GameManager : MonoBehaviour{
     [SerializeField] private EndController endController;
     [SerializeField] private List<Order> orders = new List<Order>(); // List of orders
 
+    private Announcer announcer;
+
     private List<Recipe> recipeList;
-    
+
     // Game variables
     public int maxConcurrentOrders = 5;
     public float gameDuration = 600f;
@@ -41,20 +44,31 @@ public class GameManager : MonoBehaviour{
         CheckPlateController = FindObjectOfType<CheckPlate>();
         scoreController = FindObjectOfType<ScoreController>();
         endController = FindObjectOfType<EndController>();
+        announcer = FindObjectOfType<Announcer>();
+
+        announcer.QueueVoiceLine("GameStart");
     }
 
     void Update()
     {
-        while (kitchenPrepDuration > 0){
+        while (kitchenPrepDuration > 0)
+        {
             kitchenPrepDuration -= Time.deltaTime;
             return;
         }
-        
-        if (!isGameRunning) {
+
+        if (!isGameRunning)
+        {
             GameStart();
         }
 
+        if (gameTimeRemaining / gameDuration > 0.25f && (gameTimeRemaining - Time.deltaTime) / gameDuration <= 0.25f)
+        {
+            announcer.QueueVoiceLine("LowTimeRemaining");
+        }
+
         gameTimeRemaining -= Time.deltaTime;
+
 
         if (gameTimeRemaining <= 0)
         {
@@ -71,15 +85,25 @@ public class GameManager : MonoBehaviour{
         orders.Clear();
         CreateRandomOrder();
         StartCoroutine(OrderTimer());
-        // PopulateOrders();
-
     }
 
     // End the game
     public void GameEnd()
     {
         isGameRunning = false;
-        
+
+        if (totalScore > 250)
+        {
+            announcer.QueueVoiceLine("GameOverHighScore");
+        }
+        else if (totalScore <= 0)
+        {
+            announcer.QueueVoiceLine("GameOverNegativeScore");
+        }
+        else if (totalScore < 250)
+        {
+            announcer.QueueVoiceLine("GameOverLowScore");
+        }
 
         // TODO: Add end-game logic
         endController.Appear();
@@ -121,11 +145,12 @@ public class GameManager : MonoBehaviour{
     void CreateRandomOrder()
     {
 
-        if (!isGameRunning) {
+        if (!isGameRunning)
+        {
             return;
         }
         List<Order> orders = orderController.GetOrders();
-        
+
         if (orders.Count >= maxConcurrentOrders)
         {
             return;
@@ -137,8 +162,8 @@ public class GameManager : MonoBehaviour{
         // Create a new order using the randomly selected recipe
         Order newOrder = new Order
         {
-            name = randomRecipe.name, 
-            recipe = randomRecipe, 
+            name = randomRecipe.name,
+            recipe = randomRecipe,
             timeInSeconds = (int)UnityEngine.Random.Range(orderMinDuration, orderMaxDuration)
         };
 
@@ -155,13 +180,13 @@ public class GameManager : MonoBehaviour{
             Debug.LogError("OrderController is null. Assign it in the Inspector in unity or find it at runtime.");
             return;
         }
-        
+
         foreach (var recipe in recipeList)
         {
             // Create a new Order using the Recipe
             Order newOrder = new Order
             {
-                name = recipe.name, 
+                name = recipe.name,
                 recipe = recipe,
                 timeInSeconds = (int)UnityEngine.Random.Range(orderMinDuration, orderMaxDuration)
             };
@@ -189,7 +214,7 @@ public class GameManager : MonoBehaviour{
         }
         recipeList = new List<Recipe>(recipes);
         Debug.Log($"Loaded {recipeList.Count} recipes.");
-}
+    }
 
 
     // Add to score

@@ -18,7 +18,7 @@
 //     }
 
 //     private void OnTriggerEnter(Collider other){
-        
+
 //         // Debug.Log(other.gameObject.name.Contains("BurgerPlate"));
 
 //         if (!other.gameObject.name.Contains("BurgerPlate")) {
@@ -42,7 +42,7 @@
 //     public int CheckOrders(){
 //         int score = 0;
 //         Debug.Log("Check orders was called");
-                
+
 //         foreach (GameObject plateObject in PlatesInArea){
 //             score += CheckOneOrder(plateObject);
 
@@ -82,7 +82,7 @@
 //         foreach (Order order in orders){
 
 //             score = ScoreOrdering(plateObject, order);
-        
+
 //             if (score > highestScore){
 //                 highestScore = score;
 //                 orderToRemove = order;
@@ -228,8 +228,11 @@ public class CheckPlate : MonoBehaviour
     private List<Order> orders = new(); // List of orders
     private List<string> OrderIngredientList = new();
 
+    private Announcer announcer;
+
     void Start()
     {
+        announcer = FindObjectOfType<Announcer>();
         orderController = FindObjectOfType<OrderController>();
     }
 
@@ -309,8 +312,13 @@ public class CheckPlate : MonoBehaviour
         if (plate == null) return 0;
 
         Stack<GameObject> plateIngredients = plate.GetContents();
-        if (plateIngredients.Count == 0) return 0;
+        if (plateIngredients.Count == 0)
+        {
+            announcer.QueueVoiceLine("EmptyPlate");
+            return 0;
+        }
         int score = 0;
+        bool perfect = false;
         int highestScore = -10000;
         Order orderToRemove = new();
         List<GameObject> PlateIngredientsList = new(plateIngredients);
@@ -322,18 +330,42 @@ public class CheckPlate : MonoBehaviour
             Debug.LogWarning("No orders available to check.");
             return 0;
         }
-        
+
 
         // Find the order with the highest score and remove it
         foreach (Order order in orders)
         {
-            score = ScoreOrdering(plateObject, order);
+            bool isPerfect;
+            (score, isPerfect) = ScoreOrdering(plateObject, order);
 
             if (score > highestScore)
             {
                 highestScore = score;
+                perfect = isPerfect;
                 orderToRemove = order;
             }
+        }
+
+        bool hasBurgerBurnt = PlateIngredientsList.Any(ingredient => ingredient.name == "PattyBurnt");
+        bool hasBurgerRaw = PlateIngredientsList.Any(ingredient => ingredient.name == "PattyRaw");
+        bool hasBurgerRawInRecipe = GetOrderRecipeIngredients(orderToRemove).Contains("PattyRaw");
+        bool hasBurgerBurntInRecipe = GetOrderRecipeIngredients(orderToRemove).Contains("PattyBurnt");
+
+        if (hasBurgerRaw && !hasBurgerRawInRecipe)
+        {
+            announcer.QueueVoiceLine("RawBurger");
+        }
+        else if (hasBurgerBurnt && !hasBurgerBurntInRecipe)
+        {
+            announcer.QueueVoiceLine("BurntBurger");
+        }
+        else if (perfect)
+        {
+            announcer.QueueVoiceLine("OrderPerfect");
+        }
+        else
+        {
+            announcer.QueueVoiceLine("OrderMistake");
         }
 
         orderController.RemoveOrder(orderToRemove);
@@ -349,7 +381,7 @@ public class CheckPlate : MonoBehaviour
         return OrderIngredientList;
     }
 
-    public int ScoreOrdering(GameObject plateObject, Order order)
+    public (int, bool) ScoreOrdering(GameObject plateObject, Order order)
     {
         BurgerPlate plate = plateObject.GetComponent<BurgerPlate>();
         List<string> IngredientsToMatch = GetOrderRecipeIngredients(order);
@@ -387,19 +419,21 @@ public class CheckPlate : MonoBehaviour
 
         bool hasBurgerBurnt = PlateIngredientsList.Any(ingredient => ingredient.name == "PattyBurnt");
         bool hasBurgerRaw = PlateIngredientsList.Any(ingredient => ingredient.name == "PattyRaw");
-        bool hasBurgerRawInRecipe = IngredientsToMatch.Contains("PattyRaw");          
-        bool hasBurgerBurntInRecipe = IngredientsToMatch.Contains("PattyBurnt");          
+        bool hasBurgerRawInRecipe = IngredientsToMatch.Contains("PattyRaw");
+        bool hasBurgerBurntInRecipe = IngredientsToMatch.Contains("PattyBurnt");
 
+        bool perfect = false;
 
-        if (hasBurgerRaw && !hasBurgerRawInRecipe) weight -= 20;
-        if (hasBurgerBurnt && !hasBurgerBurntInRecipe) weight -= 20;
-
-        if (correctIngredients == IngredientsToMatch.Count) weight += 20; // Bonus for perfect match
+        if (correctIngredients == IngredientsToMatch.Count)
+        {
+            perfect = true;
+            weight += 20; // Bonus for perfect match
+        }
         if (order.timeInSeconds <= 0) weight -= 30; // Penalty for late order
 
         float score = ((float)correctIngredients / IngredientsToMatch.Count) * IngredientsToMatch.Count * weight;
         int finalScore = Mathf.RoundToInt(score);
         Debug.Log($"Score: {finalScore}");
-        return finalScore;
+        return (finalScore, perfect);
     }
 }
