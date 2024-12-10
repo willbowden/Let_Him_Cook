@@ -15,9 +15,11 @@ public class OrderController : MonoBehaviour
 
     private AudioSource chimeSource;
     private GameManager gameManager;
+    private Announcer announcer;
 
     void Start()
     {
+        announcer = FindObjectOfType<Announcer>();
         gameManager = FindObjectOfType<GameManager>();
         chimeSource = GetComponent<AudioSource>();
         // Restaurant starts closed, no orders loaded initially
@@ -63,6 +65,10 @@ public class OrderController : MonoBehaviour
     public void RemoveOrder(Order order)
     {
         orders.Remove(order);
+        if (order.timeInSeconds < 0)
+        {
+            announcer.QueueVoiceLine("OrderLate");
+        }
         Debug.Log($"Order removed: {order.name}");
         UpdateUI();
     }
@@ -82,6 +88,10 @@ public class OrderController : MonoBehaviour
         {
 
             // Debug.Log($"update timeInSeconds {order.timeInSeconds}");
+            if (order.timeInSeconds > 0 && (order.timeInSeconds - Time.deltaTime) < 0)
+            {
+                announcer.QueueVoiceLine("OrderOverTime");
+            }
             order.timeInSeconds -= Time.deltaTime;
 
         }

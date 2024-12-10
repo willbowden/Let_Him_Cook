@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 990b642bdc9e140d0bea6b5dc60aa3de, type: 3}
   m_Name: Avocado Burger
   m_EditorClassIdentifier: 
-  recipeImage: {fileID: 21300000, guid: 47dc5fe2c9022524292f7cc2d9e5c9e9, type: 3}
+  recipeImage: {fileID: 21300000, guid: bba0ab7663296874f8e853d181e380ca, type: 3}
   recipeText: 'BunTop
 
     LettuceSlice
@@ -27,9 +27,7 @@ MonoBehaviour:
 
     PattyCooked
 
-    BunBottom
-
-'
+    BunBottom'
   recipeTextDisplay: '1 x Top Bun
 
     1 x Lettuce Slice
