@@ -92,7 +92,7 @@ public class GameManager : MonoBehaviour
     {
         isGameRunning = false;
 
-        if (totalScore > 250)
+        if (totalScore > 500)
         {
             announcer.QueueVoiceLine("GameOverHighScore");
         }
@@ -100,7 +100,7 @@ public class GameManager : MonoBehaviour
         {
             announcer.QueueVoiceLine("GameOverNegativeScore");
         }
-        else if (totalScore < 250)
+        else if (totalScore < 500)
         {
             announcer.QueueVoiceLine("GameOverLowScore");
         }
